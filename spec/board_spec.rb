@@ -10,7 +10,11 @@ module Chess
 		end
 
 		context "#display" do
+			before(:each) do
+				@board = Board.new
+			end
 			it "displays the game at the current state of the game" do
+				expect(@board.display).to eq("shoe")
 			end
 		end
 	end
