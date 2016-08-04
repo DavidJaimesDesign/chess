@@ -14,9 +14,13 @@ module Chess
 		end 
 
 		def display
-			empty_white = " "
-			empty_black = " " 
-			puts "this is blue".colorize(:black)
+			empty_white = "\u25a1\u2659".encode('utf-8')
+			empty_black = "\u25a0".encode('utf-8') 
+			puts "#{empty_black}".colorize(:black)
+			puts "#{empty_white}".colorize(:white)
+
+			display_board = board.map do |row|
+			end
 		end
 	end
 end
