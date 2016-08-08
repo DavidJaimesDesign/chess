@@ -1,7 +1,18 @@
 module Chess
 	class Piece
-		def display
-			#displays the piece
-		end 
+		attr_reader :color
+		def initialize(color)
+			@color = color
+		end
+
+		def move(coord, board)
+		end
+
+		def capture(coord, board)
+		end
+
+		def delete
+			self = nil
+		end
 	end
 end
