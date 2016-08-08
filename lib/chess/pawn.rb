@@ -1,4 +1,5 @@
 module Chess
+	#coord are [y , x]
 	class Pawn < Piece
 		def display
 			if self.color == "white"
@@ -8,8 +9,12 @@ module Chess
 			end
 		end
 
-		def valid_move?(coord, board)
-			#returns if the coordinates are a valid move for the pawn to make
+		def valid_move?(coord_i, coord_f, board)
+			if coord_f[0] - coord_i[0] == 1 && coord_i[1] == coord_f[1]
+				true
+			else
+				false 
+			end
 		end
 	end
 end
