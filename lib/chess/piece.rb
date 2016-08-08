@@ -5,14 +5,12 @@ module Chess
 			@color = color
 		end
 
-		def move(coord, board)
+		def move(coord_i, coord_f, board)
+			board.board[coord_i[0]][coord_i[1]] = self
+			board.board[coord_f[0]][coord_f[1]] = nil
 		end
 
 		def capture(coord, board)
-		end
-
-		def delete
-			self = nil
 		end
 	end
 end
