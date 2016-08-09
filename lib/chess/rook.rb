@@ -11,17 +11,43 @@ module Chess
 		def valid_move?(coord_i, coord_f, board)
 			if coord_i[1] == coord_f[1]
 				#vertical movement
-
+				true 
 			elsif coord_i[0] == coord_f[0]
 				#horizontal movement
 				row = coord_i[0]
-				if board.board[row][coord_i[1]..coord_f[1]].any?
-					false 
-				else
-					true
+
+				if coord_i[1] < coord_f[1]
+					ci = coord_i[1] + 1
+					cf = coord_f[1] - 1
+					if board.board[row][ci..cf].any?
+						false
+					else
+						if board.board[row][coord_f[1]].nil? 
+							true
+						elsif board.board[row][coord_f[1]].color == self.color
+							false
+						else
+							true 
+						end 
+					end
+				elsif coord_f[1] < coord_i[1]
+					ci = coord_f[1] + 1
+					cf = coord_i[1] - 1
+					if board.board[row][ci..cf].any?
+						false
+					else
+						if board.board[row][coord_f[1]].nil?
+							true
+						elsif board.board[row][coord_f[1]].color == self.color
+							false
+						else 
+							true
+						end
+					end
+				end	
 			else
 				false
 			end
 		end
 	end
-end
+end 

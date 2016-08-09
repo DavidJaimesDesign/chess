@@ -72,7 +72,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [0, 5]
 
-				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
+				expect(@rook_black.valid_move?(coord_f, coord_i, @board)).to be false
 			end
 
 			it "returns false for attempting to capture same color piece" do
