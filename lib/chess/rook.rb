@@ -10,9 +10,15 @@ module Chess
 
 		def valid_move?(coord_i, coord_f, board)
 			if coord_i[1] == coord_f[1]
-				true
+				#vertical movement
+
 			elsif coord_i[0] == coord_f[0]
-				true 
+				#horizontal movement
+				row = coord_i[0]
+				if board.board[row][coord_i[1]..coord_f[1]].any?
+					false 
+				else
+					true
 			else
 				false
 			end
