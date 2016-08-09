@@ -9,8 +9,16 @@ module Chess
 		end
 
 		def valid_move?(coord_i, coord_f, board)
+			if board.board[coord_f[0]][coord_f[1]].nil?
+				#check if jump
+			elsif board.board[coord_f[0]][coord_f[1]].color == self.color
+				false 
+			elsif board.board[coord_f[0]][coord_f[1]].color != self.color
+				#check if jump
+			end
+
 			if coord_i[1] == coord_f[1]
-				#vertical movement
+				#vertical movement checking for jumping over pieces
 				if coord_i[0] < coord_f[0]
 					i = coord_i[0] + 1
 					while i < coord_f[0] do
@@ -31,7 +39,7 @@ module Chess
 					return true
 				end	
 			elsif coord_i[0] == coord_f[0]
-				#horizontal movement
+				#horizontal movement checking for jumping over pieces 
 				row = coord_i[0]
 
 				if coord_i[1] < coord_f[1]
