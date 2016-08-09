@@ -25,21 +25,65 @@ module Chess
 				@board.board[0][0] = @rook_white
 				coord_i = [0, 0] 
 				coord_f = [3, 0]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns true for a horizontal move" do
+				@board.board[0][0] = @rook_white
+				coord_i = [0, 0]
+				coord_f = [0, 4]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns false for anything not horizontal or vertical" do
+				@board.board[0][0] = @rook_white
+				coord_i = [0, 0] 
+				coord_f = [3, 5]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false 
 			end
 
 			it "returns true for capturing a piece in a vertical or horizontal position from it" do
+				@board.board[0][0] = @rook_white
+				@board.board[3][0] = @rook_black
+
+				coord_i = [0, 0]
+				coord_f = [3, 0]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
-			it "returns false for jumping over a piece of any color" do
+			it "returns false for jumping over a piece of any color vertically" do
+				@board.board[0][0] = @rook_white
+				@board.board[3][0] = @rook_black
+
+				coord_i = [0, 0]
+				coord_f = [5, 0]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
+			end
+
+			it "returns false for jumping over a piece of any color horizontally" do
+				@board.board[0][0] = @rook_white
+				@board.board[0][3] = @rook_black
+
+				coord_i = [0, 0]
+				coord_f = [0, 5]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 
 			it "returns false for attempting to capture same color piece" do
+				#will this work both vertically and horizontally 
+				@board.board[0][0] = @rook_white
+				@board.board[0][3] = @rook_white2
+
+				coord_i = [0][0]
+				coord_f = [0][3]
+
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 		end
 	end

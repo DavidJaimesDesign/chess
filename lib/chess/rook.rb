@@ -9,6 +9,13 @@ module Chess
 		end
 
 		def valid_move?(coord_i, coord_f, board)
+			if coord_i[1] == coord_f[1]
+				true
+			elsif coord_i[0] == coord_f[0]
+				true 
+			else
+				false
+			end
 		end
 	end
 end
