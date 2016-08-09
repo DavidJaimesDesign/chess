@@ -40,12 +40,29 @@ module Chess
 			end
 
 			it "returns true for a one space forward diagonal move if there is an opposite color piece present" do
+				@board.board[0][0] = @pawn_white1
+				@board.board[1][1] = @pawn_black2
+
+				coord_i = [0, 0]
+				coord_f = [1, 1]
+
+				expect(@pawn_white1.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns false for any backwards move" do
+				@board.board[1][0] = @pawn_white1
+				coord_i = [1, 0]
+				coord_f = [0, 0]
+
+				expect(@pawn_white1.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 
 			it "returns false for any move that is not a vertical one move or a diagonal capture" do
+				@board.board[1][0] = @pawn_white1
+				coord_i = [0, 0]
+				coord_f = [3, 4]
+
+				expect(@pawn_white1.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 		end
 

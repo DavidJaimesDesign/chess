@@ -11,7 +11,12 @@ module Chess
 
 		def valid_move?(coord_i, coord_f, board)
 			if coord_f[0] - coord_i[0] == 1 && coord_i[1] == coord_f[1]
-				true
+				if board.board[coord_f[0]][coord_f[1]].nil?
+					true
+				else
+					false
+				end
+			#needs an another if case where the position is diagonal 
 			else
 				false 
 			end
