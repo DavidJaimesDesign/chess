@@ -49,5 +49,32 @@ module Chess
 				expect(@board.board[0][1]).to eq(@piece_white)
 			end
 		end
+
+		context "#team_kill?" do
+			it "returns true if there is a piece of the same team at coordinates" do
+				board = Board.new
+				piece_white  = Piece.new("white")
+				piece_white2 = Piece.new("white")
+				board.board[0][0] = piece_white
+				board.board[0][1] = piece_white2
+
+				coordinates_f = [0, 1]
+
+				expect(piece_white.team_kill?(coordinates_f, board)).to be true 
+			end
+
+			it "returns false if there is a piece of a different suit at coordinates" do
+				board = Board.new
+				piece_white  = Piece.new("white")
+				piece_black = Piece.new("black")
+				board.board[0][0] = piece_white
+				board.board[0][1] = piece_black
+
+				coordinates_f = [0, 1]
+
+				expect(piece_white.team_kill?(coordinates_f, board)).to be false
+
+			end 
+		end
 	end
 end

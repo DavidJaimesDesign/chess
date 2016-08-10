@@ -80,8 +80,8 @@ module Chess
 				@board.board[0][0] = @rook_white
 				@board.board[0][3] = @rook_white2
 
-				coord_i = [0][0]
-				coord_f = [0][3]
+				coord_i = [0, 0]
+				coord_f = [0, 3]
 
 				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
 			end

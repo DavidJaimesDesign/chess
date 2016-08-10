@@ -12,5 +12,18 @@ module Chess
 
 		def capture(coord, board)
 		end 
+
+		def team_kill?(coord_f, board)
+			y = coord_f[0]
+			x = coord_f[1]
+
+			if board.board[y][x].nil?
+				board.board[y][x]
+			elsif board.board[coord_f[0]][coord_f[1]].color == self.color
+				true
+			else
+				false
+			end
+		end
 	end
 end

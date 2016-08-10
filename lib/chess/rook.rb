@@ -9,15 +9,10 @@ module Chess
 		end
 
 		def valid_move?(coord_i, coord_f, board)
-			if board.board[coord_f[0]][coord_f[1]].nil?
-				#check if jump
-			elsif board.board[coord_f[0]][coord_f[1]].color == self.color
-				false 
-			elsif board.board[coord_f[0]][coord_f[1]].color != self.color
-				#check if jump
-			end
-
-			if coord_i[1] == coord_f[1]
+			return "ERROR nil values for coords" if coord_i.nil? || coord_f.nil? 
+			if team_kill?(coord_f, board)
+				false
+			elsif coord_i[1] == coord_f[1]
 				#vertical movement checking for jumping over pieces
 				if coord_i[0] < coord_f[0]
 					i = coord_i[0] + 1
