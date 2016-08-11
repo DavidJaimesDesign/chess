@@ -76,5 +76,69 @@ module Chess
 
 			end 
 		end
+
+		context "#vertical_positive_move" do
+			it "returns true for vertical positve moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "#vertical_negative_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "#horizontal_positive_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "#horizontal_negative_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "#right_up_diagonal_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "#right_down_diagonal_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "left_up_diagonal_move" do
+			it "returns true for vertical negative moves" do
+			end
+
+			it "returns false for all other moves" do
+			end
+		end
+
+		context "left_down_diagonal_move" do
+			it "returns true for vertical negative moves" do
+			end
+			
+			it "returns false for all other moves" do
+			end
+		end
 	end
 end
