@@ -9,6 +9,14 @@ module Chess
 		end
 
 		def valid_move?(coord_i, coord_f, board)
+			return "ERROR nil values for coords" if coord_i.nil? || coord_f.nil? 
+			if team_kill?(coord_f, board)
+				false
+			elsif (coord_f[0] - coord_i[0] > 1) || (coord_f[0] - coord_i[0] > 1)
+				false
+			else
+				true
+			end
 		end
 	end
 end

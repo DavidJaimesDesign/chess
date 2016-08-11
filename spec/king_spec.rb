@@ -21,17 +21,17 @@ module Chess
 				@board = Board.new
 			end
 			it "returns false for team_kill instances" do
-				@board[3][3] = @king
-				@board[3][4] = @king2
+				@board.board[3][3] = @king
+				@board.board[3][4] = @king2
 
 				coord_i = [3, 3]
 				coord_f = [3, 4]
 
-				expect(@king.valid_move?(coord_i, coord_f, board)).to be false 
+				expect(@king.valid_move?(coord_i, coord_f, @board)).to be false 
 			end
 
 			it "returns false for moves farther then one square in any direction" do
-				@board[3][3] = @king
+				@board.board[3][3] = @king
 				coord_i = [3, 3]
 				coord_f = [5, 5]
 
@@ -39,7 +39,7 @@ module Chess
 			end
 
 			it "returns true for moves 1 square in any direction" do
-				@board[3][3] = @king
+				@board.board[3][3] = @king
 
 				coord_i  = [3, 3]
 				coord_f  = [3, 4]
