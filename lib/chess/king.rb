@@ -7,5 +7,8 @@ module Chess
 				"\u265A".encode('utf-8')
 			end 
 		end
+
+		def valid_move?(coord_i, coord_f, board)
+		end
 	end
 end
