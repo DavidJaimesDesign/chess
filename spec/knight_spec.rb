@@ -14,7 +14,7 @@ module Chess
 			end
 		end
 
-		context "#valid_move in optimal 6 possible move conditions" do
+		context "#valid_move in optimal 6 possible move conditions non optimal(outside of the board is handeled by the coord_f converter" do
 			before(:each) do
 				@board        = Board.new
 				@piece_white  = Knight.new("white")
@@ -44,18 +44,10 @@ module Chess
 				@board.board[3][3] = @piece_white
 
 				coord_i = [3, 3]
-				coord_f = [5, 2] #5,3 works 5,2 does not
+				coord_f = [4, 5] #5,3 works 5,2 does not
 
 				expect(@piece_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end 
-		end
-
-		context "#valid_move in sub-optimal conditions" do
-			it "returns false for moves outside the board" do
-			end
-
-			it "returns false for moves that are valid L moves but outside of the board" do
-			end
 		end
 	end
 end
