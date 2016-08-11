@@ -13,5 +13,16 @@ module Chess
 				expect(bishop.display).to eq("\u265D".encode('utf-8'))
 			end
 		end
-	end
+
+		context "#valid_move" do
+			it "checks for team kill moves and returns false" do
+			end
+
+			it "returns false if movement is linear, either vertical or horizontal" do
+			end
+
+			it "" do
+			end
+		end
+	end 
 end
