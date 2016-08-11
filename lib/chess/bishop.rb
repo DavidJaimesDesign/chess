@@ -7,5 +7,14 @@ module Chess
 				"\u265D".encode('utf-8')
 			end 
 		end
+
+		def valid_move?(coord_i, coord_f, board)
+			return "ERROR coordinates are nil" if coord_i.nil? || coord_f.nil?
+			if team_kill?(coord_f, board)
+				false
+			elsif coord_i[0] == coord_f[0] || coord_i[1] == coord_f[1]
+				false
+			end
+		end
 	end
 end
