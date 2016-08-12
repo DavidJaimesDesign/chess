@@ -125,10 +125,10 @@ module Chess
 				queen_black8 = Queen.new("black")
 
 				@board.board[3][3] = @queen_white
-				@board.board[5][3] = queen_black1
-				@board.board[1][3] = queen_black2
-				@board.board[3][5] = queen_black3
-				@board.board[3][1] = queen_black4
+				#@board.board[5][3] = queen_black1
+				#@board.board[1][3] = queen_black2
+				#@board.board[3][5] = queen_black3
+				#@board.board[3][1] = queen_black4
 				@board.board[5][5] = queen_black5
 				@board.board[1][5] = queen_black6
 				@board.board[5][1] = queen_black7
@@ -144,14 +144,14 @@ module Chess
 				coord_left_up    = [6, 0]
 				coord_left_down  = [0, 0]
 
-				expect(@queen_white.valid_move(coord_i,coord_vert_pos  ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,coord_vert_neg  ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,cord_horiz_pos  ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,cord_horiz_neg  ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,coord_right_up  ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,coord_right_down,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,coord_left_up   ,@board)).to be false
-				expect(@queen_white.valid_move(coord_i,coord_left_down ,@board)).to be false
+				#expect(@queen_white.valid_move?(coord_i,coord_vert_pos  ,@board)).to be false
+				#expect(@queen_white.valid_move?(coord_i,coord_vert_neg  ,@board)).to be false
+				#expect(@queen_white.valid_move?(coord_i,cord_horiz_pos  ,@board)).to be false
+				#expect(@queen_white.valid_move?(coord_i,cord_horiz_neg  ,@board)).to be false
+				expect(@queen_white.valid_move?(coord_i,coord_right_up  ,@board)).to be false
+				expect(@queen_white.valid_move?(coord_i,coord_right_down,@board)).to be false
+				expect(@queen_white.valid_move?(coord_i,coord_left_up   ,@board)).to be false
+				expect(@queen_white.valid_move?(coord_i,coord_left_down ,@board)).to be false
 
 			end
 		end
