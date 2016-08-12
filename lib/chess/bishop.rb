@@ -9,7 +9,51 @@ module Chess
 		end
 
 		def piece_jump_recur(coord_i, coord_f, board)
-			return false if coord_f == coord_i
+			return true if coord_f == coord_i
+			if self.right_down_diagonal_move(coord_i,coord_f)
+				x = coord_i[1] + 1
+				y = coord_i[0] - 1
+
+				if board.board[y][x].nil?
+					coord_i = [y, x]
+					piece_jump_recur(coord_i, coord_f, board)
+				else 
+					false
+				end
+
+			elsif self.right_up_diagonal_move(coord_i,coord_f)
+				x = coord_i[1] + 1
+				y = coord_i[0] + 1
+
+				if board.board[y][x].nil?
+					coord_i = [y, x]
+					piece_jump_recur(coord_i, coord_f, board)
+				else 
+					false
+				end
+
+			elsif self.left_up_diagonal_move(coord_i, coord_f)
+				x = coord_i[1] - 1
+				y = coord_i[0] + 1
+
+				if board.board[y][x].nil?
+					coord_i = [y, x]
+					piece_jump_recur(coord_i, coord_f, board)
+				else 
+					false
+				end
+
+			elsif self.left_down_diagonal_move(coord_i,coord_f)
+				x = coord_i[1] - 1
+				y = coord_i[0] - 1
+
+				if board.board[y][x].nil?
+					coord_i = [y, x]
+					piece_jump_recur(coord_i, coord_f, board)
+				else 
+					false
+				end
+			end
 		end
 
 		def valid_move?(coord_i, coord_f, board)
@@ -17,6 +61,16 @@ module Chess
 			if team_kill?(coord_f, board)
 				false
 			elsif coord_i[0] == coord_f[0] || coord_i[1] == coord_f[1]
+				false
+			elsif self.right_down_diagonal_move(coord_i,coord_f)
+				true
+			elsif self.right_up_diagonal_move(coord_i,coord_f)
+				true
+			elsif self.left_up_diagonal_move(coord_i, coord_f)
+				true
+			elsif self.left_down_diagonal_move(coord_i,coord_f)
+				true
+			else
 				false
 			end
 		end

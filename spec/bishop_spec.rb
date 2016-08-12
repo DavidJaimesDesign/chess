@@ -46,18 +46,63 @@ module Chess
 			end
 
 			it "returns false for movemnet outside of (x+1, y+1) parameter" do
+				@board.board[3][3] = @bishop_white
+
+				coord_i  = [3, 3]
+				coord_f  = [4, 7]
+
+				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be false 
 			end
 
-			it "returns true for movement up grid with slope 1" do
+			it "returns true for right up diagonal" do
+				@board.board[3][3] = @bishop_white
+
+				coord_i  = [3, 3]
+				coord_f  = [4, 4]
+
+				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
-			it "returns true for movement up grid with slope -1" do
+			it "returns true for right down diagonal" do
+				@board.board[3][3] = @bishop_white
+
+				coord_i  = [3, 3]
+				coord_f  = [2, 2]
+
+				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
-			it "returns true for movement down grid with slope 1" do
+			it "returns true for left up diagonal" do
+				@board.board[3][3] = @bishop_white
+
+				coord_i  = [3, 3]
+				coord_f  = [4, 2]
+
+				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true 
 			end
 
-			it "returns true for movement down grid with slope -1" do
+			it "returns true for left down diagonal" do
+				@board.board[3][3] = @bishop_white
+
+				coord_i  = [3, 3]
+				coord_f  = [2, 4]
+
+				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
+			end
+
+			it "returns false for jumping pieces in any direction" do
+				bishop_black1 = Bishop.new("black")
+				bishop_black2 = Bishop.new("black")
+				bishop_black3 = Bishop.new("black")
+				bishop_black4 = Bishop.new("black")
+
+				@board.board[3][3] = @bishop_white
+				@board.board[5][5] = bishop_black1
+				@board.board[1][5] = bishop_black2
+				@board.board[5][1] = bishop_black3
+				@board.board[1][1] = bishop_black4
+
+				
 			end
 		end
 	end 
