@@ -102,7 +102,17 @@ module Chess
 				@board.board[5][1] = bishop_black3
 				@board.board[1][1] = bishop_black4
 
-				
+				coord_i          = [3, 3]
+				coord_right_up   = [6, 6]
+				coord_right_down = [0, 0]
+				coord_left_up    = [6, 0]
+				coord_left_down  = [0, 0]	
+
+				expect(@bishop_white.valid_move?(coord_i, coord_right_up, @board)).to be false 
+				expect(@bishop_white.valid_move?(coord_i, coord_right_down, @board)).to be false
+				expect(@bishop_white.valid_move?(coord_i, coord_right_down, @board)).to be false
+				expect(@bishop_white.valid_move?(coord_i, coord_right_up, @board)).to be false
+				expect(@bishop_white.valid_move?(coord_i, coord_left_down, @board)).to be false
 			end
 		end
 	end 
