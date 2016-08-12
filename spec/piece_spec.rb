@@ -78,66 +78,160 @@ module Chess
 		end
 
 		context "#vertical_positive_move" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
 			it "returns true for vertical positve moves" do
+				ci = [0, 0]
+				cf = [3, 0]
+
+				expect(@piece.vertical_positive_move(ci,cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [3, 0]
+				cf = [2, 0]
+
+				expect(@piece.vertical_positive_move(ci,cf)).to be false
 			end
 		end
 
 		context "#vertical_negative_move" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
 			it "returns true for vertical negative moves" do
+				ci = [3, 0]
+				cf = [0, 0]
+
+				expect(@piece.vertical_negative_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [0, 0]
+				cf = [3, 0]
+
+				expect(@piece.vertical_negative_move(ci, cf)).to be false
 			end
 		end
 
 		context "#horizontal_positive_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
+			it "returns true for horizontal positve moves" do
+				ci = [0, 0]
+				cf = [0, 4]
+
+				expect(@piece.horizontal_positive_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [0, 4]
+				cf = [0, 0]
+
+				expect(@piece.horizontal_positive_move(ci, cf)).to be false
 			end
 		end
 
 		context "#horizontal_negative_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
+			it "returns true for horizontal negative moves" do
+				ci = [0, 4]
+				cf = [0, 0]
+
+				expect(@piece.horizontal_negative_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [0, 0]
+				cf = [3, 5]
+
+				expect(@piece.horizontal_negative_move(ci, cf)).to be false
 			end
 		end
 
 		context "#right_up_diagonal_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
+			it "returns true for right up diagonal moves" do
+				ci = [0, 0]
+				cf = [5, 5]
+
+				expect(@piece.right_up_diagonal_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [3, 3]
+				cf = [0, 0]
+				expect(@piece.right_up_diagonal_move(ci, cf)).to be false
 			end
 		end
 
 		context "#right_down_diagonal_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
+			it "returns true for right down diagonal moves" do
+				ci = [3, 0]
+				cf = [0, 3]
+
+				expect(@piece.right_down_diagonal_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [0, 0]
+				cf = [5, 5]
+
+				expect(@piece.right_down_diagonal_move(ci, cf)).to be false
 			end
 		end
 
 		context "left_up_diagonal_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
+			end
+
+			it "returns true for left up diagonal moves" do
+				ci = [3, 3]
+				cf = [4, 2]
+
+				expect(@piece.left_up_diagonal_move(ci, cf)).to be true
 			end
 
 			it "returns false for all other moves" do
+				ci = [3, 0]
+				cf = [0, 3]
+
+				expect(@piece.left_up_diagonal_move(ci, cf)).to be false
 			end
 		end
 
 		context "left_down_diagonal_move" do
-			it "returns true for vertical negative moves" do
+			before(:each) do
+				@piece = Piece.new("white")
 			end
-			
+
+			it "returns true for left down diagonal moves" do
+				ci = [3, 3]
+				cf = [2, 2]
+
+				expect(@piece.left_down_diagonal_move(ci, cf)).to be true
+			end
+
 			it "returns false for all other moves" do
+				ci = [3, 3]
+				cf = [4, 2]
+
+				expect(@piece.left_down_diagonal_move(ci, cf)).to be false
 			end
 		end
 	end

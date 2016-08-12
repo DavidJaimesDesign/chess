@@ -8,6 +8,10 @@ module Chess
 			end 
 		end
 
+		def piece_jump_recur(coord_i, coord_f, board)
+			return false if coord_f == coord_i
+		end
+
 		def valid_move?(coord_i, coord_f, board)
 			return "ERROR coordinates are nil" if coord_i.nil? || coord_f.nil?
 			if team_kill?(coord_f, board)
