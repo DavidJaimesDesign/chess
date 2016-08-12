@@ -56,13 +56,21 @@ module Chess
 			end
 
 			it "returns false for jumping over a piece of any color vertically" do
-				@board.board[0][0] = @rook_white
-				@board.board[3][0] = @rook_black
+				#currently breaking on vertical but not horizontal
+				
+				rook_black2 = Rook.new("black")
 
-				coord_i = [0, 0]
-				coord_f = [5, 0]
+				@board.board[3][0] = @rook_white
+				@board.board[5][0] = @rook_black
+				@board.board[1][0] = rook_black2
+				
+				coord_i   = [3, 0]
+				coord_pos = [6, 0]
+				coord_neg = [0, 0]
 
-				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
+				expect(@rook_white.valid_move?(coord_i, coord_pos, @board)).to be false
+				expect(@rook_white.valid_move?(coord_i, coord_neg, @board)).to be false
+
 			end
 
 			it "returns false for jumping over a piece of any color horizontally" do
