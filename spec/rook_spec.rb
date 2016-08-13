@@ -26,7 +26,7 @@ module Chess
 				coord_i = [0, 0] 
 				coord_f = [3, 0]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns true for a horizontal move" do
@@ -34,7 +34,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [0, 4]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns false for anything not horizontal or vertical" do
@@ -42,7 +42,7 @@ module Chess
 				coord_i = [0, 0] 
 				coord_f = [3, 5]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false 
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false 
 			end
 
 			it "returns true for capturing a piece in a vertical or horizontal position from it" do
@@ -53,7 +53,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [3, 0]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
 
 			it "returns false for jumping over a piece of any color vertically" do
@@ -68,8 +68,8 @@ module Chess
 				coord_pos = [6, 0]
 				coord_neg = [0, 0]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_pos, @board)).to be false
-				#expect(@rook_white.valid_move?(coord_i, coord_neg, @board)).to be false
+				expect(@rook_white.valid_move?(coord_i, coord_pos, @board)).to be false
+				expect(@rook_white.valid_move?(coord_i, coord_neg, @board)).to be false
 
 			end
 
@@ -80,7 +80,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [0, 5]
 
-				#expect(@rook_black.valid_move?(coord_i, coord_f, @board)).to be false
+				expect(@rook_black.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 
 			it "returns false for attempting to capture same color piece" do
@@ -91,7 +91,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [0, 3]
 
-				#expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
+				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 		end
 
@@ -105,9 +105,12 @@ module Chess
 				board.board[3][0] = rook_black
 
 				coord_i = [0, 0]
-				coord_f = [3, 0]
+				coord_f = [2, 0]
 
 				expect(rook_white.piece_jump_recur(coord_i, coord_f, board)).to be true
+			end
+
+			it "returns false for jumping over a piece in the positivevertical direction" do
 			end
 		end
 	end

@@ -62,8 +62,46 @@ module Chess
 				false
 			elsif coord_i[0] == coord_f[0] || coord_i[1] == coord_f[1]
 				false
-			elsif self.piece_jump_recur(coord_i, coord_f, board)
-				true
+			elsif self.right_up_diagonal_move(coord_i,coord_f)
+				coord_f[0] = coord_f[0] - 1
+				coord_f[1] = coord_f[1] - 1
+
+				if self.piece_jump_recur(coord_i, coord_f, board)
+					true
+				else 
+					false
+				end
+
+			elsif self.right_down_diagonal_move(coord_i,coord_f)
+				coord_f[0] = coord_f[0] + 1
+				coord_f[1] = coord_f[1] - 1
+
+				if self.piece_jump_recur(coord_i, coord_f, board)
+					true
+				else 
+					false
+				end
+			
+			elsif self.left_up_diagonal_move(coord_i, coord_f)
+				coord_f[0] = coord_f[0] - 1
+				coord_f[1] = coord_f[1] + 1
+
+				if self.piece_jump_recur(coord_i, coord_f, board)
+					true
+				else 
+					false
+				end
+
+			elsif self.left_down_diagonal_move(coord_i,coord_f)
+				coord_f[0] = coord_f[0] + 1
+				coord_f[1] = coord_f[1] + 1
+
+				if self.piece_jump_recur(coord_i, coord_f, board)
+					true
+				else 
+					false
+				end
+			
 			else
 				false
 			end
