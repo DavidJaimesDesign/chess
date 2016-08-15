@@ -12,7 +12,7 @@ module Chess
 			return true if coord_f == coord_i
 			if self.vertical_positive_move(coord_i, coord_f)
 				x = coord_i[1]
-				y = coord_i[0] +1
+				y = coord_i[0] + 1
 				
 				if board.board[y][x].nil?
 					coord_i = [y, x]
