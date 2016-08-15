@@ -40,22 +40,64 @@ module Chess
 			end
 
 			it "returns true if the kinng is threatend by a rook in vert or horizontal" do
+				expect(@end_game.check?).to be true
 			end
 
 			it "returns true if the king is threatend by a bishop in a diagonal" do
+				expect(@end_game.check?).to be true
+			end
+
+			it "returns true if the kings is threatend by a queen in the multi directions" do
+				expect(@end_game.check?).to be true
 			end
 
 			it "returns true if the king is threatend by a pawn in the diagonal" do
+				expect(@end_game.check?).to be true
 			end 
+		end
 
-			it "returns true if the kings is threatend by a queen in the multi directions" do
+		context "#knight_check?" do
+			@board        = Board.new
+			@king   	  = King.new("white")
+			@black_knight = Knight.new("black")
+
+			@board.board[3][3] = @king
+			
+			it "returns true if the king is threatend by a knight of the opposinng team" do
 			end
 
+			it "returns false otherwise" do
+			end
 		end
 
-		context"#knight_check?" do
+		context "#horizontal_check?" do
+			it "returns true if the king is threatend horizontaly by either a queen or a rook of the opposing team" do
+			end
+
+			it "returns false otherwise" do
+			end
 		end
-		
+
+		context "#vertical_check?" do
+			it "returns true if the king is threatend vertically by either a queen or a rook" do
+			end
+
+			it "returns false otherwise" do
+			end
+		end
+
+		context "#diagonal_check?" do
+			it "returns true if the king is threatend diagonaly by either a queen or a bishop of the opposing team" do
+			end
+
+			it "returns false otherwise" do
+			end
+		end
+
+		context "pawn_check?" do
+			#postpone until we have checked the pawn movement rules
+		end
+
 		context "#check_mate" do
 			#returns true for any situation where the king is in check_mate
 		end
