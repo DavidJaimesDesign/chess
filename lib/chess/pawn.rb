@@ -16,7 +16,12 @@ module Chess
 				else
 					false
 				end
-			#needs an another if case where the position is diagonal 
+			elsif coord_f[0] - coord_i[0] == 1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
+				if board.select_piece(coord_f[0], coord_f[1]).color != self.color
+					true
+				else
+					false
+				end
 			else
 				false 
 			end
