@@ -46,6 +46,7 @@ module Chess
 			end
 
 			it "returns true for capturing a piece in a vertical or horizontal position from it" do
+				#test that is breaking rn
 				@board.board[0][0] = @rook_white
 				@board.board[3][0] = @rook_black
 
@@ -56,7 +57,6 @@ module Chess
 			end
 
 			it "returns false for jumping over a piece of any color vertically" do
-				#currently breaking on vertical but not horizontal
 				
 				rook_black2 = Rook.new("black")
 
@@ -80,7 +80,7 @@ module Chess
 				coord_i = [0, 0]
 				coord_f = [0, 5]
 
-				expect(@rook_black.valid_move?(coord_f, coord_i, @board)).to be false
+				expect(@rook_black.valid_move?(coord_i, coord_f, @board)).to be false
 			end
 
 			it "returns false for attempting to capture same color piece" do
@@ -92,6 +92,25 @@ module Chess
 				coord_f = [0, 3]
 
 				expect(@rook_white.valid_move?(coord_i, coord_f, @board)).to be false
+			end
+		end
+
+		context "#piece_jump_recur" do
+			it "returns true if there is opponent piece at coord_f" do
+				board = Board.new
+				rook_white = Rook.new("white")
+				rook_black = Rook.new("black")
+
+				board.board[0][0] = rook_white
+				board.board[3][0] = rook_black
+
+				coord_i = [0, 0]
+				coord_f = [2, 0]
+
+				expect(rook_white.piece_jump_recur(coord_i, coord_f, board)).to be true
+			end
+
+			it "returns false for jumping over a piece in the positivevertical direction" do
 			end
 		end
 	end
