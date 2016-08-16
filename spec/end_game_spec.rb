@@ -4,14 +4,19 @@ module Chess
 	describe End_Game do
 		#In one sentence it tells you if the game is over or close by way of check, check_mate, or stalemate
 		context "#initialize" do
-			it "initializes with a king piece and a board piece" do
+			it "initializes with a king piece, a board, and the kings coordinates" do
 				board = Board.new
-				king = King.new("white")
+				king  = King.new("white")
 
-				end_game = End_Game.new(king, board)
+				board.board[3][3] = king 
+
+				king_coord = [3,3]
+
+				end_game = End_Game.new(king, board, king_coord)
 
 				expect(end_game.king).to eq(king)
 				expect(end_game.board).to eq(board)
+				expect(end_game.king_coord).to eq(king_coord)
 			end
 		end
 
@@ -33,7 +38,9 @@ module Chess
 				@board.board[0][3] = @black_queen
 				@board.board[4][2] = @black_pawn
 
-				@end_game = End_Game.new(@king, @board)
+				@king_coord = [3,3]
+
+				@end_game = End_Game.new(@king, @board, @king_coord)
 			end
 			it "returns true if the king is threatend by a knight" do
 				expect(@end_game.check?).to be true
@@ -57,16 +64,28 @@ module Chess
 		end
 
 		context "#knight_check?" do
-			@board        = Board.new
-			@king   	  = King.new("white")
-			@black_knight = Knight.new("black")
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_knight = Knight.new("black")
 
-			@board.board[3][3] = @king
-			
+				@board.board[3][3] = @king
+			end
+
 			it "returns true if the king is threatend by a knight of the opposinng team" do
+				@board.board[5][4] = @black_knight
+				king_coord =[5, 4]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.knight_check?).to be true
 			end
 
 			it "returns false otherwise" do
+				@board.board[7][7] = @black_knight
+				king_coord = [4, 1]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.knight_check?).to be false
 			end
 		end
 
