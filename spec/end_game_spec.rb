@@ -127,9 +127,19 @@ module Chess
 				@board.board[3][3] = @king
 			end
 			it "returns true if the king is threatend on the left by either a queen or a rook of the opposing team" do
+				@board.board[3][0] = @black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.left_check?).to be true
 			end
 
 			it "returns false otherwise" do
+				@board.board[3][6] = @black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.left_check?).to be false
 			end
 		end
 

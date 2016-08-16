@@ -123,8 +123,7 @@ module Chess
 		def right_check?
 			x = king_coord[1]
 			y = king_coord[0]
-			#works when we set x = 6
-			#I think the loop is stoping before it's ready
+			
 			x += 1
 
 			while x <= 7 do
@@ -155,7 +154,37 @@ module Chess
 		end
 
 		def left_check?
-			true
+			x = king_coord[1]
+			y = king_coord[0]
+			#works when we set x = 6
+			#I think the loop is stoping before it's ready
+			x -= 1
+
+			while x >= 0 do
+				if @board.board[y][x] != nil
+					if @board.board[y][x].instance_of? Rook 
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return	false
+						end
+
+					elsif @board.board[y][x].instance_of? Queen
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return false
+						end
+
+					else 
+						return	false
+					end
+				elsif x == 0
+					return false
+				else
+					x -= 1
+				end
+			end
 		end
 
 		def vert_check?
