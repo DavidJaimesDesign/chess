@@ -143,7 +143,44 @@ module Chess
 			end
 		end
 
-		context "#horizontal_check?" do
+		context "#horiz_check?" do
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_rook   = Rook.new("black")
+				@black_queen  = Queen.new("black") 
+
+
+				@board.board[3][3] = @king
+				@board.board[3][0] = @black_rook
+				@board.board[3][7] = @black_queen
+				@king_coord = [3, 3]
+				@end_game = End_Game.new(@king, @board, @king_coord)
+			end
+			it "returns true if the king is threatend on the right" do
+				expect(@end_game.horiz_check?).to be true
+			end
+
+			it "returns true if the king is threatend on the left" do 
+				expect(@end_game.horiz_check?).to be true
+			end
+
+			it "returns false otherwise" do
+				board        = Board.new
+				king   	  = King.new("white")
+				black_rook   = Rook.new("black")
+				black_queen  = Queen.new("black") 
+
+
+				board.board[3][3] = king
+				board.board[5][0] = black_rook
+				board.board[7][7] = black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(king, board, king_coord)
+				expect(end_game.horiz_check?).to be false
+			end
+		end
+		context "#pos_vert_check" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -153,7 +190,24 @@ module Chess
 
 				@board.board[3][3] = @king
 			end
-			it "returns true if the king is threatend on either right or left by either a queen or a rook of the opposing team" do
+			it "returns true if the king is threatend from above by either a queen or a rook" do
+			end
+
+			it "returns false otherwise" do
+			end
+		end
+
+		context "#neg_vert_check" do
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_rook   = Rook.new("black")
+				@black_queen  = Queen.new("black") 
+
+
+				@board.board[3][3] = @king
+			end
+			it "returns true if the king is threatend from below by either a queen or a rook" do
 			end
 
 			it "returns false otherwise" do
