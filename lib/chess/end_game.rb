@@ -124,11 +124,27 @@ module Chess
 			x = king_coord[1]
 			y = king_coord[0]
 
-			while
-
-			else
-				false
+			x +=1
+			while x <= 7 do
+				if @board.board[x][y] != nil
+					if (@board.board[y][x].instance_of? Rook) || (@board.board[x][y].instance_of? Queen)
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return	false
+						end
+					else 
+						return	false
+					end
+				else
+					false
+				end
+				x += 1
 			end
+		end
+
+		def left_check?
+			true
 		end
 
 		def vert_check?

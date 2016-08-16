@@ -101,7 +101,7 @@ module Chess
 			end
 			it "returns true if the king is threatend on the right by either a queen or a rook of the opposing team" do
 				@board.board[3][6] = @black_queen
-				king_coord[3][3]
+				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
 				expect(end_game.right_check?).to be true
@@ -109,7 +109,7 @@ module Chess
 
 			it "returns false otherwise" do
 				@board.board[3][0] = @black_queen
-				king_coord[3][3]
+				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
 				expect(end_game.right_check?).to be false
@@ -117,6 +117,15 @@ module Chess
 		end
 
 		context "#left_check?" do
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_rook   = Rook.new("black")
+				@black_queen  = Queen.new("black") 
+
+
+				@board.board[3][3] = @king
+			end
 			it "returns true if the king is threatend on the left by either a queen or a rook of the opposing team" do
 			end
 
@@ -125,6 +134,15 @@ module Chess
 		end
 
 		context "#horizontal_check?" do
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_rook   = Rook.new("black")
+				@black_queen  = Queen.new("black") 
+
+
+				@board.board[3][3] = @king
+			end
 			it "returns true if the king is threatend on either right or left by either a queen or a rook of the opposing team" do
 			end
 
