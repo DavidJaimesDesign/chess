@@ -26,19 +26,10 @@ module Chess
 			y = king_coord[0]
 			#pair 1 = y +\- 2 && x +\- 1
 			#pair 2 = y +\- 1 && x +\- 2
-			if 	  board.board[y+2][x+1] != nil
-				if board.board[][].instance_of? Knight
-					if board.board[][].color != @king.color
-						true
-					else
-						false
-					end
-				else
-					false
-				end
-			elsif board.board[y+2][x-1] != nil
-				if board.board[y+2][x-1].instance_of? Knight
-					if board.board[y+2][x-1].color != @king.color
+			
+			if  @board.board[y+2][x+1] != nil
+				if @board.board[y+2][x+1].instance_of? Knight
+					if @board.board[y+2][x+1].color != @king.color
 						true
 					else
 						false
@@ -47,9 +38,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y-2][x+1] != nil
-				if board.board[y-2][x+1].instance_of? Knight
-					if board.board[y-2][x+1].color != @king.color
+			elsif @board.board[y+2][x-1] != nil
+				if @board.board[y+2][x-1].instance_of? Knight
+					if @board.board[y+2][x-1].color != @king.color
 						true
 					else
 						false
@@ -58,9 +49,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y-2][x-1] != nil
-				if board.board[y-2][x-1].instance_of? Knight
-					if board.board[y-2][x-1].color != @king.color
+			elsif @board.board[y-2][x+1] != nil
+				if @board.board[y-2][x+1].instance_of? Knight
+					if @board.board[y-2][x+1].color != @king.color
 						true
 					else
 						false
@@ -69,9 +60,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y+1][x+1] != nil
-				if board.board[y+1][x+1] .instance_of? Knight
-					if board.board[y+1][x+1] .color != @king.color
+			elsif @board.board[y-2][x-1] != nil
+				if @board.board[y-2][x-1].instance_of? Knight
+					if @board.board[y-2][x-1].color != @king.color
 						true
 					else
 						false
@@ -80,9 +71,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y+1][x-1] != nil
-				if board.board[y+1][x-1].instance_of? Knight
-					if board.board[y+1][x-1].color != @king.color
+			elsif @board.board[y+1][x+1] != nil
+				if @board.board[y+1][x+1] .instance_of? Knight
+					if @board.board[y+1][x+1] .color != @king.color
 						true
 					else
 						false
@@ -91,9 +82,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y-1][x+1] != nil
-				if board.board[y-1][x+1].instance_of? Knight
-					if board.board[y-1][x+1].color != @king.color
+			elsif @board.board[y+1][x-1] != nil
+				if @board.board[y+1][x-1].instance_of? Knight
+					if @board.board[y+1][x-1].color != @king.color
 						true
 					else
 						false
@@ -102,9 +93,9 @@ module Chess
 					false
 				end
 
-			elsif board.board[y-1][x-1] != nil
-				if board.board[y-1][x-1].instance_of? Knight
-					if board.board[y-1][x-1].color != @king.color
+			elsif @board.board[y-1][x+1] != nil
+				if @board.board[y-1][x+1].instance_of? Knight
+					if @board.board[y-1][x+1].color != @king.color
 						true
 					else
 						false
@@ -112,13 +103,30 @@ module Chess
 				else
 					false
 				end
+
+			elsif @board.board[y-1][x-1] != nil
+				if @board.board[y-1][x-1].instance_of? Knight
+					if @board.board[y-1][x-1].color != @king.color
+						true
+					else
+						false
+					end
+				else
+					false
+				end
+
 			else
 				false
 			end
 		end
 		
 		def horiz_check?
-			true
+			x = king_coord[1]
+			y = king_coord[0]
+			
+			else
+				false
+			end
 		end
 
 		def vert_check?

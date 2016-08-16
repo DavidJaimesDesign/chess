@@ -74,7 +74,7 @@ module Chess
 
 			it "returns true if the king is threatend by a knight of the opposinng team" do
 				@board.board[5][4] = @black_knight
-				king_coord =[5, 4]
+				king_coord =[3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
 				expect(end_game.knight_check?).to be true
@@ -82,7 +82,7 @@ module Chess
 
 			it "returns false otherwise" do
 				@board.board[7][7] = @black_knight
-				king_coord = [4, 1]
+				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
 				expect(end_game.knight_check?).to be false
