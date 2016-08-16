@@ -120,10 +120,12 @@ module Chess
 			end
 		end
 		
-		def horiz_check?
+		def right_check?
 			x = king_coord[1]
 			y = king_coord[0]
-			
+
+			while
+
 			else
 				false
 			end
@@ -133,6 +135,14 @@ module Chess
 			true
 		end
 
+		def horiz_check?
+			if self.right_check? || self.left_check?
+				true
+			else
+				false
+			end
+		end
+		
 		def diagonal_check?
 			true
 		end
