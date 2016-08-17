@@ -305,9 +305,19 @@ module Chess
 				@board.board[3][3] = @king
 			end
 			it "returns true if the king is threatend right neg diagonaly by either a queen or a bishop of the opposing team" do
+				@board.board[1][5] = @black_bishop
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.right_neg_diag_check?).to be true
 			end
 
 			it "returns false otherwise" do
+				@board.board[5][5] = @black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.right_neg_diag_check?).to be false
 			end
 		end
 
@@ -322,6 +332,7 @@ module Chess
 				@board.board[3][3] = @king
 			end
 			it "returns true if the king is threatend left pos diagonaly by either a queen or a bishop of the opposing team" do
+
 			end
 
 			it "returns false otherwise" do
