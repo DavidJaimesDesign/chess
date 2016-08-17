@@ -269,6 +269,49 @@ module Chess
 			true
 		end
 
+		def right_pos_diag_check?
+			x = king_coord[1]
+			y = king_coord[0]
+			y += 1
+			x += 1
+
+			while y <= 7 do
+				if @board.board[y][x] != nil
+					if @board.board[y][x].instance_of? Bishop 
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return	false
+						end
+
+					elsif @board.board[y][x].instance_of? Queen
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return false
+						end
+
+					else 
+						return	false
+					end
+				elsif y == 7
+					return false
+				else
+					y += 1
+				 	x += 1
+				end
+			end
+		end
+
+		def right_neg_diag_check?
+		end
+
+		def left_pos_diag_check?
+		end
+
+		def left_neg_diag_check?
+		end
+
 		def pawn_check?
 			true
 		end
