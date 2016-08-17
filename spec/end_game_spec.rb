@@ -218,20 +218,67 @@ module Chess
 				@board.board[3][3] = @king
 			end
 			it "returns true if the king is threatend from below by either a queen or a rook" do
+				@board.board[7][3] = @black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.neg_vert_check?).to be true
 			end
 
 			it "returns false otherwise" do
+				@board.board[1][3] = @black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(@king, @board, king_coord)
+
+				expect(end_game.neg_vert_check?).to be false
 			end
 		end
 
-		context "#vertical_check?" do
+		context "#vert_check?" do
+			before(:each) do
+				@board        = Board.new
+				@king   	  = King.new("white")
+				@black_rook   = Rook.new("black")
+				@black_queen  = Queen.new("black") 
+
+
+				@board.board[3][3] = @king
+				@board.board[6][3] = @black_rook
+				@board.board[0][3] = @black_queen
+				@king_coord = [3, 3]
+				@end_game = End_Game.new(@king, @board, @king_coord)
+			end
 			it "returns true if the king is threatend vertically by either a queen or a rook" do
+				expect(@end_game.vert_check?).to be true
 			end
 
 			it "returns false otherwise" do
+				board        = Board.new
+				king   	  = King.new("white")
+				black_rook   = Rook.new("black")
+				black_queen  = Queen.new("black") 
+
+
+				board.board[3][3] = king
+				board.board[5][0] = black_rook
+				board.board[7][7] = black_queen
+				king_coord = [3, 3]
+				end_game = End_Game.new(king, board, king_coord)
+				expect(end_game.vert_check?).to be false
 			end
 		end
+		context "#right_pos_diag_check?" do
+		end
 
+		context "#right_neg_diag_check?" do
+		end
+
+		context "#left_pos_diag_check?" do
+		end
+
+		context "#left_neg_diag_check?" do
+		end
+		
 		context "#diagonal_check?" do
 			it "returns true if the king is threatend diagonaly by either a queen or a bishop of the opposing team" do
 			end

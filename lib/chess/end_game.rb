@@ -156,8 +156,6 @@ module Chess
 		def left_check?
 			x = king_coord[1]
 			y = king_coord[0]
-			#works when we set x = 6
-			#I think the loop is stoping before it's ready
 			x -= 1
 
 			while x >= 0 do
@@ -190,8 +188,6 @@ module Chess
 		def pos_vert_check?
 			x = king_coord[1]
 			y = king_coord[0]
-			#works when we set x = 6
-			#I think the loop is stoping before it's ready
 			y -= 1
 
 			while y >= 0 do
@@ -220,8 +216,45 @@ module Chess
 				end
 			end
 		end
+
+		def neg_vert_check?
+			x = king_coord[1]
+			y = king_coord[0]
+			y += 1
+
+			while y <= 7 do
+				if @board.board[y][x] != nil
+					if @board.board[y][x].instance_of? Rook 
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return	false
+						end
+
+					elsif @board.board[y][x].instance_of? Queen
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return false
+						end
+
+					else 
+						return	false
+					end
+				elsif y == 7
+					return false
+				else
+					y += 1
+				end
+			end
+		end
+
 		def vert_check?
-			true
+			if self.pos_vert_check? || self.neg_vert_check?
+				true
+			else
+				false
+			end
 		end
 
 		def horiz_check?
