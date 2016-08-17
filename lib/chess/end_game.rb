@@ -266,7 +266,17 @@ module Chess
 		end
 		
 		def diagonal_check?
-			true
+			if self.right_pos_diag_check?
+				true
+			elsif self.right_neg_diag_check?
+				true
+			elsif self.left_pos_diag_check?
+				true
+			elsif self.left_neg_diag_check?
+				true
+			else 
+				false
+			end	
 		end
 
 		def right_pos_diag_check?
@@ -372,6 +382,37 @@ module Chess
 		end
 
 		def left_neg_diag_check?
+			x = king_coord[1]
+			y = king_coord[0]
+			y -= 1
+			x -= 1
+
+			while y >= 0 do
+				if @board.board[y][x] != nil
+					if @board.board[y][x].instance_of? Bishop 
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return	false
+						end
+
+					elsif @board.board[y][x].instance_of? Queen
+						if @board.board[y][x].color != @king.color
+							return true
+						else
+							return false
+						end
+
+					else 
+						return	false
+					end
+				elsif y == 0
+					return false
+				else
+					y -= 1
+				 	x -= 1
+				end
+			end
 		end
 
 		def pawn_check?
