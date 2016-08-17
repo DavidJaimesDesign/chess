@@ -340,10 +340,10 @@ module Chess
 		def left_pos_diag_check?
 			x = king_coord[1]
 			y = king_coord[0]
-			y -= 1
-			x += 1
+			y += 1
+			x -= 1
 
-			while y >= 0 do
+			while y <= 7 do
 				if @board.board[y][x] != nil
 					if @board.board[y][x].instance_of? Bishop 
 						if @board.board[y][x].color != @king.color
@@ -362,11 +362,11 @@ module Chess
 					else 
 						return	false
 					end
-				elsif y == 0
+				elsif y == 7
 					return false
 				else
-					y -= 1
-				 	x += 1
+					y += 1
+				 	x -= 1
 				end
 			end
 		end
