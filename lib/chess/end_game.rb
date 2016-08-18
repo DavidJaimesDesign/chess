@@ -8,6 +8,20 @@ module Chess
 		end
 
 		def check?
+			@board.board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					coord_i = [r_index, c_index]
+					#puts coord_i.inspect
+					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
+						puts coord_i.inspect
+						return true
+					else 
+						false	
+					end
+				end
+			end
 		end
+	end
+end
 
 		

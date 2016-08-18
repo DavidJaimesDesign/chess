@@ -63,7 +63,7 @@ module Chess
 			end 
 		end
 
-		context "#knight_check?" do
+		context "#knight check?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -77,7 +77,7 @@ module Chess
 				king_coord =[3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.knight_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -85,11 +85,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.knight_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#right_check?" do
+		context "#horizontal check?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -104,19 +104,19 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
-				@board.board[3][0] = @black_queen
+				#@board.board[5][1] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#left_check?" do
+		context "#check?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -131,19 +131,19 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
-				@board.board[3][6] = @black_queen
+				@board.board[3][7] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#horiz_check?" do
+		context "#check?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -158,11 +158,11 @@ module Chess
 				@end_game = End_Game.new(@king, @board, @king_coord)
 			end
 			it "returns true if the king is threatend on the right" do
-				expect(@end_game.horiz_check?).to be true
+				expect(@end_game.check?).to be true
 			end
 
 			it "returns true if the king is threatend on the left" do 
-				expect(@end_game.horiz_check?).to be true
+				expect(@end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -177,10 +177,10 @@ module Chess
 				board.board[7][7] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
-				expect(end_game.horiz_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
-		context "#pos_vert_check" do
+		context "#check" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -195,7 +195,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.pos_vert_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -203,11 +203,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.pos_vert_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#neg_vert_check" do
+		context "#check" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -222,7 +222,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.neg_vert_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -230,11 +230,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.neg_vert_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#vert_check?" do
+		context "#check?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -249,7 +249,7 @@ module Chess
 				@end_game = End_Game.new(@king, @board, @king_coord)
 			end
 			it "returns true if the king is threatend vertically by either a queen or a rook" do
-				expect(@end_game.vert_check?).to be true
+				expect(@end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -264,10 +264,10 @@ module Chess
 				board.board[7][7] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
-				expect(end_game.vert_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
-		context "#right_pos_diag_check?" do
+		context "#check?" do
 			before(:each) do
 				@board          = Board.new
 				@king   	    = King.new("white")
@@ -282,7 +282,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_pos_diag_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -290,11 +290,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_pos_diag_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#right_neg_diag_check?" do
+		context "#check?" do
 			before(:each) do
 				@board          = Board.new
 				@king   	    = King.new("white")
@@ -309,7 +309,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_neg_diag_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -317,11 +317,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.right_neg_diag_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#left_pos_diag_check?" do
+		context "#check?" do
 			before(:each) do
 				@board          = Board.new
 				@king   	    = King.new("white")
@@ -336,7 +336,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_pos_diag_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -344,11 +344,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_pos_diag_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#left_neg_diag_check?" do
+		context "#check?" do
 			before(:each) do
 				@board          = Board.new
 				@king   	    = King.new("white")
@@ -364,7 +364,7 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_neg_diag_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -372,11 +372,11 @@ module Chess
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
-				expect(end_game.left_neg_diag_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
-		context "#diagonal_check?" do
+		context "#check?" do
 			it "returns true if the king is threatend diagonaly by either a queen or a bishop of the opposing team" do
 				board        = Board.new
 				king   	     = King.new("white")
@@ -389,7 +389,7 @@ module Chess
 				board.board[1][5] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
-				expect(end_game.diagonal_check?).to be true
+				expect(end_game.check?).to be true
 			end
 
 			it "returns false otherwise" do
@@ -404,7 +404,7 @@ module Chess
 				board.board[3][7] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
-				expect(end_game.diagonal_check?).to be false
+				expect(end_game.check?).to be false
 			end
 		end
 
