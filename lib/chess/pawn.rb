@@ -10,21 +10,41 @@ module Chess
 		end
 
 		def valid_move?(coord_i, coord_f, board)
-			if coord_f[0] - coord_i[0] == 1 && coord_i[1] == coord_f[1]
-				if board.board[coord_f[0]][coord_f[1]].nil?
-					true
+			if self.color == "black"	
+				if coord_f[0] - coord_i[0] == 1 && coord_i[1] == coord_f[1]
+					if board.board[coord_f[0]][coord_f[1]].nil?
+						true
+					else
+						false
+					end
+				elsif coord_f[0] - coord_i[0] == 1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
+					if board.select_piece(coord_f[0], coord_f[1]).color != self.color
+						true
+					else
+						false
+					end
 				else
-					false
+					false 
 				end
-			elsif coord_f[0] - coord_i[0] == 1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
-				if board.select_piece(coord_f[0], coord_f[1]).color != self.color
-					true
+			elsif self.color == "white"
+				if coord_f[0] - coord_i[0] == -1 && coord_i[1] == coord_f[1]
+					if board.board[coord_f[0]][coord_f[1]].nil?
+						true
+					else
+						false
+					end
+				elsif coord_f[0] - coord_i[0] == -1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
+					if board.select_piece(coord_f[0], coord_f[1]).color != self.color
+						true
+					else
+						false
+					end
 				else
-					false
+					false 
 				end
 			else
-				false 
-			end
+				"ERROR not a chess piece"
+			end	
 		end
 	end
 end
