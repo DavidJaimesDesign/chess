@@ -89,7 +89,7 @@ module Chess
 			end
 		end
 
-		context "#horizontal check?" do
+		context "#horizontal check right?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -108,7 +108,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				#@board.board[5][1] = @black_queen
+				@board.board[0][1] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -116,7 +116,7 @@ module Chess
 			end
 		end
 
-		context "#check?" do
+		context "#horizontal check left?" do
 			before(:each) do
 				@board        = Board.new
 				@king   	  = King.new("white")
@@ -135,7 +135,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[3][7] = @black_queen
+				@board.board[0][2] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -174,7 +174,7 @@ module Chess
 
 				board.board[3][3] = king
 				board.board[5][0] = black_rook
-				board.board[7][7] = black_queen
+				board.board[2][1] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
 				expect(end_game.check?).to be false
@@ -199,7 +199,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[7][3] = @black_queen
+				@board.board[7][4] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -226,7 +226,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[1][3] = @black_queen
+				@board.board[1][2] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -261,7 +261,7 @@ module Chess
 
 				board.board[3][3] = king
 				board.board[5][0] = black_rook
-				board.board[7][7] = black_queen
+				board.board[0][4] = black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(king, board, king_coord)
 				expect(end_game.check?).to be false
@@ -286,7 +286,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[1][5] = @black_bishop
+				@board.board[4][3] = @black_bishop
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -313,7 +313,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[5][5] = @black_queen
+				@board.board[1][4] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -340,7 +340,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[1][5] = @black_bishop
+				@board.board[7][3] = @black_bishop
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
@@ -368,7 +368,7 @@ module Chess
 			end
 
 			it "returns false otherwise" do
-				@board.board[5][5] = @black_queen
+				@board.board[7][4] = @black_queen
 				king_coord = [3, 3]
 				end_game = End_Game.new(@king, @board, king_coord)
 
