@@ -23,14 +23,14 @@ module Chess
 			@board[1][6] = Pawn.new("black")
 			@board[1][7] = Pawn.new("black")
 
-			@board[6][0] = Pawn.new("black")
-			@board[6][1] = Pawn.new("black")
-			@board[6][2] = Pawn.new("black")
-			@board[6][3] = Pawn.new("black")
-			@board[6][4] = Pawn.new("black")
-			@board[6][5] = Pawn.new("black")
-			@board[6][6] = Pawn.new("black")
-			@board[6][7] = Pawn.new("black")
+			@board[6][0] = Pawn.new("white")
+			@board[6][1] = Pawn.new("white")
+			@board[6][2] = Pawn.new("white")
+			@board[6][3] = Pawn.new("white")
+			@board[6][4] = Pawn.new("white")
+			@board[6][5] = Pawn.new("white")
+			@board[6][6] = Pawn.new("white")
+			@board[6][7] = Pawn.new("white")
 
 
 			@board[0][0] = Rook.new("black")
@@ -56,8 +56,20 @@ module Chess
 		end
 
 		def display
-			empty_white = "\u2587".encode('utf-8').colorize(:white) 
-			empty_black = "\u2587".encode('utf-8').colorize(:light_black)
+			empty_white  = "\u2587".encode('utf-8').colorize(:white) 
+			empty_black  = "\u2587".encode('utf-8').colorize(:light_black)
+			white_pawn   = ""
+			white_knight = ""
+			white_bishop = ""
+			white_rook   = ""
+			white_queen  = ""
+			white_king   = ""
+			black_pawn   = ""
+			black_knight = ""
+			black_bishop = ""
+			black_rook   = ""
+			black_queen  = ""
+			black_king   = ""
 
 			display_board = board.each_with_index.map do |row, index|
 				if index % 2 == 0
