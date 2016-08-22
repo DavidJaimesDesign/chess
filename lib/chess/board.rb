@@ -56,20 +56,20 @@ module Chess
 		end
 
 		def display
-			empty_white  = "\u2584".encode('utf-8').colorize(:white) 
-			empty_black  = "\u2584".encode('utf-8').colorize(:light_black)
+			empty_white  = "\u25A0".encode('utf-8').colorize(:white) 
+			empty_black  = "\u25A0".encode('utf-8').colorize(:light_black)
 			white_pawn   = "\u2659".encode('utf-8').colorize(:white)
 			white_knight = "\u2658".encode('utf-8').colorize(:white)
 			white_bishop = "\u2658".encode('utf-8').colorize(:white)
 			white_rook   = "\u2656".encode('utf-8').colorize(:white)
 			white_queen  = "\u2655".encode('utf-8').colorize(:white)
 			white_king   = "\u2654".encode('utf-8').colorize(:white)
-			black_pawn   = "\u265F".encode('utf-8').colorize(:black)
-			black_knight = "\u265E".encode('utf-8').colorize(:black)
-			black_bishop = "\u265D".encode('utf-8').colorize(:black)
-			black_rook   = "\u265C".encode('utf-8').colorize(:black)
-			black_queen  = "\u265B".encode('utf-8').colorize(:black)
-			black_king   = "\u265A".encode('utf-8').colorize(:black)
+			black_pawn   = "\u265F".encode('utf-8').colorize(:light_black)
+			black_knight = "\u265E".encode('utf-8').colorize(:light_black)
+			black_bishop = "\u265D".encode('utf-8').colorize(:light_black)
+			black_rook   = "\u265C".encode('utf-8').colorize(:light_black)
+			black_queen  = "\u265B".encode('utf-8').colorize(:light_black)
+			black_king   = "\u265A".encode('utf-8').colorize(:light_black)
 
 			display_board = board.each_with_index.map do |row, index|
 				if index % 2 == 0
@@ -166,7 +166,7 @@ module Chess
 				end
 			end
 			display_board.each do |row|
-				row.each{|cell| print "#{cell} ".colorize(cell.color) }
+				row.each{|cell| print " #{cell}"}
 				print "\n"
 			end 
 		end

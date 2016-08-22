@@ -1,3 +1,4 @@
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'chess'
 puts"      _                  ".to_s 
 puts"     | |                  ".to_s
@@ -39,8 +40,11 @@ puts "White please state your name:"
 white = gets.chomp
 puts "Black please state your name:"
 black = gets.chomp
+game = Chess.new
+board = Board.new
+board.new_game
 puts ""
-puts "BOARD GOES HERE"
+board.display 
 puts ""
 puts "your move #{white}" #white player
 puts "Select a piece"
