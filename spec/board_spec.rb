@@ -18,6 +18,8 @@ module Chess
 			end
 
 			it "displays the pieces on the board at the current state of the game" do
+				@board.new_game
+				@board.display
 			end
 		end
 
