@@ -40,9 +40,14 @@ puts "White please state your name:"
 white = gets.chomp
 puts "Black please state your name:"
 black = gets.chomp
-game = Chess.new
-board = Board.new
+board = Chess::Board.new
 board.new_game
+
+game_over = false
+
+while game_over = false do
+	end_game = 
+end
 puts ""
 board.display 
 puts ""
