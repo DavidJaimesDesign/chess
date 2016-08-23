@@ -63,7 +63,18 @@ module Chess
 				expect(game.board.board[0][0]).to be_instance_of Queen
 			end
 		end
-		context "#castle?" do
+		context "castle?" do
+			it "returns true for a white king king's side castle" do
+			end
+
+			it "returns true for a white king queen's side castle" do
+			end
+
+			it "returns true for a blakc king king's side castle" do
+			end
+
+			it "returns true for a black king queen's side castle" do
+			end
 		end
 
 		context "#white_king_side_castle" do
