@@ -55,12 +55,12 @@ module Chess
 			@board[7][3] = King.new("white")
 		end
 
-		def display
+		def display #test for a movement bug in white knights and bishops
 			empty_white  = "\u25A0".encode('utf-8').colorize(:white) 
 			empty_black  = "\u25A0".encode('utf-8').colorize(:light_black)
 			white_pawn   = "\u2659".encode('utf-8').colorize(:white)
 			white_knight = "\u2658".encode('utf-8').colorize(:white)
-			white_bishop = "\u2658".encode('utf-8').colorize(:white)
+			white_bishop = "\u2657".encode('utf-8').colorize(:white)
 			white_rook   = "\u2656".encode('utf-8').colorize(:white)
 			white_queen  = "\u2655".encode('utf-8').colorize(:white)
 			white_king   = "\u2654".encode('utf-8').colorize(:white)
