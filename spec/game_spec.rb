@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'stringio'
 
 module Chess
 	describe Game do
@@ -42,7 +43,24 @@ module Chess
 		end
 
 		context "#pawn_promotion" do
+			before do
+				$stdin = StringIO.new("Queen")
+			end
+
+			after do
+				$stdin = STDIN
+			end
+
 			it "asks what piece pawn will be promoted to" do
+				player1 = "al"
+				player2 = "bo"
+				game = Game.new(player1, player2)
+				pawn_coord = [0, 0]
+				game.board.board[0][0] = Pawn.new("white")
+				game.pawn_promotion(pawn_coord)
+
+				#expect(game.pawn_promotion(pawn_coord)).to eql("white")
+				expect(game.board.board[0][0]).to be_instance_of Queen
 			end
 
 			it "returns an error if not queen, rook, bishop, knight or pawn" do
@@ -52,7 +70,10 @@ module Chess
 			end
 		end
 
-		context "#castleling" do
+		context "#white_castleing" do
+		end
+
+		context "#black_castleing" do
 		end
 
 		context "#play" do

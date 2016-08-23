@@ -54,7 +54,8 @@ module Chess
 			false
 		end
 
-		def pawn_promotion(pawn_coord)
+		def pawn_promotion(pawn_coord) #could not figure out how to test this one
+
 			y = pawn_coord[0]
 			x = pawn_coord[1]
 			color = @board.board[y][x].color
@@ -65,16 +66,16 @@ module Chess
 			puts "Rook"
 			puts "Bishop"
 			puts "Knight"
-			promote_to = gets.chomp
-
+			promote_to = $stdin.gets.chomp
+			
 			if promote_to == "Queen"
 				@board.board[y][x] = Queen.new(color)
 			elsif promote_to == "Rook"
 				@board.board[y][x] = Rook.new(color)
 			elsif promote_to == "Bishop"
-				@board.board = Bishop.new(color)
+				@board.board[y][x] = Bishop.new(color)
 			elsif promote_to == "Knight"
-				@board.board = Knight.new(color)
+				@board.board[y][x] = Knight.new(color)
 			else
 				puts "Please input a valid pawn_promotion"
 			end		
