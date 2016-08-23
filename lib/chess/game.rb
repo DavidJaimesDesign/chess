@@ -78,6 +78,7 @@ module Chess
 				@board.board[y][x] = Knight.new(color)
 			else
 				puts "Please input a valid pawn_promotion"
+				pawn_promotion(pawn_coord)
 			end		
 		end
 	end

@@ -62,18 +62,28 @@ module Chess
 				#expect(game.pawn_promotion(pawn_coord)).to eql("white")
 				expect(game.board.board[0][0]).to be_instance_of Queen
 			end
+		end
+		context "#castle?" do
+		end
 
-			it "returns an error if not queen, rook, bishop, knight or pawn" do
-			end 
-			
-			it "replaces the pawn at the location with the replacement piece" do
+		context "#white_king_side_castle" do
+			it "castles the white king on kings side" do
 			end
 		end
 
-		context "#white_castleing" do
+		context "#white_queen_side_castle" do
+			it "castles the white king on the Queen's side" do
+			end
 		end
 
-		context "#black_castleing" do
+		context "black_kings_side_castle" do
+			it "castles the black king on the kings side" do
+			end
+		end
+
+		context "black_kings_side_castle" do
+			it "castles the black king on the queen's side" do
+			end
 		end
 
 		context "#play" do
