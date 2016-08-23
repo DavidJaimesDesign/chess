@@ -57,6 +57,7 @@ module Chess
 		def pawn_promotion(pawn_coord)
 			y = pawn_coord[0]
 			x = pawn_coord[1]
+			color = @board.board[y][x].color
 
 			puts "Your pawn can be promoted!"
 			puts "What do you want to promote your pawn to?"
@@ -67,10 +68,15 @@ module Chess
 			promote_to = gets.chomp
 
 			if promote_to == "Queen"
+				@board.board[y][x] = Queen.new(color)
 			elsif promote_to == "Rook"
+				@board.board[y][x] = Rook.new(color)
 			elsif promote_to == "Bishop"
+				@board.board = Bishop.new(color)
 			elsif promote_to == "Knight"
+				@board.board = Knight.new(color)
 			else
+				puts "Please input a valid pawn_promotion"
 			end		
 		end
 	end
