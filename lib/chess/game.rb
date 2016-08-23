@@ -37,5 +37,24 @@ module Chess
 			standard_coordinates = [y, x]
 			return standard_coordinates
 		end
+
+		def pawn_promote?
+			board.board[0].each do |cell|
+				if (cell.instance_of? Pawn) && cell.color == "white" 
+					return true
+				end
+			end
+
+			board.board[7].each do |cell|
+				if (cell.instance_of? Pawn) && cell.color == "black" 
+					return true
+				end
+			end
+
+			false
+		end
+
+		def pawn_promotion
+		end
 	end
 end

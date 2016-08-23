@@ -29,6 +29,32 @@ module Chess
 			end
 		end
 
+
+		context "#pawn_promote?" do
+			it "returns true if there is a pawn that can be promoted" do
+				player1 = "al"
+				player2 = "bo"
+				game = Game.new(player1, player2)
+				game.board.board[0][0] = Pawn.new("white")
+
+				expect(game.pawn_promote?).to be true
+			end
+		end
+
+		context "#pawn_promotion" do
+			it "asks what piece pawn will be promoted to" do
+			end
+
+			it "returns an error if not queen, rook, bishop, knight or pawn" do
+			end 
+			
+			it "replaces the pawn at the location with the replacement piece" do
+			end
+		end
+
+		context "#castleling" do
+		end
+
 		context "#play" do
 			#play the damn thing
 			it "displays the board at the current state" do

@@ -40,25 +40,4 @@ puts "White please state your name:"
 white = gets.chomp
 puts "Black please state your name:"
 black = gets.chomp
-board = Chess::Board.new
-board.new_game
 
-game_over = false
-
-while game_over = false do
-	end_game = 
-end
-puts ""
-board.display 
-puts ""
-puts "your move #{white}" #white player
-puts "Select a piece"
-puts "input move"
-puts ""
-puts "BOARD GOES HERE"
-puts ""
-puts "your move #{black}"
-puts "select a piece"
-puts "input move"
-puts ""
-puts "BOARD GOES HERE"
