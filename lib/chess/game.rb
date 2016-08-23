@@ -54,7 +54,24 @@ module Chess
 			false
 		end
 
-		def pawn_promotion
+		def pawn_promotion(pawn_coord)
+			y = pawn_coord[0]
+			x = pawn_coord[1]
+
+			puts "Your pawn can be promoted!"
+			puts "What do you want to promote your pawn to?"
+			puts "Queen"
+			puts "Rook"
+			puts "Bishop"
+			puts "Knight"
+			promote_to = gets.chomp
+
+			if promote_to == "Queen"
+			elsif promote_to == "Rook"
+			elsif promote_to == "Bishop"
+			elsif promote_to == "Knight"
+			else
+			end		
 		end
 	end
 end
