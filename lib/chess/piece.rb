@@ -1,6 +1,7 @@
 module Chess
 	class Piece
-		attr_reader :color, :count
+		attr_reader :color
+		attr_accessor :count
 		def initialize(color, count = 0)
 			@count = count
 			@color = color
@@ -9,6 +10,7 @@ module Chess
 		def move(coord_i, coord_f, board)
 			board.board[coord_f[0]][coord_f[1]] = self
 			board.board[coord_i[0]][coord_i[1]] = nil
+			self.count += 1
 		end
 
 		def vertical_positive_move(coord_i, coord_f)
