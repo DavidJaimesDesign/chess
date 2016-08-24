@@ -7,6 +7,11 @@ module Chess
 				piece = Piece.new("black")
 				expect(piece.color).to eq("black")
 			end
+
+			it "initializes with a count meter of 0" do 
+				piece = Piece.new("black")
+				expect(piece.count).to eq(0)
+			end
 			#the sub classes will have all of the restrictions and specifics they should have
 		end
 		context "#move" do

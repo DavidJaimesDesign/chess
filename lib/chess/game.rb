@@ -84,9 +84,17 @@ module Chess
 
 		def white_castle?
 			if @board.board[7][1].nil? && @board.board[7][2].nil?
-				true
+				if @board.board[][].count == 0 && @board.board[][].count == 0
+					true
+				else
+					false
+				end
 			elsif  @board.board[7][6].nil? && @board.board[7][5].nil? && @board.board[7][4].nil?
-				true
+				if @board.board[][].count == 0 && @board.board[][].count == 0
+					true
+				else
+					false
+				end
 			else
 				false
 			end
@@ -94,9 +102,17 @@ module Chess
 
 		def black_castle?
 			if @board.board[0][1].nil? && @board.board[0][2].nil?
-				true
+				if @board.board[][].count == 0 && @board.board[][].count == 0
+					true
+				else
+					false
+				end
 			elsif  @board.board[0][6].nil? && @board.board[0][5].nil? && @board.board[0][4].nil?
-				true
+				if @board.board[][].count == 0 && @board.board[][].count == 0
+					true
+				else
+					false
+				end
 			else
 				false
 			end

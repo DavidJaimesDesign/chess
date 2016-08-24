@@ -93,13 +93,13 @@ module Chess
 				player2 = "bo"
 				@game = Game.new(player1, player2)
 			end
-			it "returns true for a black king king's side castle" do
+			it "returns true for a black king king's side castle and if the pieces have not moved" do
 				@game.board.board[0][1] = nil
 				@game.board.board[0][2] = nil
 				expect(@game.black_castle?).to be true
 			end
 
-			it "returns true for a black king queen's side castle" do
+			it "returns true for a black king queen's side castle and if the pieces have not moved" do
 				@game.board.board[0][6] = nil
 				@game.board.board[0][5] = nil
 				@game.board.board[0][4] = nil

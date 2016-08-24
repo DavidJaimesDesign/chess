@@ -1,7 +1,8 @@
 module Chess
 	class Piece
-		attr_reader :color
-		def initialize(color)
+		attr_reader :color, :count
+		def initialize(color, count = 0)
+			@count = count
 			@color = color
 		end
 
