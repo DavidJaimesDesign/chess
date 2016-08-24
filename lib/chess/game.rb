@@ -81,5 +81,25 @@ module Chess
 				pawn_promotion(pawn_coord)
 			end		
 		end
+
+		def white_castle?
+			if @board.board[7][1].nil? && @board.board[7][2].nil?
+				true
+			elsif  @board.board[7][6].nil? && @board.board[7][5].nil? && @board.board[7][4].nil?
+				true
+			else
+				false
+			end
+		end
+
+		def black_castle?
+			if @board.board[0][1].nil? && @board.board[0][2].nil?
+				true
+			elsif  @board.board[0][6].nil? && @board.board[0][5].nil? && @board.board[0][4].nil?
+				true
+			else
+				false
+			end
+		end
 	end
 end
