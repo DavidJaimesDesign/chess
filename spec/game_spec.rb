@@ -63,7 +63,7 @@ module Chess
 				expect(game.board.board[0][0]).to be_instance_of Queen
 			end
 		end
-		context "castle?" do
+		context "white_castle?" do
 			before (:each) do
 				player1 = "al"
 				player2 = "bo"
@@ -72,23 +72,41 @@ module Chess
 			it "returns true for a white king king's side castle" do
 				@game.board.board[7][1] = nil
 				@game.board.board[7][2] = nil
+				expect(game.white_castle?).to be true
 			end
 
 			it "returns true for a white king queen's side castle" do
 				@game.board.board[7][6] = nil
 				@game.board.board[7][5] = nil
 				@game.board.board[7][4] = nil
+				expect(game.white_castle?).to be true
 			end
 
+			it "returns false otherwise" do
+				expect(game.white_castle?).to be false
+			end
+
+		context "black_castle?" do
+			before(:each) do
+				player1 = "al"
+				player2 = "bo"
+				@game = Game.new(player1, player2)
+			end
 			it "returns true for a black king king's side castle" do
 				@game.board.board[0][1] = nil
 				@game.board.board[0][2] = nil
+				expect(game.black_castle?).to be true
 			end
 
 			it "returns true for a black king queen's side castle" do
 				@game.board.board[0][6] = nil
 				@game.board.board[0][5] = nil
-				@game.board.board[0][4] = nil
+				@game.board.blaboard[0][4] = nil
+				expect(game.black_castle?).to be true
+			end
+
+			it "returns false otherwise" do
+				expect(game.black_castle?).to be false
 			end
 		end
 
