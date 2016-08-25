@@ -92,11 +92,13 @@ module Chess
 			end
 
 			it "returns the piece at the x, y coordinates" do
-				expect(@board.select_piece(1,0)).to be_instance_of Pawn
+				coord = [1, 0]
+				expect(@board.select_piece(coord)).to be_instance_of Pawn
 			end
 
 			it "returns error for no piece present" do 
-				expect(@board.select_piece(3, 3)).to be nil 
+				coord = [3, 3]
+				expect(@board.select_piece(coord)).to be nil 
 			end
 		end
 	end

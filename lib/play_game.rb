@@ -40,4 +40,34 @@ puts "White please state your name:"
 white = gets.chomp
 puts "Black please state your name:"
 black = gets.chomp
+puts ""
+
+game = Chess::Game.new(white, black)
+game.board.display
+
+test_checkmate = false
+while  test_checkmate == false do
+	puts "#{white} select a piece"
+	piece_coord = gets.chomp
+	piece_coord_std = game.coordinate_parser(piece_coord)
+
+	puts "#{white} input a move"
+	move_coord = gets.chomp
+	move_coord_std = game.coordinate_parser(move_coord)
+	
+	puts ""
+	game.board.display
+
+	puts "#{black} select a piece"
+	piece_coord = gets.chomp
+	piece_coord_std = game.coordinate_parser(piece_coord)
+
+	puts "#{black} input a move"
+	move_coord = gets.chomp
+	move_coord_std = game.coordinate_parser(move_coord)
+
+	puts ""
+	game.board.display	
+end
+
 

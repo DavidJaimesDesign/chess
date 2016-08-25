@@ -171,8 +171,8 @@ module Chess
 			end 
 		end
 
-		def select_piece(y, x)
-			@board[y][x]
+		def select_piece(coord)
+			@board[coord[0]][coord[1]]
 		end
 	end
 end
