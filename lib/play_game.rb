@@ -50,11 +50,17 @@ while  test_checkmate == false do
 	puts "#{white} select a piece"
 	piece_coord = gets.chomp
 	piece_coord_std = game.coordinate_parser(piece_coord)
+	piece = game.board.select_piece(piece_coord_std)
 
 	puts "#{white} input a move"
 	move_coord = gets.chomp
 	move_coord_std = game.coordinate_parser(move_coord)
-	
+	if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
+		piece.move(piece_coord_std, move_coord_std, game.board)
+		game.board.display
+	else
+		puts "please add a valid move"
+	end
 	puts ""
 	game.board.display
 
