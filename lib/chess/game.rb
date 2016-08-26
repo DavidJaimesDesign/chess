@@ -32,7 +32,7 @@ module Chess
 			else
 				puts "ERROR invalid coordinates"
 			end
-			y = coord[1].to_i
+			y = coord[1].to_i - 1
 
 			standard_coordinates = [y, x]
 			return standard_coordinates

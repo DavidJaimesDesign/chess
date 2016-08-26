@@ -71,6 +71,7 @@ module Chess
 			black_queen  = "\u265B".encode('utf-8').colorize(:light_black)
 			black_king   = "\u265A".encode('utf-8').colorize(:light_black)
 
+			puts "   a b c d e f g h"
 			display_board = board.each_with_index.map do |row, index|
 				if index % 2 == 0
 					row.each_with_index.map do |cell, index|
@@ -165,10 +166,14 @@ module Chess
 					end				
 				end
 			end
-			display_board.each do |row|
+			numbers = [" 8", " 7", " 6", " 5", " 4", " 3", " 2", " 1"]
+
+			display_board.each_with_index do |row, index|
+				print "#{numbers[index]}"
 				row.each{|cell| print " #{cell}"}
-				print "\n"
+				print "#{numbers[index]}\n"
 			end 
+			puts "   a b c d e f g h"
 		end
 
 		def select_piece(coord)
