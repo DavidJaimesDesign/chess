@@ -51,6 +51,7 @@ while  test_checkmate == false do
 	piece_coord = gets.chomp
 	piece_coord_std = game.coordinate_parser(piece_coord)
 	piece = game.board.select_piece(piece_coord_std)
+	puts piece.inspect
 
 	puts "#{white} input a move"
 	move_coord = gets.chomp

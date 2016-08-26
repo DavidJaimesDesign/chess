@@ -32,8 +32,26 @@ module Chess
 			else
 				puts "ERROR invalid coordinates"
 			end
-			y = coord[1].to_i - 1
-
+			
+			if coord[1] == 8
+				y = 0
+			elsif coord[1] == 7
+				y = 1
+			elsif coord[1] == 6
+				y = 2
+			elsif coord[1] == 5
+				y = 3
+			elsif coord[1] == 4
+				y = 4
+			elsif coord[1] == 3
+				y = 5
+			elsif coord[1] == 2
+				y = 6
+			elsif coord[1] == 1
+				y = 7
+			else
+				puts "Error invalid coordinates"
+			end
 			standard_coordinates = [y, x]
 			return standard_coordinates
 		end
