@@ -63,6 +63,32 @@ module Chess
 				expect(game.board.board[0][0]).to be_instance_of Queen
 			end
 		end
+
+		context "A test game" do
+			it "white pawn to e4" do
+			end
+
+			it "black pawn to e6" do
+			end
+
+			it "white queens bishop to e3" do
+			end
+
+			it "black kings side knight to c6" do
+			end
+
+			it "white queens side knight to h3" do
+			end
+
+			it "black queens side bishop to a3" do
+			end
+
+			it "white queen to e3" do
+			end
+
+			it "black bishop capture white pawn at b2" do
+			end
+		end
 		#shits fucked from here on...
 		context "#white_king_side_castle" do
 			before (:each) do
