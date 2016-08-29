@@ -17,8 +17,14 @@ module Chess
 					else
 						false
 					end
+				elsif coord_f[0] - coord_i[0] == 2 && coord_i[1] == coord_f[1] && self.count == 0
+					if board.board[coord_f[0]][coord_f[1]].nil? && board.board[coord_f[0]-1][coord_f[1]].nil?
+						true
+					else
+						false
+					end
 				elsif coord_f[0] - coord_i[0] == 1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
-					if board.select_piece(coord_f[0], coord_f[1]).color != self.color
+					if board.select_piece(coord_f).color != self.color
 						true
 					else
 						false
@@ -33,8 +39,14 @@ module Chess
 					else
 						false
 					end
+				elsif coord_f[0] - coord_i[0] == -2 && coord_i[1] == coord_f[1] && self.count == 0
+					if board.board[coord_f[0]][coord_f[1]].nil? && board.board[coord_f[0]+1][coord_f[1]].nil?
+						true
+					else
+						false
+					end
 				elsif coord_f[0] - coord_i[0] == -1 && (coord_f[1] - coord_i[1] == 1 || coord_f[1] - coord_i[1] == -1)
-					if board.select_piece(coord_f[0], coord_f[1]).color != self.color
+					if board.select_piece(coord_f).color != self.color
 						true
 					else
 						false
