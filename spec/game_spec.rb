@@ -71,12 +71,12 @@ module Chess
 			@@game = Game.new(player1, player2)
 
 			it "white pawn to e4" do
-				piece_coord = "a2"
+				piece_coord = "e2"
 				piece_coord_std = @@game.coordinate_parser(piece_coord)
 				piece = @@game.board.select_piece(piece_coord_std)
 				puts piece.inspect
 
-				move_coord = "a4"
+				move_coord = "e4"
 				move_coord_std = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
@@ -88,13 +88,49 @@ module Chess
 	    			@@game.board.display
 				end
 
-				expect(@@game.board.board[3][4]).to be_instance_of Pawn
+				expect(@@game.board.board[4][4]).to be_instance_of Pawn
 			end
 
 			it "black pawn to e6" do
+				piece_coord = "e7"
+				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				piece = @@game.board.select_piece(piece_coord_std)
+				puts piece.inspect
+
+				move_coord = "e6"
+				move_coord_std = @@game.coordinate_parser(move_coord)
+
+				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
+					piece.move(piece_coord_std, move_coord_std, @@game.board)
+					@@game.board.display
+				else
+					puts "please add a valid move"
+					puts ""
+	    			@@game.board.display
+				end
+
+				expect(@@game.board.board[2][4]).to be_instance_of Pawn
 			end
 
 			it "white queens bishop to e3" do
+				piece_coord = "e7"
+				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				piece = @@game.board.select_piece(piece_coord_std)
+				puts piece.inspect
+
+				move_coord = "e6"
+				move_coord_std = @@game.coordinate_parser(move_coord)
+
+				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
+					piece.move(piece_coord_std, move_coord_std, @@game.board)
+					@@game.board.display
+				else
+					puts "please add a valid move"
+					puts ""
+	    			@@game.board.display
+				end
+
+				expect(@@game.board.board[2][4]).to be_instance_of Pawn
 			end
 
 			it "black kings side knight to c6" do
