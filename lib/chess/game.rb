@@ -30,27 +30,27 @@ module Chess
 			elsif coord[0] == 'h'
 				x = 7
 			else
-				puts "ERROR invalid coordinates"
+				puts "Error invalid x coordinates"
 			end
 			
-			if coord[1] == 8
+			if coord[1] == '8'
 				y = 0
-			elsif coord[1] == 7
+			elsif coord[1] == '7'
 				y = 1
-			elsif coord[1] == 6
+			elsif coord[1] == '6'
 				y = 2
-			elsif coord[1] == 5
+			elsif coord[1] == '5'
 				y = 3
-			elsif coord[1] == 4
+			elsif coord[1] == '4'
 				y = 4
-			elsif coord[1] == 3
+			elsif coord[1] == '3'
 				y = 5
-			elsif coord[1] == 2
+			elsif coord[1] == '2'
 				y = 6
-			elsif coord[1] == 1
+			elsif coord[1] == '1'
 				y = 7
 			else
-				puts "Error invalid coordinates"
+				puts "Error invalid y coordinates"
 			end
 			standard_coordinates = [y, x]
 			return standard_coordinates

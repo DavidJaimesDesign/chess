@@ -26,7 +26,7 @@ module Chess
 				game = Game.new(player1, player2)
 
 				coord = "a4"
-				expect(game.coordinate_parser(coord)).to eql([3, 0])
+				expect(game.coordinate_parser(coord)).to eql([4, 0])
 			end
 		end
 
