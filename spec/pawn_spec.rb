@@ -30,6 +30,14 @@ module Chess
 				expect(@pawn_black1.valid_move?(coord_i, coord_f, @board)).to be true 
 			end 
 
+			it "returns true for the 2 space forward move if it is the pawns first move" do
+				@board.board[0][0] = @pawn_black1
+				coord_i = [0, 0]
+				coord_f = [2, 0]
+
+				expect(@pawn_black1.valid_move?(coord_i, coord_f, @board)).to be true
+			end
+
 			it "returns false for a vertical move if there is a piece present at coord_f" do 
 				@board.board[0][0] = @pawn_black1
 				@board.board[1][0] = @pawn_white1
@@ -80,6 +88,14 @@ module Chess
 
 				expect(@pawn_white.valid_move?(coord_i, coord_f, @board)).to be true 
 			end 
+
+			it "returns true for the 2 space forward move if it is the pawns first move" do
+				@board.board[7][0] = @pawn_white
+				coord_i = [7, 0]
+				coord_f = [5, 0]
+
+				expect(@pawn_white.valid_move?(coord_i, coord_f, @board)).to be true
+			end
 
 			it "returns false for a vertical move if there is a piece present at coord_f" do 
 				@board.board[7][0] = @pawn_white
