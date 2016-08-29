@@ -58,7 +58,7 @@ module Chess
 				@board.board[3][3] = @bishop_white
 
 				coord_i  = [3, 3]
-				coord_f  = [4, 4]
+				coord_f  = [7, 7]
 
 				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
@@ -67,7 +67,7 @@ module Chess
 				@board.board[3][3] = @bishop_white
 
 				coord_i  = [3, 3]
-				coord_f  = [2, 2]
+				coord_f  = [0, 0]
 
 				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
@@ -76,7 +76,7 @@ module Chess
 				@board.board[3][3] = @bishop_white
 
 				coord_i  = [3, 3]
-				coord_f  = [4, 2]
+				coord_f  = [6, 0]
 
 				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true 
 			end
@@ -85,7 +85,7 @@ module Chess
 				@board.board[3][3] = @bishop_white
 
 				coord_i  = [3, 3]
-				coord_f  = [2, 4]
+				coord_f  = [0, 6]
 
 				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
 			end
