@@ -27,6 +27,8 @@ module Chess
 
 				coord = "a4"
 				expect(game.coordinate_parser(coord)).to eql([4, 0])
+				move_coord = "d3"
+				expect(game.coordinate_parser(move_coord)).to eql([5, 3])
 			end
 		end
 
