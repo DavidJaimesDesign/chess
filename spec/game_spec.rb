@@ -122,7 +122,6 @@ module Chess
 
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
-				print move_coord_std
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
 					piece.move(piece_coord_std, move_coord_std, @@game.board)
@@ -137,6 +136,24 @@ module Chess
 			end
 
 			it "black kings side knight to c6" do
+				piece_coord = "b8"
+				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				piece = @@game.board.select_piece(piece_coord_std)
+				puts piece.inspect
+
+				move_coord = "c6"
+				move_coord_std = @@game.coordinate_parser(move_coord)
+
+				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
+					piece.move(piece_coord_std, move_coord_std, @@game.board)
+					@@game.board.display
+				else
+					puts "please add a valid move"
+					puts ""
+	    			@@game.board.display
+				end
+
+				expect(@@game.board.board[2][2]).to be_instance_of Knight
 			end
 
 			it "white queens side knight to h3" do
