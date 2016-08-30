@@ -61,6 +61,8 @@ module Chess
 				coord_f  = [7, 7]
 
 				expect(@bishop_white.valid_move?(coord_i, coord_f, @board)).to be true
+				@bishop_white.move(coord_i, coord_f, @board)
+				@board.display
 			end
 
 			it "returns true for right down diagonal" do

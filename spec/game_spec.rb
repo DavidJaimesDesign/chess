@@ -122,6 +122,7 @@ module Chess
 
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				print move_coord_std
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
 					piece.move(piece_coord_std, move_coord_std, @@game.board)
