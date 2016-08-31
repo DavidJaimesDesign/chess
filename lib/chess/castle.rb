@@ -1,3 +1,9 @@
+module Chess
+	class Castle
+	end
+end
+
+=begin
 def white_kings_side_castle
 			if @board.board[7][1].nil? && @board.board[7][2].nil?
 				if @board.board[7][3].count == 0 && @board.board[7][0].count == 0
@@ -45,3 +51,4 @@ def white_kings_side_castle
 				false
 			end
 		end
+=end

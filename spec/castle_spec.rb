@@ -3,6 +3,32 @@ require 'stringio'
 
 module Chess
 	describe Castle do
+		context "initialize" do
+		end
+		context "#white_king_side_castle" do
+			before (:each) do
+				board = Board.new.new_game
+				@castle = Castle.new(board)
+			end
+			it "returns true for white kings side if count = 0" do
+				@castle.board.board[7][1] = nil
+				@castle.board.board[7][2] = nil
+
+				@castle.white_king_side_castle
+
+				expect(@castle.board.board[][]).to be_instance_of King
+				expect(@castle.board.board[][]).to be_instance_of Rook
+			end
+
+			it "returns false if the king is in check" do
+			end
+
+			it "returns false if the counte is higher" do
+			end 
+		end
+	end
+end
+=begin
 		context "#white_king_side_castle" do
 			before (:each) do
 				player1 = "al"
@@ -66,4 +92,4 @@ module Chess
 				expect(@game.board.board[0][3]).to be_instance_of Rook
 			end
 		end
-	end
+=end
