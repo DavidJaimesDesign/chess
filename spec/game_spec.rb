@@ -126,20 +126,19 @@ module Chess
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
 
-				@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
-				@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
-				@@game.board.display
+				
 
-=begin
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					piece.move(piece_coord_std, move_coord_std, @@game.board)
+					@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
+					@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
 					@@game.board.display
+
 				else
 					puts "please add a valid move"
 					puts ""
 	    			@@game.board.display
 				end
-=end
+				
 				expect(@@game.board.board[5][3]).to be_instance_of Bishop
 			end
 
