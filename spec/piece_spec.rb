@@ -20,11 +20,11 @@ module Chess
 				@piece = Piece.new("black")
 				@board.board[0][0] = @piece 
 				@coordinates_i = [0 ,0]
-				@coordinates_f = [5, 3]
+				@coordinates_f = [7, 7]
 				@piece.move(@coordinates_i, @coordinates_f, @board)
 			end
 			it "moves the piece to the coordinates on the board" do
-				expect(@board.board[5][3]).to eq(@piece)
+				expect(@board.board[7][7]).to eq(@piece)
 			end
 
 			it "deleted the piece from the init coordinates" do

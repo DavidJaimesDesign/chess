@@ -29,6 +29,8 @@ module Chess
 				expect(game.coordinate_parser(coord)).to eql([4, 0])
 				move_coord = "d3"
 				expect(game.coordinate_parser(move_coord)).to eql([5, 3])
+				coord_test = "c3"
+				expect(game.coordinate_parser(coord_test)).to eql([5, 2])
 			end
 		end
 
@@ -117,12 +119,18 @@ module Chess
 			it "white queens bishop to d3" do
 				piece_coord = "f1"
 				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				puts piece_coord_std.inspect
 				piece = @@game.board.select_piece(piece_coord_std)
 				puts piece.inspect
 
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
 
+				@@game.board.board[5][3] = piece
+				@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
+				@@game.board.display
+
+=begin
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
 					piece.move(piece_coord_std, move_coord_std, @@game.board)
 					@@game.board.display
@@ -131,7 +139,7 @@ module Chess
 					puts ""
 	    			@@game.board.display
 				end
-
+=end
 				expect(@@game.board.board[5][3]).to be_instance_of Bishop
 			end
 
