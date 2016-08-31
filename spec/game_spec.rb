@@ -125,17 +125,18 @@ module Chess
 
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 				puts move_coord_std.inspect
+
 				
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
 					puts piece_coord_std.inspect
 					puts move_coord_std.inspect
-=begin
-@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
+	
+					@@game.board.board[move_coord_app[0]][move_coord_app[1]] = piece
 					@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
 					@@game.board.display	
-=end
 
 				else
 					puts "please add a valid move"
