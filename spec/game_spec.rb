@@ -126,7 +126,7 @@ module Chess
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
 
-				@@game.board.board[5][3] = piece
+				@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
 				@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
 				@@game.board.display
 
