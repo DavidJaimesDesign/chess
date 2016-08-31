@@ -1,5 +1,10 @@
 module Chess
 	class Castle
+		attr_accessor :board
+
+		def initialize(board)
+			@board = board 
+		end
 	end
 end
 

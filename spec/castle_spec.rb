@@ -4,6 +4,12 @@ require 'stringio'
 module Chess
 	describe Castle do
 		context "initialize" do
+			it "initializes with a board" do
+				board = Board.new.new_game
+				castle = Castle.new(board)
+
+				expect(castle.board).to be_instance_of Board
+			end
 		end
 		context "#white_king_side_castle" do
 			before (:each) do
@@ -12,84 +18,89 @@ module Chess
 			end
 			it "returns true for white kings side if count = 0" do
 				@castle.board.board[7][1] = nil
+				@castle.board.board[7][2] = nil				
+
+				expect(@castle.white_king_side_castle).to be true
+			end
+
+			it "returns false if the king is in check" do
+				@castle.board.board[7][1] = nil
+				@castle.board.board[7][2] = nil	
+				@castle.board.board[6][3] = Queen.new("black")			
+
+				expect(@castle.white_king_side_castle).to be false
+			end
+
+			it "returns false if the count for either piece > 0" do
+				@castle.board.board[7][1] = nil
 				@castle.board.board[7][2] = nil
+				@castle.board.board[7][3].count = 1				
 
-				@castle.white_king_side_castle
+				expect(@castle.white_king_side_castle).to be false
+			end 
+		end
+=begin
+		context "#white_queen_side_castle" do
+			before (:each) do
+				board = Board.new.new_game
+				@castle = Castle.new(board)
+			end
+			it "returns true for white kings side if count = 0" do
+				@castle.board.board[7][6] = nil
+				@castle.board.board[7][5] = nil
+				@castle.board.board[7][4] = nil
 
-				expect(@castle.board.board[][]).to be_instance_of King
-				expect(@castle.board.board[][]).to be_instance_of Rook
+				expect(@castle.white_queen_side_castle).to be true
+
+			it "returns false if the king is in check" do
+				@castle.board.board[7][6] = nil
+				@castle.board.board[7][5] = nil
+				@castle.board.board[7][4] = nil
+				@castle.board.board[6][3] = Queen.new("black")
+				expect(@castle.white_queen_side_castle).to be false
+			end
+
+			it "returns false if the count for either piece > 0" do
+			end 
+		end
+
+		context "#black_king_side_castle" do
+			before (:each) do
+				board = Board.new.new_game
+				@castle = Castle.new(board)
+			end
+			it "returns true for white kings side if count = 0" do
+				@castle.board.board[0][1] = nil
+				@castle.board.board[0][2] = nil				
+
+				expect(@castle.black_king_side_castle).to be true
 			end
 
 			it "returns false if the king is in check" do
 			end
 
-			it "returns false if the counte is higher" do
+			it "returns false if the count for either piece > 0" do
 			end 
 		end
-	end
-end
-=begin
-		context "#white_king_side_castle" do
+
+		context "#black_queen_side_castle" do
 			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
+				board = Board.new.new_game
+				@castle = Castle.new(board)
 			end
-			it "castles the white king on kings side if it is a valid move" do
-				@game.board.board[7][1] = nil
-				@game.board.board[7][2] = nil
+			it "returns true for white kings side if count = 0" do
+				@castle.board.board[0][6] = nil
+				@castle.board.board[0][5] = nil
+				@castle.board.board[0][4] = nil
 
-				@game.white_king_side_castle
+				expect(@castle.white_queen_side_castle).to be true
 
-				expect(@game.board.board[][]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
+			it "returns false if the king is in check" do
 			end
-		end
 
-		context "#white_queen_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the white king on the Queen's side if valid" do
-				@game.board.board[7][6] = nil
-				@game.board.board[7][5] = nil
-				@game.board.board[7][4] = nil
-
-				expect(@game.board.board[][]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
-			end
-		end
-
-		context "black_kings_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the black king on the kings side if valid" do
-				@game.board.board[0][1] = nil
-				@game.board.board[0][2] = nil
-
-				expect(@game.board.board[0][6]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
-			end
-		end
-
-		context "black_kings_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the black king on the queen's side if valid" do
-				@game.board.board[0][6] = nil
-				@game.board.board[0][5] = nil
-				@game.board.board[0][4] = nil
-
-				expect(@game.board.board[0][2]).to be_instance_of King
-				expect(@game.board.board[0][3]).to be_instance_of Rook
-			end
+			it "returns false if the count for either piece > 0" do
+			end 
 		end
 =end
+	end
+end
