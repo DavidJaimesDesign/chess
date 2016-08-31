@@ -3,7 +3,11 @@ module Chess
 		attr_accessor :board
 
 		def initialize(board)
-			@board = board 
+			if board.instance_of? Board
+				@board = board 
+			else 
+				puts "ERROR not a chess game board"
+			end
 		end
 	end
 end
