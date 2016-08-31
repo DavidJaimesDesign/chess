@@ -1,4 +1,9 @@
-context "#white_king_side_castle" do
+require 'spec_helper'
+require 'stringio'
+
+module Chess
+	describe Castle do
+		context "#white_king_side_castle" do
 			before (:each) do
 				player1 = "al"
 				player2 = "bo"
@@ -61,3 +66,4 @@ context "#white_king_side_castle" do
 				expect(@game.board.board[0][3]).to be_instance_of Rook
 			end
 		end
+	end
