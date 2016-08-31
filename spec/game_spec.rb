@@ -121,24 +121,28 @@ module Chess
 				piece_coord_std = @@game.coordinate_parser(piece_coord)
 				puts piece_coord_std.inspect
 				piece = @@game.board.select_piece(piece_coord_std)
-				puts piece.inspect
+				#puts piece.inspect
 
 				move_coord = "d3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
-
+				puts move_coord_std.inspect
 				
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
+					puts piece_coord_std.inspect
+					puts move_coord_std.inspect
+=begin
+@@game.board.board[move_coord_std[0]][move_coord_std[1]] = piece
 					@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
-					@@game.board.display
+					@@game.board.display	
+=end
 
 				else
 					puts "please add a valid move"
 					puts ""
 	    			@@game.board.display
 				end
-				
+
 				expect(@@game.board.board[5][3]).to be_instance_of Bishop
 			end
 
