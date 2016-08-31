@@ -194,16 +194,13 @@ module Chess
 			end
 
 			it "black queens side bishop to a3" do
-			end
-
-			it "white queen to c3" do
-				piece_coord = "e1"
+				piece_coord = "f8"
 				piece_coord_std = @@game.coordinate_parser(piece_coord)
 				piece = @@game.board.select_piece(piece_coord_std)
 				puts piece.inspect
 
-				move_coord = "c3"
-				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord = "a3"
+					move_coord_std = @@game.coordinate_parser(move_coord)
 				move_coord_app = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
@@ -218,7 +215,32 @@ module Chess
 				end
 
 
-				expect(@@game.board.board[6][2]).to be_instance_of Queen
+				expect(@@game.board.board[5][0]).to be_instance_of Bishop
+			end
+
+			it "white queen to c3" do
+				piece_coord = "e1"
+				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				piece = @@game.board.select_piece(piece_coord_std)
+				puts piece.inspect
+
+				move_coord = "c3"
+					move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
+
+				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
+
+				else
+					puts "please add a valid move"
+					puts ""
+	    			@@game.board.display
+				end
+
+
+				expect(@@game.board.board[5][2]).to be_instance_of Queen
 			end
 
 			it "black bishop capture white pawn at b2" do
