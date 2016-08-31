@@ -82,10 +82,13 @@ module Chess
 
 				move_coord = "e4"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					piece.move(piece_coord_std, move_coord_std, @@game.board)
-					@@game.board.display
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
+
 				else
 					puts "please add a valid move"
 					puts ""
@@ -116,26 +119,20 @@ module Chess
 				expect(@@game.board.board[2][4]).to be_instance_of Pawn
 			end
 
-			it "white queens bishop to d3" do
+			it "white queens bishop to c4" do
 				piece_coord = "f1"
 				piece_coord_std = @@game.coordinate_parser(piece_coord)
 				puts piece_coord_std.inspect
 				piece = @@game.board.select_piece(piece_coord_std)
 				#puts piece.inspect
 
-				move_coord = "d3"
+				move_coord = "c4"
 				move_coord_std = @@game.coordinate_parser(move_coord)
 				move_coord_app = @@game.coordinate_parser(move_coord)
-				puts move_coord_std.inspect
-
-				
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					puts piece_coord_std.inspect
-					puts move_coord_std.inspect
-	
-					@@game.board.board[move_coord_app[0]][move_coord_app[1]] = piece
-					@@game.board.board[piece_coord_std[0]][piece_coord_std[1]] = nil
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
 					@@game.board.display	
 
 				else
@@ -144,7 +141,7 @@ module Chess
 	    			@@game.board.display
 				end
 
-				expect(@@game.board.board[5][3]).to be_instance_of Bishop
+				expect(@@game.board.board[4][2]).to be_instance_of Bishop
 			end
 
 			it "black kings side knight to c6" do
@@ -155,10 +152,13 @@ module Chess
 
 				move_coord = "c6"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					piece.move(piece_coord_std, move_coord_std, @@game.board)
-					@@game.board.display
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
+
 				else
 					puts "please add a valid move"
 					puts ""
@@ -176,15 +176,19 @@ module Chess
 
 				move_coord = "d4"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					piece.move(piece_coord_std, move_coord_std, @@game.board)
-					@@game.board.display
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
+
 				else
 					puts "please add a valid move"
 					puts ""
 	    			@@game.board.display
 				end
+
 
 				expect(@@game.board.board[4][3]).to be_instance_of Pawn
 			end
@@ -200,15 +204,19 @@ module Chess
 
 				move_coord = "c3"
 				move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 
 				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
-					piece.move(piece_coord_std, move_coord_std, @@game.board)
-					@@game.board.display
+
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
+
 				else
 					puts "please add a valid move"
 					puts ""
 	    			@@game.board.display
 				end
+
 
 				expect(@@game.board.board[6][2]).to be_instance_of Queen
 			end
