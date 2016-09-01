@@ -9,6 +9,18 @@ module Chess
 				puts "ERROR not a chess game board"
 			end
 		end
+
+		def white_king_side_castle
+			if @board.board[7][1].nil? && @board.board[7][2].nil?
+				if @board.board[7][3].count == 0 && @board.board[7][0].count == 0
+					true
+				else
+					false
+				end
+			else
+				false
+			end
+		end
 	end
 end
 

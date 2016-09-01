@@ -5,7 +5,8 @@ module Chess
 	describe Castle do
 		context "initialize" do
 			it "initializes with a board" do
-				board = Board.new.new_game
+				board = Board.new
+				board.new_game
 				castle = Castle.new(board)
 
 				expect(castle.board).to be_instance_of Board
@@ -13,7 +14,8 @@ module Chess
 		end
 		context "#white_king_side_castle" do
 			before (:each) do
-				board = Board.new.new_game
+				board = Board.new
+				board.new_game
 				@castle = Castle.new(board)
 			end
 			it "returns true for white kings side if count = 0" do
