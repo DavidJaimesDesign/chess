@@ -31,7 +31,10 @@ module Chess
 			end
 
 			it "returns false for black king being in check" do
-				end_game = End_Game.new(@board.board[0][3], @board, [0,3])
+				board = Board.new
+				board.board[0][3] = King.new("black1")
+
+				end_game = End_Game.new(board.board[0][3], board, [0,3])
 				expect(end_game.check?).to be false
 			end
 		end
