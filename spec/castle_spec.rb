@@ -81,7 +81,7 @@ module Chess
 			end
 
 			it "returns false if the king is in check" do
-				@castle.board.board[1][3] = Queen.new("white")			
+				@castle.board.board[1][3] = Queen.new("blue")			
 
 				expect(@castle.black_king_side_castle).to be false
 			end

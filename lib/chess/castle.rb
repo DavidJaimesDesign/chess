@@ -48,9 +48,9 @@ module Chess
 			if @board.board[0][1].nil? && @board.board[0][2].nil?
 				if @board.board[0][3].count == 0 && @board.board[0][7].count == 0
 					no_check = End_Game.new(@board.board[0][3],@board, [0, 3])
+					
 					if no_check.check? 
-						puts "In check"
-						@board.display
+						"In check"
 					else
 						true
 					end

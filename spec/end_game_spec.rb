@@ -19,17 +19,29 @@ module Chess
 				expect(end_game.king_coord).to eq(king_coord)
 			end
 		end
+		context "start of game" do
+			before(:each) do
+				@board = Board.new
+				@board.new_game
+			end
 
+			it "returns false for white king begin in check" do
+			end
+
+			it "returns false for black king being in check" do
+			end
+		end
+		
 		context "#check?" do
 			#returns true for any situation where the king is in check
 			before(:each) do
 				@board        = Board.new
-				@king   	  = King.new("white")
-				@black_knight = Knight.new("black")
-				@black_rook   = Rook.new("black")
-				@black_bishop = Bishop.new("black")
-				@black_queen  = Queen.new("black")
-				@black_pawn	  = Pawn.new("black")
+				@king   	  = King.new("black")
+				@black_knight = Knight.new("white")
+				@black_rook   = Rook.new("white")
+				@black_bishop = Bishop.new("white")
+				@black_queen  = Queen.new("white")
+				@black_pawn	  = Pawn.new("white")
 
 				@board.board[3][3] = @king
 				@board.board[4][1] = @black_knight
@@ -39,7 +51,6 @@ module Chess
 				@board.board[4][2] = @black_pawn
 
 				@king_coord = [3,3]
-
 				@end_game = End_Game.new(@king, @board, @king_coord)
 			end
 			it "returns true if the king is threatend by a knight" do
