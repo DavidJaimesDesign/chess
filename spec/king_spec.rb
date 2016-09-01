@@ -60,6 +60,13 @@ module Chess
 				expect(@king.valid_move?(coord_i, coord_f7, @board)).to be true
 				expect(@king.valid_move?(coord_i, coord_f8, @board)).to be true
 			end
+
+			it "returns false for any moves that teleport from one edge of the board to the other" do @board.board[3][3] = @king
+				@board.board[7][3] = @king
+				coord_i = [7, 3]
+				coord_f = [0, 3]
+				expect(@king.valid_move?(coord_i, coord_f, @board)).to be false
+			end
 		end
 	end
 end
