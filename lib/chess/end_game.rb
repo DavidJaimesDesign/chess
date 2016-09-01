@@ -21,6 +21,21 @@ module Chess
 			end
 			return false
 		end
+
+		def check_piece?
+			@board.board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					coord_i = [r_index, c_index]
+					#puts coord_i.inspect
+					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
+						return cell
+					else 
+						false
+					end
+				end
+			end
+			return false
+		end
 	end
 end
 

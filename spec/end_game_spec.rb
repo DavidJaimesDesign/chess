@@ -30,7 +30,9 @@ module Chess
 				expect(end_game.check?).to be false
 			end
 
-			it "returns false for black king being in check" do
+			#bug hunting at the start of the game the black king is in check like wut?
+
+			it "returns false when there are only black pieces on the board for black king" do
 
 			@board.board[6][0] = nil 
 			@board.board[6][1] = nil 
@@ -51,6 +53,11 @@ module Chess
 
 				end_game = End_Game.new(@board.board[0][3], @board, [0,3])
 				expect(end_game.check?).to be false
+			end
+
+			it "returns piece that is cheking the king" do
+				end_game = End_Game.new(@board.board[0][3], @board, [0,3])
+				expect(end_game.check_piece?).to be false
 			end
 		end
 		
