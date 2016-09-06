@@ -92,25 +92,31 @@ module Chess
 				expect(@castle.black_king_side_castle).to be false
 			end 
 		end
-=begin
 		context "#black_queen_side_castle" do
 			before (:each) do
-				board = Board.new.new_game
+				board = Board.new
+				board.new_game
 				@castle = Castle.new(board)
-			end
-			it "returns true for white kings side if count = 0" do
 				@castle.board.board[0][6] = nil
 				@castle.board.board[0][5] = nil
 				@castle.board.board[0][4] = nil
+			end
+			it "returns true for white kings side if count = 0" do
 
-				expect(@castle.white_queen_side_castle).to be true
+				expect(@castle.black_queen_side_castle).to be true
+			end
 
 			it "returns false if the king is in check" do
+				@castle.board.board[1][3] = Queen.new("white")			
+
+				expect(@castle.black_king_side_castle).to be false
 			end
 
 			it "returns false if the count for either piece > 0" do
+				@castle.board.board[0][3].count = 1				
+
+				expect(@castle.black_king_side_castle).to be false
 			end 
 		end
-=end
 	end
 end

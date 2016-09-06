@@ -62,27 +62,16 @@ module Chess
 			end
 		end
 
-	end
-end
-
-=begin
-
-		def black_kings_side_castle
-			if @board.board[0][1].nil? && @board.board[0][2].nil?
-				if @board.board[0][3].count == 0 && @board.board[0][0].count == 0
-					true
-				else
-					false
-				end
-			else
-				false
-			end
-		end
-
-		def black_queens_side_castle
+		def black_queen_side_castle
 			if  @board.board[0][6].nil? && @board.board[0][5].nil? && @board.board[0][4].nil?
 				if @board.board[0][3].count == 0 && @board.board[0][7].count == 0
-					true
+					no_check = End_Game.new(@board.board[0][3],@board, [0, 3])
+				
+					if no_check.check? 
+						false
+					else
+						true
+					end
 				else
 					false
 				end
@@ -90,4 +79,5 @@ end
 				false
 			end
 		end
-=end
+	end
+end
