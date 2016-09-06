@@ -507,10 +507,10 @@ module Chess
 				expect(end_game.king_move_escape?).to be false
 			end
 
-			it "returns false: edge checkmate 2 rooks" do
+			it "returns false: edge checkmate 2 rooks PENDING" do
 			end
 
-			it "returns false king queen checkmate" do
+			it "returns false king queen checkmate PENDING" do
 			end
   		end
 

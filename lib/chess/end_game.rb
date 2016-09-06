@@ -40,21 +40,17 @@ module Chess
 		def king_move_escape?
 			king_possible_moves = self.king_possible_moves
 			king_possible_moves.any? do |move|
-				if @king.valid_move?(@king_coord, move, @board)
+				test_king  = @king
+				test_board = @board
 
-					test_king  = @king
-					test_board = @board
-					test_board.board[king_coord[0]][king_coord[1]] = nil
-					test_board.board[move[0]][move[1]] = test_king
+				test_board.board[king_coord[0]][king_coord[1]] = nil
+				test_board.board[move[0]][move[1]] = test_king
 
-					still_check = End_Game.new(@king,test_board, move)
+				still_check = End_Game.new(@king,test_board, move)
 
-					if still_check.check? 
-						false
-					else
-						true
-					end
-				else
+				if @king.valid_move?(@king_coord, move, @board) && !still_check.check?
+					true
+				else 
 					false
 				end
 			end
