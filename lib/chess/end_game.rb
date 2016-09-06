@@ -1,6 +1,6 @@
 module Chess
 	class End_Game
-		attr_accessor :king, :board, :king_coord
+		attr_accessor :king, :board, :king_coord, 
 		def initialize(king, board, king_coord)
 			@king 		= king
 			@board 		= board
@@ -38,6 +38,14 @@ module Chess
 		end
 
 		def king_move_escape?
+			if self.check?
+				false
+			else
+				true
+			end
+		end
+
+		def king_possible_moves
 		end
 	end
 end
