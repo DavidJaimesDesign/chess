@@ -264,8 +264,7 @@ module Chess
 	    			@@game.board.display
 				end
 
-
-				expect(@@game.board.board[7][1]).to be_instance_of Bishop
+				expect(@@game.board.board[6][1]).to be_instance_of Bishop
 			end
 		end
 
