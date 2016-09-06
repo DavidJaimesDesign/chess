@@ -50,7 +50,7 @@ module Chess
 					no_check = End_Game.new(@board.board[0][3],@board, [0, 3])
 					
 					if no_check.check? 
-						"In check"
+						false
 					else
 						true
 					end
