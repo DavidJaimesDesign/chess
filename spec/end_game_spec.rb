@@ -467,7 +467,7 @@ module Chess
 			it "goes through each of the moves that a king can make and if they are valid and puts the king out of check returns true" do
 				@@board.board[1][3] = Rook.new("black")
 				end_game = End_Game.new(@@king,@@board, @@king_coord)
-				#expect(end_game.king_move_escape?).to be true
+				expect(end_game.king_move_escape?).to be true
 			end
 
 			it "checks to escape from a diagonal threat" do
@@ -490,7 +490,15 @@ module Chess
 		end
 
 		context "#king_possible_moves" do
+			before(:each) do
+				@board = Board.new
+				@king = King.new("black")
+			end
 			it "returns an array with all the moves the king can make" do
+				king_coord = [3,3]
+				@board.board[3][3] = @king
+				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.king_possible_moves).to eq([[4, 2],[4, 3],[4, 4],[3, 2],[3, 4],[2, 2],[2, 3],[2, 4]])
 			end
 		end
 
