@@ -491,9 +491,20 @@ module Chess
 
 		context "#king_move_escape? false" do
 			before(:each) do
+				@@board = Board.new
+				@@king  = King.new("white")
+
+				@@board.board[3][3] = @@king 
+				@@king_coord = [3,3]
 			end 
 
 			it "returns false: 2 rooks and a queen checkmate" do
+				@@board.board[7][3] = Rook.new("black")
+				@@board.board[7][2] = Rook.new("black")
+				@@board.board[7][4] = Queen.new("black")
+
+				end_game = End_Game.new(@@king, @@board, @@king_coord)
+				expect(end_game.king_move_escape?).to be false
 			end
 
 			it "returns false: edge checkmate 2 rooks" do
