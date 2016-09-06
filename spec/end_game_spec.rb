@@ -455,7 +455,7 @@ module Chess
 			#composed of two parts. The king moving away and all the other pieces moving away.
 		end
 
-		context "#king_move_escape?" do
+		context "#king_move_escape? true" do
 			before(:each) do
 				@@board = Board.new
 				@@king  = King.new("white")
@@ -473,21 +473,35 @@ module Chess
 			it "checks to escape from a diagonal threat" do
 				@@board.board[7][7] = Queen.new("black")
 				end_game = End_Game.new(@@king,@@board, @@king_coord)
-				#expect(end_game.king_move_escape?).to be true
+				expect(end_game.king_move_escape?).to be true
 			end
 
 			it "checks to escape from horizontal threat" do
 				@@board.board[3][7] = Rook.new("black")
 				end_game = End_Game.new(@@king,@@board, @@king_coord)
-				#expect(end_game.king_move_escape?).to be true
+				expect(end_game.king_move_escape?).to be true
 			end
 
 			it "checks to escape by capture" do
 				@@board.board[2][3] = Rook.new("black")
 				end_game = End_Game.new(@@king,@@board, @@king_coord)
-				#expect(end_game.king_move_escape?).to be true
+				expect(end_game.king_move_escape?).to be true
 			end
 		end
+
+		context "#king_move_escape? false" do
+			before(:each) do
+			end 
+
+			it "returns false: 2 rooks and a queen checkmate" do
+			end
+
+			it "returns false: edge checkmate 2 rooks" do
+			end
+
+			it "returns false king queen checkmate" do
+			end
+  		end
 
 		context "#king_possible_moves" do
 			before(:each) do
