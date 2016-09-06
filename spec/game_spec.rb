@@ -244,70 +244,28 @@ module Chess
 			end
 
 			it "black bishop capture white pawn at b2" do
-			end
-		end
-		#shits fucked from here on...
-		context "#white_king_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the white king on kings side if it is a valid move" do
-				@game.board.board[7][1] = nil
-				@game.board.board[7][2] = nil
+				piece_coord = "a3"
+				piece_coord_std = @@game.coordinate_parser(piece_coord)
+				piece = @@game.board.select_piece(piece_coord_std)
+				puts piece.inspect
 
-				@game.white_king_side_castle
+				move_coord = "b2"
+					move_coord_std = @@game.coordinate_parser(move_coord)
+				move_coord_app = @@game.coordinate_parser(move_coord)
 
-				expect(@game.board.board[][]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
-			end
-		end
+				if piece.valid_move?(piece_coord_std, move_coord_std, @@game.board)
 
-		context "#white_queen_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the white king on the Queen's side if valid" do
-				@game.board.board[7][6] = nil
-				@game.board.board[7][5] = nil
-				@game.board.board[7][4] = nil
+					piece.move(piece_coord_std, move_coord_app, @@game.board)
+					@@game.board.display	
 
-				expect(@game.board.board[][]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
-			end
-		end
+				else
+					puts "please add a valid move"
+					puts ""
+	    			@@game.board.display
+				end
 
-		context "black_kings_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the black king on the kings side if valid" do
-				@game.board.board[0][1] = nil
-				@game.board.board[0][2] = nil
 
-				expect(@game.board.board[0][6]).to be_instance_of King
-				expect(@game.board.board[][]).to be_instance_of Rook
-			end
-		end
-
-		context "black_kings_side_castle" do
-			before (:each) do
-				player1 = "al"
-				player2 = "bo"
-				@game = Game.new(player1, player2)
-			end
-			it "castles the black king on the queen's side if valid" do
-				@game.board.board[0][6] = nil
-				@game.board.board[0][5] = nil
-				@game.board.board[0][4] = nil
-
-				expect(@game.board.board[0][2]).to be_instance_of King
-				expect(@game.board.board[0][3]).to be_instance_of Rook
+				expect(@@game.board.board[7][1]).to be_instance_of Bishop
 			end
 		end
 
