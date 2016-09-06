@@ -36,6 +36,9 @@ module Chess
 			end
 			return false
 		end
+
+		def king_move_escape?
+		end
 	end
 end
 

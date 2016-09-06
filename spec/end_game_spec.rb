@@ -448,12 +448,33 @@ module Chess
 			end
 		end
 
-		context "pawn_check?" do
-			#postpone until we have checked the pawn movement rules
-		end
 
 		context "#check_mate" do
 			#returns true for any situation where the king is in check_mate
+			#check_mate defined: A situation where a king is in check and it cannot move out of check nor can any other pieces move out of check 
+			#composed of two parts. The king moving away and all the other pieces moving away.
+		end
+
+		context "#king_move_escape?" do
+			it "goes through each of the moves that a king can make and if they are valid and puts the king out of check returns true" do
+				board = Board.new
+				king  = King.new("white")
+
+				board.board[3][3] = king 
+				board.board[2][3] = Rook.new("black")
+				king_coord = [3,3]
+
+				end_game = End_Game.new(king, board, king_coord)
+			end
+
+			it "checks to escape from a diagonal threat" do
+			end
+
+			it "checks to escape from horizontal threat" do
+			end
+
+			it "checks to escape by capture" do
+			end
 		end
 
 		context "#stalemate" do
