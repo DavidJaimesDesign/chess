@@ -52,6 +52,9 @@ module Chess
 			return nil
 		end
 
+		def check_piece_intercept_array?
+		end
+		
 		def king_move_escape?
 			#false if all possible moves are still check mate but are valid
 			#false if all possible moves are invalid

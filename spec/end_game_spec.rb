@@ -669,6 +669,21 @@ module Chess
 			end
 
 			context "can they intercept the checking pieces path?" do
+				context "#check_piece_intercept_array?" do
+					it "returns an array of possible intercept locations" do
+					end
+
+					it "returns nil if there are none" do
+					end
+				end
+
+				context "#any_intercept_check_piece?" do
+					it "returns true if a piece can intercept the checking piece" do
+					end
+
+					it "returns false otherwise" do
+					end
+				end
 			end 
 		end
 		context "#stalemate" do
