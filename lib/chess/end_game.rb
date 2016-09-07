@@ -38,27 +38,44 @@ module Chess
 		end
 
 		def king_move_escape?
+			#false if all possible moves are still check mate but are valid
+			#false if all possible moves are invalid
+			#false if all possible moves still check or all possible moves are invalid
 			king_possible_moves = self.king_possible_moves
-			still_check = []
-
-			if king_possible_moves.all? do |move|
-				test_king = @king
-				test_board = @board
-				test_king_coord = @king_coord
-
-				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
-				test_board.board[move[0]][move[1]] = test_king
-
-				still_check_game = End_Game.new(test_king, test_board, move)
-
-				still_check_game.check?
-				end
+			if self.king_no_move_valid? || self.king_still_check?
 				false
 			else
 				true
 			end
+		end
 
-			#king_possible_moves.any?{|move| @king.valid_move?(@king_coord, move, @board)} 
+		def king_no_move_valid?
+			king_possible_moves = self.king_possible_moves
+			if king_possible_moves.all?{|move| !@king.valid_move?(@king_coord, move, @board)} 
+				true
+			else
+				true
+			end
+		end
+
+		def king_still_check?
+			king_possible_moves = self.king_possible_moves
+			if king_possible_moves.all? do |move|
+					test_king = @king
+					test_board = @board
+					test_king_coord = @king_coord
+
+					test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
+					test_board.board[move[0]][move[1]] = test_king
+
+					still_check_game = End_Game.new(test_king, test_board, move)
+
+					still_check_game.check?
+				end
+				true
+			else
+				false
+			end
 		end
 
 		def king_possible_moves
