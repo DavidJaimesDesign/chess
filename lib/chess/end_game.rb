@@ -43,13 +43,13 @@ module Chess
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
 					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
-						return cell
+						return [r_index, c_index]
 					else 
-						false
+						nil
 					end
 				end
 			end
-			return false
+			return nil
 		end
 
 		def king_move_escape?

@@ -634,7 +634,7 @@ module Chess
 				it "returns nil otherwise" do
 					king_coord = [3,3]
 					@board.board[2][2] = @king
-					@board.board[7][7] = Bishop.new("white")
+					@board.board[0][7] = Bishop.new("white")
 
 					end_game = End_Game.new(@king, @board, king_coord)
 					expect(end_game.check_piece_coordinates?).to be nil
