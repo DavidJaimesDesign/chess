@@ -670,10 +670,44 @@ module Chess
 
 			context "can they intercept the checking pieces path?" do
 				context "#check_piece_intercept_array?" do
-					it "returns an array of possible intercept locations" do
+					before(:each) do
+						@board = Board.new
+						@king = King.new("black")
+					end
+					it "returns the intercept array of a checking piece TEST 1" do 
+						king_coord = [0,0]
+						@board.board[0][0] = @king
+						@board.board[2][0] = Queen.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.check_piece_intercept_array?).to eql([[1,0]])
 					end
 
-					it "returns nil if there are none" do
+					it "returns the intercept array of a checking pieces TEST 2" do
+						king_coord = [3,3]
+						@board.board[3][3] = @king
+						@board.board[7][7] = Bishop.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.check_piece_intercept_array?).to eql([[6,6][5,5][4,4]])
+					end
+
+					it "returns the intercept array of a checking piece TEST 3" do
+						king_coord = [3,3]
+						@board.board[3][3] = @king
+						@board.board[1][2] = Knight.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.check_piece_intercept_array?).to be nil
+					end
+
+					it "returns nil otherwise" do
+						king_coord = [3,3]
+						@board.board[2][2] = @king
+						@board.board[0][7] = Bishop.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.check_piece_intercept_array?).to be nil
 					end
 				end
 
