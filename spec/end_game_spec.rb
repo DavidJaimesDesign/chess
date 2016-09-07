@@ -598,6 +598,13 @@ module Chess
 			end
 		end
 
+		context "other pieces save the king?" do
+			context "can they be captured?" do
+			end
+
+			context "can they intercept?" do
+			end 
+		end
 		context "#stalemate" do
 			#returns true for any situation where the game ends in a stalemate
 		end
