@@ -610,6 +610,7 @@ module Chess
 					@board.board[2][0] = Queen.new("white")
 
 					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.check_piece_coordinates?).to eql([2,0])
 				end
 
 				it "returns the coordinates of a checking pieces TEST 2" do
@@ -618,15 +619,16 @@ module Chess
 					@board.board[7][7] = Bishop.new("white")
 
 					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.check_piece_coordinates?).to eql([7,7])
 				end
 
 				it "returns the coordinates of a checking piece TEST 3" do
 					king_coord = [3,3]
 					@board.board[3][3] = @king
 					@board.board[1][2] = Knight.new("white")
-					@board.display
 
 					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.check_piece_coordinates?).to eql([1, 2])
 				end
 
 				it "returns nil otherwise" do
@@ -635,6 +637,7 @@ module Chess
 					@board.board[7][7] = Bishop.new("white")
 
 					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.check_piece_coordinates?).to be nil
 				end
 			end
 			context "#any_capture_check_piece? " do
