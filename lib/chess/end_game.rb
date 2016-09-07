@@ -90,6 +90,16 @@ module Chess
 			x1 = king_coord[1] + 1
 			x2 = king_coord[1] - 1
 
+			if y1 > 7 
+				y1 = y
+			elsif y2 < 0
+				y2 = y
+			elsif x1 > 7 
+				x1 = x
+			elsif x2 < 0
+				x2 = x
+			end
+
 			king_possible_moves = [[y1, x2],[y1, x],[y1, x1],[y, x2],[y, x1],[y2, x2],[y2, x],[y2, x1]]
 			return king_possible_moves
 		end
