@@ -654,7 +654,7 @@ module Chess
 					@board.board[2][2] = Rook.new("black")
 
 					end_game = End_Game.new(@king, @board, king_coord)
-					#expect(end_game.any_capture_check_piece?).to be true
+					expect(end_game.any_capture_check_piece?).to be true
 				end
 
 				it "returns false otherwise" do
@@ -662,10 +662,9 @@ module Chess
 					@board.board[0][0] = @king
 					@board.board[2][0] = Queen.new("white")
 					@board.board[3][1] = Queen.new("white")
-					@board.board[2][2] = Rook.new("black")
 
 					end_game = End_Game.new(@king, @board, king_coord)
-					#expect(end_game.any_capture_check_piece?).to be false
+					expect(end_game.any_capture_check_piece?).to be false
 				end
 			end
 

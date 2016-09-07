@@ -116,8 +116,20 @@ module Chess
 		end
 
 		def any_capture_check_piece?
-			check_piece = self.check_piece?
-			return check_piece
+			check_piece_coord = self.check_piece_coordinates?
+
+			@board.board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					coord_i = [r_index, c_index]
+					#puts coord_i.inspect
+					if cell != nil && cell.color == @king.color && coord_i != king_coord && cell.valid_move?(coord_i, check_piece_coord, @board) 
+						return true
+					else 
+						false
+					end
+				end
+			end
+			return false
 		end
 
 		def any_intercept_check_piece?
