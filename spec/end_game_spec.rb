@@ -578,6 +578,20 @@ module Chess
 				end_game = End_Game.new(@king, @board, king_coord)
 				expect(end_game.king_possible_moves).to eq([[4, 2],[4, 3],[4, 4],[3, 2],[3, 4],[2, 2],[2, 3],[2, 4]])
 			end
+
+			it "returns an array of possible moves even when up against a wall" do
+				king_coord = [0, 3]
+				@board.board[0][3] = @king
+				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.king_possible_moves).to eq([[1, 2], [1, 3], [1, 4], [0, 2], [0, 4], [0, 3]])
+			end
+
+			it "returns an array of possible moves even when in a corner" do
+				king_coord = [0, 0]
+				@board.board[0][0] = @king
+				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.king_possible_moves).to eq([[1, 0], [1, 1], [0, 0], [0, 1]])
+			end
 		end
 
 		context "#stalemate" do
