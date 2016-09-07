@@ -543,10 +543,27 @@ module Chess
   		end
 
   		context "#king_all_move_check?" do
-  			it "returns true if all moves possible still leave the king in check" do
-  			end
+  			before(:each) do
+				@@board = Board.new
+				@@king  = King.new("white")
+
+				@@board.board[3][3] = @@king 
+				@@king_coord = [3,3]
+			end 
+
+			it "returns true: 2 rooks and a queen checkmate" do
+				@@board.board[7][3] = Rook.new("black")
+				@@board.board[7][2] = Rook.new("black")
+				@@board.board[7][4] = Queen.new("black")
+
+				end_game = End_Game.new(@@king, @@board, @@king_coord)
+				expect(end_game.king_all_move_check?).to be true
+			end
 
   			it "returns false otherwise" do
+  				@@board.board[1][3] = Rook.new("black")
+				end_game = End_Game.new(@@king,@@board, @@king_coord)
+				expect(end_game.king_all_move_check?).to be false
   			end
   		end
 

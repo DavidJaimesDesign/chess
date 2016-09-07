@@ -60,18 +60,25 @@ module Chess
 
 		def king_all_move_check?
 			king_possible_moves = self.king_possible_moves
-			if king_possible_moves.all? do |move|
-					test_king = @king
-					test_board = @board
-					test_king_coord = @king_coord
+			still_check = []
 
-					test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
-					test_board.board[move[0]][move[1]] = test_king
+			king_possible_moves.each do |move|
+				test_king = @king
+				test_board = @board
+				test_king_coord = @king_coord
 
-					still_check_game = End_Game.new(test_king, test_board, move)
+				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
+				test_board.board[move[0]][move[1]] = test_king
+				test_board.display
+				
+				still_check_game = End_Game.new(test_king, test_board, move)
 
-					still_check_game.check?
+				if still_check_game.check?
+					still_check << 1
 				end
+			end
+			puts still_check.inspect
+			if still_check.length >= 1
 				true
 			else
 				false
@@ -92,5 +99,3 @@ module Chess
 		end
 	end
 end
-
-		
