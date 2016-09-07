@@ -508,9 +508,13 @@ module Chess
 			end
 
 			it "returns false: edge checkmate 2 rooks PENDING" do
-			end
+				@@board.board[0][0] = @@king 
+				@@king_coord = [0,0]
+				@@board.board[0][3] = Rook.new("black")
+				@@board.board[1][3] = Rook.new("black")
 
-			it "returns false king queen checkmate PENDING" do
+				end_game = End_Game.new(@@king, @@board, @@king_coord)
+				expect(end_game.king_move_escape?).to be false
 			end
   		end
 
