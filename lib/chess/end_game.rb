@@ -42,7 +42,7 @@ module Chess
 			#false if all possible moves are invalid
 			#false if all possible moves still check or all possible moves are invalid
 			king_possible_moves = self.king_possible_moves
-			if self.king_no_move_valid? || self.king_still_check?
+			if self.king_no_move_valid? || self.king_all_move_check?
 				false
 			else
 				true
@@ -51,14 +51,14 @@ module Chess
 
 		def king_no_move_valid?
 			king_possible_moves = self.king_possible_moves
-			if king_possible_moves.all?{|move| !@king.valid_move?(@king_coord, move, @board)} 
-				true
+			if king_possible_moves.any?{|move| @king.valid_move?(@king_coord, move, @board)} 
+				false
 			else
 				true
 			end
 		end
 
-		def king_still_check?
+		def king_all_move_check?
 			king_possible_moves = self.king_possible_moves
 			if king_possible_moves.all? do |move|
 					test_king = @king
