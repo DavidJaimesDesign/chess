@@ -599,10 +599,37 @@ module Chess
 		end
 
 		context "other pieces save the king?" do
-			context "can they be captured?" do
+			context "#any_capture_check_piece? " do
+				before(:each) do
+					@board = Board.new
+					@king = King.new("black")
+				end
+
+				it "returns true if there are any pieces that can capture the checking pieces" do
+					king_coord = [0,0]
+					@board.board[0][0] = @king
+					@board.board[2][0] = Queen.new("white")
+					@board.board[3][1] = Queen.new("white")
+					@board.board[2][2] = Rook.new("black")
+
+					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.any_capture_check_piece?).to be true
+				end
+
+				it "returns false otherwise" do
+					king_coord = [0,0]
+					@board.board[0][0] = @king
+					@board.board[2][0] = Queen.new("white")
+					@board.board[3][1] = Queen.new("white")
+					@board.board[2][2] = Rook.new("black")
+
+					end_game = End_Game.new(@king, @board, king_coord)
+					expect(end_game.any_capture_check_piece?).to be false
+
+				end
 			end
 
-			context "can they intercept?" do
+			context "can they intercept the checking pieces path?" do
 			end 
 		end
 		context "#stalemate" do

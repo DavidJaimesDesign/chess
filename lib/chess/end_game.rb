@@ -99,5 +99,11 @@ module Chess
 			king_possible_moves = king_possible_moves.uniq
 			return king_possible_moves
 		end
+
+		def any_capture_check_piece? 
+		end
+
+		def any_intercept_check_piece?
+		end
 	end
 end
