@@ -1,6 +1,6 @@
 module Chess
 	class End_Game
-		attr_accessor :king, :board, :king_coord 
+		attr_reader :king, :board, :king_coord 
 		def initialize(king, board, king_coord)
 			@king 		= king
 			@board 		= board
@@ -53,6 +53,100 @@ module Chess
 		end
 
 		def check_piece_intercept_array?
+			king_coord                  = @king_coord
+			#check_piece                 = self.check_piece?
+			#check_piece_coord     = self.check_piece_coordinates?
+			check_piece_intercept_array = []
+			return king_coord
+=begin
+			dy = check_piece_coord[0] - king_coord[0]
+			dx = check_piece_coord[1] - king_coord[1]
+			if check_piece.instance_of? Knight
+				return nil
+			elsif dy == 0
+				#horizontal
+				if dx < 0
+					a = 0
+					b = king_coord[1] - 1
+					while a > dx do
+						check_piece_intercept_array << [king_coord[0], b]
+						b -= 1
+						a -= 1
+					end
+				elsif  dx > 0
+					a = 0
+					b = king_coord[1] + 1
+					while a < dx do
+						check_piece_intercept_array << [king_coord[0], b]
+						b += 1
+						a += 1
+					end
+				end
+					
+			elsif dx == 0 
+				#vertical
+				if dy < 0
+					a = 0
+					b = king_coord[0] - 1
+					while a > dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b -= 1
+						a -= 1
+					end
+				elsif dy > 0
+					a = 0
+					b = king_coord[0] + 1
+					while a < dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b += 1
+						a += 1
+					end
+				end
+						
+			elsif dx != 0 && dy != 0
+				#diagonal
+				if dy > 0 && dx > 0
+					a = 0
+					b = king_coord[0] + 1
+					while a < dy do
+						check_piece_intercept_array << [b, b]
+						b += 1
+						a += 1
+					end
+				elsif dy > 0 && dx < 0
+					a = 0
+					b = king_coord[0] + 1
+					c = king_coord[1] - 1
+
+					while a < dy do
+						check_piece_intercept_array << [b, c]
+						b += 1
+						c -= 1
+						a += 1
+					end
+				elsif dy < 0 && dx > 0
+					a = 0
+					b = king_coord[0] - 1
+					c = king_coord[1] + 1
+
+					while a > dy do
+						check_piece_intercept_array << [b, c]
+						b -= 1
+						c += 1
+						a -= 1
+					end
+				elsif dy < 0 && dx < 0	
+					a = 0
+					b = king_coord[0] - 1
+					while a > dy do
+						check_piece_intercept_array << [b, b]
+						b -= 1
+						a -= 1
+					end
+				end
+				return check_piece_intercept_array
+			end
+=end
 		end
 		
 		def king_move_escape?
