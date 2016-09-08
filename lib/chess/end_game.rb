@@ -8,11 +8,15 @@ module Chess
 		end
 
 		def check?
-			@board.board.each_with_index do |row, r_index|
+			board_c = board
+			king_c = king
+			king_coord_c = king_coord
+
+			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
 						return true
 					else 
 						false
@@ -23,11 +27,15 @@ module Chess
 		end
 
 		def check_piece?
-			@board.board.each_with_index do |row, r_index|
+			board_c = board
+			king_c = king
+			king_coord_c = king_coord
+
+			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
 						return cell
 					else 
 						false
@@ -38,11 +46,15 @@ module Chess
 		end
 
 		def check_piece_coordinates?
-			@board.board.each_with_index do |row, r_index|
+			board_c = board
+			king_c = king
+			king_coord_c = king_coord
+
+			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != @king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, @board) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
 						return [r_index, c_index]
 					else 
 						nil
@@ -53,15 +65,21 @@ module Chess
 		end
 
 		def check_piece_intercept_array?
-			fuck = king_coord
-			check_piece                 = self.check_piece?
-			check_piece_coord     = self.check_piece_coordinates?
+			king_coord_c = king_coord
+			check_piece  = self.check_piece?
+			check_piece_coord = self.check_piece_coordinates?
 			check_piece_intercept_array = []
-			#FOR SOME UNKNOWN REASON BOTH CHECK_PIECE_COORIDNATES AND CHECK_PIECE INCREASE THE KING COORD Y AND X BY ONE WTAF
-			#king_coord[0] -= 2
-			#king_coord[1] -= 2
-			dy = check_piece_coord[0] - fuck[0]
-			dx = check_piece_coord[1] - fuck[1]
+			#FOR SOME UNKNOWN REASON BOTH CHECK_PIECE_COORIDNATES AND CHECK_PIECE INCREASE THE KING COORD Y AND X BY ONE ONLY ON DIAGONAL CHECKS WTAF
+
+			dy = check_piece_coord[0] - king_coord_c[0]
+			dx = check_piece_coord[1] - king_coord_c[1]
+			#this is a bandaid on a bug I could not even start to look for
+
+			if check_piece.instance_of? Bishop
+				king_coord[0] -= 2
+				king_coord[1] -= 2
+			elsif (check_piece.instance_of Queen) && 
+			end
 			puts check_piece_coord.inspect
 			puts king_coord.inspect
 
