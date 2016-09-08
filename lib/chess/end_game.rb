@@ -53,14 +53,46 @@ module Chess
 		end
 
 		def check_piece_intercept_array?
-			king_coord                  = @king_coord
-			#check_piece                 = self.check_piece?
-			#check_piece_coord     = self.check_piece_coordinates?
+			fuck = king_coord
+			check_piece                 = self.check_piece?
+			check_piece_coord     = self.check_piece_coordinates?
 			check_piece_intercept_array = []
-			return king_coord
+			#FOR SOME UNKNOWN REASON BOTH CHECK_PIECE_COORIDNATES AND CHECK_PIECE INCREASE THE KING COORD Y AND X BY ONE WTAF
+			#king_coord[0] -= 2
+			#king_coord[1] -= 2
+			dy = check_piece_coord[0] - fuck[0]
+			dx = check_piece_coord[1] - fuck[1]
+			puts check_piece_coord.inspect
+			puts king_coord.inspect
+
+			if check_piece.instance_of? Knight
+				return nil
+			elsif dx == 0 
+				#vertical
+				if dy < 0
+					return "shoe"
+				elsif dy > 0
+					return "blah"
+				end
+			end
 =begin
-			dy = check_piece_coord[0] - king_coord[0]
-			dx = check_piece_coord[1] - king_coord[1]
+			a = 0
+					b = king_coord[0] - 1
+					while a > dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b -= 1
+						a -= 1
+					end
+
+			a = 0
+					b = king_coord[0] + 1
+					while a < dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b += 1
+						a += 1
+					end
+
+
 			if check_piece.instance_of? Knight
 				return nil
 			elsif dy == 0
@@ -78,26 +110,6 @@ module Chess
 					b = king_coord[1] + 1
 					while a < dx do
 						check_piece_intercept_array << [king_coord[0], b]
-						b += 1
-						a += 1
-					end
-				end
-					
-			elsif dx == 0 
-				#vertical
-				if dy < 0
-					a = 0
-					b = king_coord[0] - 1
-					while a > dy do
-						check_piece_intercept_array << [b, king_coord[0]]
-						b -= 1
-						a -= 1
-					end
-				elsif dy > 0
-					a = 0
-					b = king_coord[0] + 1
-					while a < dy do
-						check_piece_intercept_array << [b, king_coord[0]]
 						b += 1
 						a += 1
 					end
