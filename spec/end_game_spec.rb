@@ -689,7 +689,7 @@ module Chess
 						@board.board[1][5] = Queen.new("white")
 
 						end_game = End_Game.new(@king, @board, king_coord)
-						#expect(end_game.check_piece_intercept_array?).to eql([[6,6],[5,5],[4,4]])
+						expect(end_game.check_piece_intercept_array?).to eql([[6,6],[5,5],[4,4]])
 					end
 
 					it "returns the intercept array of a checking piece TEST 3" do

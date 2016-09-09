@@ -65,9 +65,9 @@ module Chess
 		end
 
 		def check_piece_intercept_array?
-			king_coord_c = king_coord
-			check_piece  = self.check_piece?
-			check_piece_coord = self.check_piece_coordinates?
+			#check_piece  = self.check_piece?
+			check_piece_coord = [1,2] #self.check_piece_coordinates?
+			king_coord_c  = self.king_coord_refresh
 			check_piece_intercept_array = []
 			#FOR SOME UNKNOWN REASON BOTH CHECK_PIECE_COORIDNATES AND CHECK_PIECE INCREASE THE KING COORD Y AND X BY ONE ONLY ON DIAGONAL CHECKS WTAF
 
