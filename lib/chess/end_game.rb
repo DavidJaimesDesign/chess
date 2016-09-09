@@ -74,12 +74,7 @@ module Chess
 			dy = check_piece_coord[0] - king_coord_c[0]
 			dx = check_piece_coord[1] - king_coord_c[1]
 			#this is a bandaid on a bug I could not even start to look for
-
-			if check_piece.instance_of? Bishop
-				king_coord[0] -= 2
-				king_coord[1] -= 2
-			elsif (check_piece.instance_of Queen) && 
-			end
+			
 			puts check_piece_coord.inspect
 			puts king_coord.inspect
 
