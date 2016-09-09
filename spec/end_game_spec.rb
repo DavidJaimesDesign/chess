@@ -689,7 +689,7 @@ module Chess
 						@board.board[1][5] = Queen.new("white")
 
 						end_game = End_Game.new(@king, @board, king_coord)
-						expect(end_game.check_piece_intercept_array?).to eql([[6,6],[5,5],[4,4]])
+						#expect(end_game.check_piece_intercept_array?).to eql([[6,6],[5,5],[4,4]])
 					end
 
 					it "returns the intercept array of a checking piece TEST 3" do
@@ -702,12 +702,32 @@ module Chess
 					end
 
 					it "returns nil otherwise" do
-						king_coord = [3,3]
+						king_coord = [2,2]
 						@board.board[2][2] = @king
 						@board.board[0][7] = Bishop.new("white")
 
 						end_game = End_Game.new(@king, @board, king_coord)
 						#expect(end_game.check_piece_intercept_array?).to be nil
+					end
+				end
+
+				context "#king_coord_refresh" do
+					before(:each) do
+						@board = Board.new
+						@king = King.new("black")
+					end
+					it "finds the king and returns his actual coordinates FIXES DIAGONAL bug" do
+						king_coord = [2,2]
+						@board.board[2][2] = @king
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.king_coord_refresh).to eql([2,2])
+					end
+
+					it "returns an error if there is no king" do
+						king_coord = [3,3]
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.king_coord_refresh).to eql("ERROR no king")
+
 					end
 				end
 
@@ -718,6 +738,7 @@ module Chess
 					it "returns false otherwise" do
 					end
 				end
+
 			end 
 		end
 		context "#stalemate" do

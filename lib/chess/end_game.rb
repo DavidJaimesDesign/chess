@@ -74,7 +74,7 @@ module Chess
 			dy = check_piece_coord[0] - king_coord_c[0]
 			dx = check_piece_coord[1] - king_coord_c[1]
 			#this is a bandaid on a bug I could not even start to look for
-			
+
 			puts check_piece_coord.inspect
 			puts king_coord.inspect
 
@@ -88,91 +88,26 @@ module Chess
 					return "blah"
 				end
 			end
-=begin
-			a = 0
-					b = king_coord[0] - 1
-					while a > dy do
-						check_piece_intercept_array << [b, king_coord[0]]
-						b -= 1
-						a -= 1
-					end
-
-			a = 0
-					b = king_coord[0] + 1
-					while a < dy do
-						check_piece_intercept_array << [b, king_coord[0]]
-						b += 1
-						a += 1
-					end
-
-
-			if check_piece.instance_of? Knight
-				return nil
-			elsif dy == 0
-				#horizontal
-				if dx < 0
-					a = 0
-					b = king_coord[1] - 1
-					while a > dx do
-						check_piece_intercept_array << [king_coord[0], b]
-						b -= 1
-						a -= 1
-					end
-				elsif  dx > 0
-					a = 0
-					b = king_coord[1] + 1
-					while a < dx do
-						check_piece_intercept_array << [king_coord[0], b]
-						b += 1
-						a += 1
-					end
-				end
-						
-			elsif dx != 0 && dy != 0
-				#diagonal
-				if dy > 0 && dx > 0
-					a = 0
-					b = king_coord[0] + 1
-					while a < dy do
-						check_piece_intercept_array << [b, b]
-						b += 1
-						a += 1
-					end
-				elsif dy > 0 && dx < 0
-					a = 0
-					b = king_coord[0] + 1
-					c = king_coord[1] - 1
-
-					while a < dy do
-						check_piece_intercept_array << [b, c]
-						b += 1
-						c -= 1
-						a += 1
-					end
-				elsif dy < 0 && dx > 0
-					a = 0
-					b = king_coord[0] - 1
-					c = king_coord[1] + 1
-
-					while a > dy do
-						check_piece_intercept_array << [b, c]
-						b -= 1
-						c += 1
-						a -= 1
-					end
-				elsif dy < 0 && dx < 0	
-					a = 0
-					b = king_coord[0] - 1
-					while a > dy do
-						check_piece_intercept_array << [b, b]
-						b -= 1
-						a -= 1
-					end
-				end
-				return check_piece_intercept_array
-			end
-=end
 		end
+
+		def king_coord_refresh 
+			board_c = board
+			king_c = king
+			king_coord_c = king_coord
+
+			board_c.board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					coord_i = [r_index, c_index]
+					#puts coord_i.inspect
+					if cell == king 
+						return [r_index, c_index]
+					else 
+						"ERROR no king"
+					end
+				end
+			end
+			return "ERROR no king"
+		end 
 		
 		def king_move_escape?
 			#false if all possible moves are still check mate but are valid
@@ -258,3 +193,87 @@ module Chess
 		end
 	end
 end
+=begin
+			a = 0
+					b = king_coord[0] - 1
+					while a > dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b -= 1
+						a -= 1
+					end
+
+			a = 0
+					b = king_coord[0] + 1
+					while a < dy do
+						check_piece_intercept_array << [b, king_coord[0]]
+						b += 1
+						a += 1
+					end
+
+
+			if check_piece.instance_of? Knight
+				return nil
+			elsif dy == 0
+				#horizontal
+				if dx < 0
+					a = 0
+					b = king_coord[1] - 1
+					while a > dx do
+						check_piece_intercept_array << [king_coord[0], b]
+						b -= 1
+						a -= 1
+					end
+				elsif  dx > 0
+					a = 0
+					b = king_coord[1] + 1
+					while a < dx do
+						check_piece_intercept_array << [king_coord[0], b]
+						b += 1
+						a += 1
+					end
+				end
+						
+			elsif dx != 0 && dy != 0
+				#diagonal
+				if dy > 0 && dx > 0
+					a = 0
+					b = king_coord[0] + 1
+					while a < dy do
+						check_piece_intercept_array << [b, b]
+						b += 1
+						a += 1
+					end
+				elsif dy > 0 && dx < 0
+					a = 0
+					b = king_coord[0] + 1
+					c = king_coord[1] - 1
+
+					while a < dy do
+						check_piece_intercept_array << [b, c]
+						b += 1
+						c -= 1
+						a += 1
+					end
+				elsif dy < 0 && dx > 0
+					a = 0
+					b = king_coord[0] - 1
+					c = king_coord[1] + 1
+
+					while a > dy do
+						check_piece_intercept_array << [b, c]
+						b -= 1
+						c += 1
+						a -= 1
+					end
+				elsif dy < 0 && dx < 0	
+					a = 0
+					b = king_coord[0] - 1
+					while a > dy do
+						check_piece_intercept_array << [b, b]
+						b -= 1
+						a -= 1
+					end
+				end
+				return check_piece_intercept_array
+			end
+=end
