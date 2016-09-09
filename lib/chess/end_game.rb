@@ -1,22 +1,24 @@
 module Chess
 	class End_Game
-		attr_reader :king, :board, :king_coord 
+		attr_reader :king, :board, :king_coord, :king_coord_c, :king_coord_cp, :king_coord_cpc
 		def initialize(king, board, king_coord)
-			@king 		= king
-			@board 		= board
-			@king_coord = king_coord
+			@king 		    = king
+			@board 		    = board
+			@king_coord     = king_coord
+			@king_coord_cp  = king_coord
+			@king_coord_c   = king_coord
+			@king_coord_cpc = king_coord
 		end
 
 		def check?
 			board_c = board
 			king_c = king
-			king_coord_c = king_coord
 
 			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord_c && cell.valid_move?(coord_i, king_coord_c, board_c) 
 						return true
 					else 
 						false
@@ -29,13 +31,12 @@ module Chess
 		def check_piece?
 			board_c = board
 			king_c = king
-			king_coord_c = king_coord
 
 			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord_cp && cell.valid_move?(coord_i, king_coord_cp, board_c) 
 						return cell
 					else 
 						false
@@ -48,13 +49,12 @@ module Chess
 		def check_piece_coordinates?
 			board_c = board
 			king_c = king
-			king_coord_c = king_coord
 
 			board_c.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king_c.color && coord_i != king_coord_cpc && cell.valid_move?(coord_i, king_coord_cpc, board_c) 
 						return [r_index, c_index]
 					else 
 						nil
@@ -65,17 +65,14 @@ module Chess
 		end
 
 		def check_piece_intercept_array?
-			end_game_test = End_Game.new(king, board, king_coord)
+			check_piece  = self.check_piece?
+			check_piece_coord = self.check_piece_coordinates?
 
-			check_piece  = end_game_test.check_piece?
-			check_piece_coord = end_game_test.check_piece_coordinates?
-
-			king_coord_c = self.king_coord_refresh
 			check_piece_intercept_array = []
 			#FOR SOME UNKNOWN REASON BOTH CHECK_PIECE_COORIDNATES AND CHECK_PIECE INCREASE THE KING COORD Y AND X BY ONE ONLY ON DIAGONAL CHECKS WTAF
-
-			dy = check_piece_coord[0] - king_coord_c[0]
-			dx = check_piece_coord[1] - king_coord_c[1]
+			king_coord_x = self.king_coord_refresh
+			dy = check_piece_coord[0] - king_coord_x[0]
+			dx = check_piece_coord[1] - king_coord_x[1]
 			#this is a bandaid on a bug I could not even start to look for
 
 			puts check_piece_coord.inspect
