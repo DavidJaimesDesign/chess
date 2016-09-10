@@ -241,5 +241,14 @@ module Chess
 			end
 			return intercept
 		end
+
+		def check_mate?
+			if check?
+				puts king_move_escape?
+				iputs "in check"
+			else
+				"not check?"
+			end
+		end
 	end
 end

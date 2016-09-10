@@ -451,7 +451,7 @@ module Chess
 		end
 
 
-		context "#check_mate" do
+		context "#check_mate?" do
 			#returns true for any situation where the king is in check_mate
 			#check_mate defined: A situation where a king is in check and it cannot move out of check nor can any other pieces move out of check 
 			#composed of two parts. The king moving away and all the other pieces moving away.
@@ -462,100 +462,129 @@ module Chess
 			end
 
 			it "returns TRUE in test 1" do
+				king_coord = [0 ,0]
 				@board.board[0][0] = @king
 				@board.board[0][3] = Rook.new("white")
 				@board.board[1][3] = Rook.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 2" do
 				@board.board[0][3] = @king
+				king_coord = [0, 3]
 				@board.board[1][3] = Pawn.new("white")
 				@board.board[1][4] = Pawn.new("white")
 				@board.board[2][3] = King.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 3" do
 				@board.board[0][6] = @king
+				king_coord = [0, 6]
 				@board.board[0][0] = Rook.new("white")
 				@board.board[1][6] = Pawn.new("black")
 				@board.board[1][5] = Pawn.new("black")
 				@board.board[1][7] = Pawn.new("black")
+				end_game = End_Game.new(@king, @board, king_coord)
+				
 			end
 
 			it "returns TRUE in test 4" do
 				@board.board[0][6] = @king
+				king_coord = [0, 6]
 				@board.board[0][5] = Rook.new("black")
 				@board.board[1][6] = Queen.new("white")
 				@board.board[1][5] = Pawn.new("black")
 				@board.board[1][7] = Pawn.new("black")
 				@board.board[4][3] = Bishop.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns TRUE in test 5" do
 				@board.board[0][7] = @king
+				king_coord = [0, 7]
 				@board.board[0][6] = Rook.new("black")
 				@board.board[1][7] = Pawn.new("black")
 				@board.board[1][6] = Pawn.new("black")
 				@board.board[1][5] = Knight.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns TRUE in test 6" do
 				@board.board[0][6] = @king
+				king_coord = [0, 6]
 				@board.board[0][5] = Rook.new("black")
 				@board.board[2][6] = Pawn.new("black")
 				@board.board[1][5] = Pawn.new("black")
 				@board.board[1][7] = Pawn.new("black")
 				@board.board[4][3] = Bishop.new("white")
 				@board.board[2][7] = Knight.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns TRUE in test 7" do
 				@board.board[1][7] = @king
+				king_coord = [1, 7]
 				@board.board[0][5] = Rook.new("black")
 				@board.board[1][6] = Pawn.new("black")
 				@board.board[1][5] = Pawn.new("black")
 				@board.board[4][7] = Rook.new("white")
 				@board.board[1][4] = Knight.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns TRUE in test 8" do
 				@board.board[0][0] = @king
+				king_coord = [0, 0]
 				@board.board[7][7] = Bishop.new("white")
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black ")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 
 			it "returns FALSE in test 1" do
 				@board.new_game
+				king_coord = [0, 3]
+				end_game = End_Game.new(@king, @board.board[0][3], king_coord)
 			end
 
 			it "returns FALSE in test 2 run" do
 				@board.board[0][0] = @king
+				king_coord = [0, 0]
 				@board.board[7][7] = Bishop.new("white")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns FALSE in test 3 king capture other piece" do
 				@board.board[0][0] = @king
+				king_coord = [0, 0]
 				@board.board[1][1] = Queen.new("white")
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns FALSE in test 4 other piece capture check" do
 				@board.board[0][0] = @king
+				king_coord = [0, 0]
 				@board.board[7][7] = Queen.new("white")
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black")
 				@board.board[7][0] = Rook.new("black")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 
 			it "returns FALSE in test 5 other piece intercept" do
 				@board.board[0][0] = @king
+				king_coord = [0, 0]
 				@board.board[7][7] = Queen.new("white")
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black")
 				@board.board[0][4] = Rook.new("black")
+				end_game = End_Game.new(@king, @board, king_coord)
 			end
 		end
 
