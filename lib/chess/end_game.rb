@@ -220,20 +220,17 @@ module Chess
 
 		def any_intercept_check_piece?
 			cp = check_piece?
-			return false if cp.instance_of? Knight
+			intercept = false
+			return intercept if cp.instance_of? Knight
 			@board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					if cell != nil && cell.color == @king.color && cell != @king 
 						check_piece_intercept_array?.each do |coord|
-							#move = cell.valid_move?(coord_i, coord, board)
-
-							#if move == true
-							#	puts coord.inspect
-							#end
-
-							if cell != nil
-								puts "coord #{coord.inspect} #{cell.inspect} #{cell.valid_move?(coord_i, coord, board)}"
+							if cell.valid_move?(coord_i, coord, board) == true
+								intercept = true
+							elsif cell.valid_move?(coord_i, coord, board) == false
+								false
 							end
 						end
 						false
@@ -242,6 +239,7 @@ module Chess
 					end
 				end
 			end
+			return intercept
 		end
 	end
 end
