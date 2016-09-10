@@ -720,6 +720,8 @@ module Chess
 						king_coord = [2,2]
 						@board.board[2][2] = @king
 						end_game = End_Game.new(@king, @board, king_coord)
+						a = end_game.check_piece?
+						b = end_game.check_piece_coordinates?
 						expect(end_game.king_coord_refresh).to eql([2,2])
 					end
 
