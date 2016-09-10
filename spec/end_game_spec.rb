@@ -455,6 +455,56 @@ module Chess
 			#returns true for any situation where the king is in check_mate
 			#check_mate defined: A situation where a king is in check and it cannot move out of check nor can any other pieces move out of check 
 			#composed of two parts. The king moving away and all the other pieces moving away.
+
+			before(:each) do
+				@@board = Board.new
+				@@king  = King.new("white")
+			end
+
+			it "returns TRUE in test 1" do
+			end
+
+			it "returns TRUE in test 2" do
+			end
+
+			it "returns TRUE in test 3" do
+			end
+
+			it "returns TRUE in test 4" do
+			end
+
+			it "returns TRUE in test 5" do
+			end
+
+			it "returns TRUE in test 6" do
+			end
+
+			it "returns TRUE in test 7" do
+			end
+
+			it "returns TRUE in test 8" do
+			end
+
+			it "returns TRUE in test 9" do
+			end
+
+			it "returns TRUE in test 10" do
+			end
+
+			it "returns FALSE in test 1" do
+			end
+
+			it "returns FALSE in test 2" do
+			end
+
+			it "returns FALSE in test 3" do
+			end
+
+			it "returns FALSE in test 4" do
+			end
+
+			it "returns FALSE in test 5" do
+			end
 		end
 
 		context "#king_move_escape? true" do
