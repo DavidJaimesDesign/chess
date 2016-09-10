@@ -734,10 +734,48 @@ module Chess
 				end
 
 				context "#any_intercept_check_piece?" do
-					it "returns true if a piece can intercept the checking piece" do
+					before(:each) do
+						@board = Board.new
+						@king = King.new("black")
+					end
+					it "returns the true for TEST 1" do 
+						king_coord = [0,0]
+						@board.board[0][0] = @king
+						@board.board[1][1] = Rook.new("black")
+						@board.board[2][0] = Queen.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.any_intercept_check_piece?).to be true
 					end
 
-					it "returns false otherwise" do
+					it "returns true TEST 2" do
+						king_coord = [3,3]
+						@board.board[3][3] = @king
+						@board.board[5][3] = Bishop.new("black")
+						@board.board[7][7] = Queen.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.any_intercept_check_piece?).to be true
+					end
+
+					it "returns false for knights" do
+						king_coord = [3,3]
+						@board.board[3][3] = @king
+						@board.board[1][3] = Queen.new("black")
+						@board.board[1][2] = Knight.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.any_intercept_check_piece?).to be false
+					end
+
+					it "returns nil otherwise" do
+						king_coord = [2,2]
+						@board.board[2][2] = @king
+						@board.board[7][7] = Pawn.new("black")
+						@board.board[0][0] = Bishop.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.any_intercept_check_piece?).to be false
 					end
 				end
 
