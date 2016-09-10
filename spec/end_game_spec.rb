@@ -458,73 +458,104 @@ module Chess
 
 			before(:each) do
 				@board = Board.new
-				@king  = King.new("white")
+				@king  = King.new("black")
 			end
 
 			it "returns TRUE in test 1" do
 				@board.board[0][0] = @king
-				@board.board[0][3] = Rook.new("black")
-				@board.board[1][3] = Rook.new("black")
-				@board.display
+				@board.board[0][3] = Rook.new("white")
+				@board.board[1][3] = Rook.new("white")
 			end
 
 			it "returns TRUE in test 2" do
 				@board.board[0][3] = @king
-				@board.board[1][3] = Pawn.new("black")
-				@board.board[1][4] = Pawn.new("black")
-				@board.board[2][3] = King.new("black")
-				@board.display
+				@board.board[1][3] = Pawn.new("white")
+				@board.board[1][4] = Pawn.new("white")
+				@board.board[2][3] = King.new("white")
 			end
 
 			it "returns TRUE in test 3" do
 				@board.board[0][6] = @king
-				@board.board[0][0] = Rook.new("black")
-				@board.board[1][6] = Pawn.new("white")
-				@board.board[1][5] = Pawn.new("white")
-				@board.board[1][7] = Pawn.new("white")
-				@board.display
+				@board.board[0][0] = Rook.new("white")
+				@board.board[1][6] = Pawn.new("black")
+				@board.board[1][5] = Pawn.new("black")
+				@board.board[1][7] = Pawn.new("black")
 			end
 
 			it "returns TRUE in test 4" do
 				@board.board[0][6] = @king
-				@board.board[0][0] = Rook.new("black")
-				@board.board[1][6] = Pawn.new("white")
-				@board.board[1][5] = Pawn.new("white")
-				@board.board[1][7] = Pawn.new("white")
-				@board.display
+				@board.board[0][5] = Rook.new("black")
+				@board.board[1][6] = Queen.new("white")
+				@board.board[1][5] = Pawn.new("black")
+				@board.board[1][7] = Pawn.new("black")
+				@board.board[4][3] = Bishop.new("white")
 			end
 
 			it "returns TRUE in test 5" do
+				@board.board[0][7] = @king
+				@board.board[0][6] = Rook.new("black")
+				@board.board[1][7] = Pawn.new("black")
+				@board.board[1][6] = Pawn.new("black")
+				@board.board[1][5] = Knight.new("white")
 			end
 
 			it "returns TRUE in test 6" do
+				@board.board[0][6] = @king
+				@board.board[0][5] = Rook.new("black")
+				@board.board[2][6] = Pawn.new("black")
+				@board.board[1][5] = Pawn.new("black")
+				@board.board[1][7] = Pawn.new("black")
+				@board.board[4][3] = Bishop.new("white")
+				@board.board[2][7] = Knight.new("white")
 			end
 
 			it "returns TRUE in test 7" do
+				@board.board[1][7] = @king
+				@board.board[0][5] = Rook.new("black")
+				@board.board[1][6] = Pawn.new("black")
+				@board.board[1][5] = Pawn.new("black")
+				@board.board[4][7] = Rook.new("white")
+				@board.board[1][4] = Knight.new("white")
 			end
 
 			it "returns TRUE in test 8" do
+				@board.board[0][0] = @king
+				@board.board[7][7] = Bishop.new("white")
+				@board.board[6][7] = Bishop.new("white")
+				@board.board[1][0] = Pawn.new("black ")
 			end
 
-			it "returns TRUE in test 9" do
-			end
-
-			it "returns TRUE in test 10" do
-			end
 
 			it "returns FALSE in test 1" do
+				@board.new_game
 			end
 
-			it "returns FALSE in test 2" do
+			it "returns FALSE in test 2 run" do
+				@board.board[0][0] = @king
+				@board.board[7][7] = Bishop.new("white")
 			end
 
-			it "returns FALSE in test 3" do
+			it "returns FALSE in test 3 king capture other piece" do
+				@board.board[0][0] = @king
+				@board.board[1][1] = Queen.new("white")
+				@board.board[6][7] = Bishop.new("white")
+				@board.board[1][0] = Pawn.new("black")
 			end
 
-			it "returns FALSE in test 4" do
+			it "returns FALSE in test 4 other piece capture check" do
+				@board.board[0][0] = @king
+				@board.board[7][7] = Queen.new("white")
+				@board.board[6][7] = Bishop.new("white")
+				@board.board[1][0] = Pawn.new("black")
+				@board.board[7][0] = Rook.new("black")
 			end
 
-			it "returns FALSE in test 5" do
+			it "returns FALSE in test 5 other piece intercept" do
+				@board.board[0][0] = @king
+				@board.board[7][7] = Queen.new("white")
+				@board.board[6][7] = Bishop.new("white")
+				@board.board[1][0] = Pawn.new("black")
+				@board.board[0][4] = Rook.new("black")
 			end
 		end
 
