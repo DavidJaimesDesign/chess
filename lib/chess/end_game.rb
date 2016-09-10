@@ -225,11 +225,15 @@ module Chess
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					if cell != nil && cell.color == @king.color && cell != @king 
-							puts cell
 						check_piece_intercept_array?.each do |coord|
-							puts coord.inspect 
-							if cell.valid_move?(coord_i, coord, board) && coord != coord_i
-								puts "coord #{coord.inspect}"
+							#move = cell.valid_move?(coord_i, coord, board)
+
+							#if move == true
+							#	puts coord.inspect
+							#end
+
+							if cell != nil
+								puts "coord #{coord.inspect} #{cell.inspect} #{cell.valid_move?(coord_i, coord, board)}"
 							end
 						end
 						false
