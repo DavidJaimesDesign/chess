@@ -64,25 +64,41 @@ module Chess
 			return nil
 		end
 
-		def check_piece_intercept_array?()
-			cp  = check_piece?
+		def check_piece_intercept_array?(kc = self.king_coord_refresh)
+			cp = check_piece?
 			cpc = check_piece_coordinates?
-			kc  = king_coord_refresh
+
 			cpi_arr = []
 
 			dy = cpc[0] - kc[0]
 			dx = cpc[1] - kc[1]
 
 			if dy > 0 && dx > 0
+				y = kc[0] + 1
+				x = kc[1] + 1
+				cpi_arr << [y , x]
+				return cpi_arr
 			elsif dy > 0 && dx < 0
+				y = kc[0] + 1
+				x = kc[1] + 1
+				cpi_arr << [y , x]
+				return cpi_arr
 			elsif dy < 0 && dx > 0
+				y = kc[0] + 1
+				x = kc[1] + 1
+				cpi_arr << [y , x]
+				return cpi_arr
 			elsif dy < 0 && dx > 0
+				y = kc[0] + 1
+				x = kc[1] + 1
+				cpi_arr << [y , x]
+				return cpi_arr
 			else
 				cpi_arr
 			end
 
-			puts dy.inspect
-			puts dx.inspect
+			#puts cpc.inspect
+			#puts kc.inspect
 		end
 
 
