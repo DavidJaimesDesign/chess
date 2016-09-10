@@ -8,15 +8,11 @@ module Chess
 		end
 
 		def check?
-			board_c = board
-			king_c = king
-			king_coord_c = king_coord
-
-			board_c.board.each_with_index do |row, r_index|
+			board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, board) 
 						return true
 					else 
 						false
@@ -27,34 +23,25 @@ module Chess
 		end
 
 		def check_piece?
-			board_c = board
-			king_c = king
-			king_coord_c = king_coord
-
-			board_c.board.each_with_index do |row, r_index|
+			board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
-					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, board) 
 						return cell
 					else 
-						false
+						false				
 					end
 				end
 			end
-			return false
+			false
 		end
 
-		def check_piece_coordinates?
-			board_c = board
-			king_c = king
-			king_coord_c = king_coord
-
-			board_c.board.each_with_index do |row, r_index|
+		def check_piece_coordinates?	
+			board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color != king_c.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord_c, board_c) 
+					if cell != nil && cell.color != king.color && coord_i != king_coord && cell.valid_move?(coord_i, king_coord, board) 
 						return [r_index, c_index]
 					else 
 						nil
@@ -65,10 +52,8 @@ module Chess
 		end
 
 		def check_piece_intercept_array?(kc = self.king_coord_refresh, cpi_arr = [])
-			#cp = check_piece?
 			cpc = check_piece_coordinates?
 			return cpi_arr if cpc.nil? 
-			#return cpi_arr if cp.instance_of? Knight
 			dy = cpc[0] - kc[0]
 			dx = cpc[1] - kc[1]
 
@@ -217,7 +202,7 @@ module Chess
 		end
 
 		def any_capture_check_piece?
-			check_piece_coord = self.check_piece_coordinates?
+			check_piece_coord = check_piece_coordinates?
 
 			@board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
@@ -235,9 +220,10 @@ module Chess
 
 		def any_intercept_check_piece?
 			cpi_arr = check_piece_intercept_array?
-			cp = check_piece?
-			return false if cp.instance_of? Knight
-
+			cp = check_piece_coordinates?
+			puts cp.inspect
+			#return false if cp.instance_of? Knight
+=begin
 			@board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
@@ -255,6 +241,7 @@ module Chess
 					end
 				end
 			end
+=end
 		end
 	end
 end
