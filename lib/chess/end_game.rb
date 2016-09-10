@@ -234,90 +234,27 @@ module Chess
 		end
 
 		def any_intercept_check_piece?
+			cpi_arr = check_piece_intercept_array?
+			cp = check_piece?
+			return false if cp.instance_of? Knight
+
+			@board.board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					coord_i = [r_index, c_index]
+					if cell != nil && cell.color == @king.color && coord_i != king_coord 
+						cpi_arr.each do |coord|
+							if cell.valid_move?(coord_i, coord, @board)
+								return true
+							else
+								false
+							end
+						end
+						false
+					else 
+						false
+					end
+				end
+			end
 		end
 	end
 end
-=begin
-			a = 0
-					b = king_coord[0] - 1
-					while a > dy do
-						check_piece_intercept_array << [b, king_coord[0]]
-						b -= 1
-						a -= 1
-					end
-
-			a = 0
-					b = king_coord[0] + 1
-					while a < dy do
-						check_piece_intercept_array << [b, king_coord[0]]
-						b += 1
-						a += 1
-					end
-
-
-			if check_piece.instance_of? Knight
-				return nil
-			elsif dy == 0
-				#horizontal
-				if dx < 0
-					a = 0
-					b = king_coord[1] - 1
-					while a > dx do
-						check_piece_intercept_array << [king_coord[0], b]
-						b -= 1
-						a -= 1
-					end
-				elsif  dx > 0
-					a = 0
-					b = king_coord[1] + 1
-					while a < dx do
-						check_piece_intercept_array << [king_coord[0], b]
-						b += 1
-						a += 1
-					end
-				end
-						
-			elsif dx != 0 && dy != 0
-				#diagonal
-				if dy > 0 && dx > 0
-					a = 0
-					b = king_coord[0] + 1
-					while a < dy do
-						check_piece_intercept_array << [b, b]
-						b += 1
-						a += 1
-					end
-				elsif dy > 0 && dx < 0
-					a = 0
-					b = king_coord[0] + 1
-					c = king_coord[1] - 1
-
-					while a < dy do
-						check_piece_intercept_array << [b, c]
-						b += 1
-						c -= 1
-						a += 1
-					end
-				elsif dy < 0 && dx > 0
-					a = 0
-					b = king_coord[0] - 1
-					c = king_coord[1] + 1
-
-					while a > dy do
-						check_piece_intercept_array << [b, c]
-						b -= 1
-						c += 1
-						a -= 1
-					end
-				elsif dy < 0 && dx < 0	
-					a = 0
-					b = king_coord[0] - 1
-					while a > dy do
-						check_piece_intercept_array << [b, b]
-						b -= 1
-						a -= 1
-					end
-				end
-				return check_piece_intercept_array
-			end
-=end

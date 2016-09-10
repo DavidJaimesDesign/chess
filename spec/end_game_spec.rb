@@ -768,12 +768,12 @@ module Chess
 						expect(end_game.any_intercept_check_piece?).to be false
 					end
 
-					it "returns nil otherwise" do
+					it "returns false otherwise" do
 						king_coord = [2,2]
 						@board.board[2][2] = @king
-						@board.board[7][7] = Pawn.new("black")
+						@board.board[4][4] = Pawn.new("black")
 						@board.board[0][0] = Bishop.new("white")
-
+						@board.display
 						end_game = End_Game.new(@king, @board, king_coord)
 						expect(end_game.any_intercept_check_piece?).to be false
 					end
