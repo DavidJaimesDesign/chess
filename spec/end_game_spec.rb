@@ -457,20 +457,41 @@ module Chess
 			#composed of two parts. The king moving away and all the other pieces moving away.
 
 			before(:each) do
-				@@board = Board.new
-				@@king  = King.new("white")
+				@board = Board.new
+				@king  = King.new("white")
 			end
 
 			it "returns TRUE in test 1" do
+				@board.board[0][0] = @king
+				@board.board[0][3] = Rook.new("black")
+				@board.board[1][3] = Rook.new("black")
+				@board.display
 			end
 
 			it "returns TRUE in test 2" do
+				@board.board[0][3] = @king
+				@board.board[1][3] = Pawn.new("black")
+				@board.board[1][4] = Pawn.new("black")
+				@board.board[2][3] = King.new("black")
+				@board.display
 			end
 
 			it "returns TRUE in test 3" do
+				@board.board[0][6] = @king
+				@board.board[0][0] = Rook.new("black")
+				@board.board[1][6] = Pawn.new("white")
+				@board.board[1][5] = Pawn.new("white")
+				@board.board[1][7] = Pawn.new("white")
+				@board.display
 			end
 
 			it "returns TRUE in test 4" do
+				@board.board[0][6] = @king
+				@board.board[0][0] = Rook.new("black")
+				@board.board[1][6] = Pawn.new("white")
+				@board.board[1][5] = Pawn.new("white")
+				@board.board[1][7] = Pawn.new("white")
+				@board.display
 			end
 
 			it "returns TRUE in test 5" do
