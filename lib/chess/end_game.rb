@@ -219,20 +219,17 @@ module Chess
 		end
 
 		def any_intercept_check_piece?
-			cpi_arr = check_piece_intercept_array?
-			cp = check_piece_coordinates?
-			puts cp.inspect
-			#return false if cp.instance_of? Knight
-=begin
+			cp = check_piece?
+			return false if cp.instance_of? Knight
 			@board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
-					if cell != nil && cell.color == @king.color && coord_i != king_coord 
-						cpi_arr.each do |coord|
-							if cell.valid_move?(coord_i, coord, @board)
-								return true
-							else
-								false
+					if cell != nil && cell.color == @king.color && cell != @king 
+							puts cell
+						check_piece_intercept_array?.each do |coord|
+							puts coord.inspect 
+							if cell.valid_move?(coord_i, coord, board) && coord != coord_i
+								puts "coord #{coord.inspect}"
 							end
 						end
 						false
@@ -241,7 +238,6 @@ module Chess
 					end
 				end
 			end
-=end
 		end
 	end
 end
