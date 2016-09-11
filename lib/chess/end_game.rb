@@ -160,7 +160,7 @@ module Chess
 		end
 
 		def king_all_move_check?
-			king_possible_moves = self.king_possible_moves
+			king_possible_moves
 			still_check = []
 			test_king = @king
 			test_board = @board
