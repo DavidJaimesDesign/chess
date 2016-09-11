@@ -162,32 +162,30 @@ module Chess
 		def king_all_move_check?
 			king_possible_moves
 			still_check = []
-			test_king = king
-			test_king_coord = king_coord
-			test_board = board
+			test_king = @king
+			test_king_coord = @king_coord
+			test_board = Board.new
+			test_board.board = self.board.board.dup
 
 			king_possible_moves.each do |move|
 
-				test_board = board
 				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
-				#test_board.display
 				board.display
+
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
 
-				if still_check_game.check?
-					still_check << 1 
-					#puts move.inspect
-				end
+				still_check << 1 if still_check_game.check?
 			end
 			
 			if still_check.length == king_possible_moves.length
+				puts still_check.inspect
+				puts king_possible_moves.length
 				true
 			else
 				puts still_check.inspect
-				puts king_possible_moves.inspect
-
+				puts king_possible_moves.length
 				false
 			end
 		end
