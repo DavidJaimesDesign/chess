@@ -162,10 +162,11 @@ module Chess
 		def king_all_move_check?
 			king_possible_moves
 			still_check = []
-			test_king = @king
-			test_king_coord = @king_coord
+			test_king = @king.dup
+			test_king_coord = @king_coord.dup
 			test_board = Board.new
-			test_board.board = self.board.board.dup
+			test_board.board = board.board.dup
+			#.dup wont work because these are custom variables we might need a new way of doing this
 
 			king_possible_moves.each do |move|
 
