@@ -170,13 +170,14 @@ module Chess
 
 				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
-
+				test_board.display
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
+				
 
 				if still_check_game.check?
 					still_check << 1 
-					puts move.inspect
+					#puts move.inspect
 				end
 			end
 			
