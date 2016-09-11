@@ -247,7 +247,7 @@ module Chess
 				if king_move_escape? == false
 					true
 				else 
-					"shoe"
+					puts king_all_move_check?.inspect
 				end
 			else
 				false
