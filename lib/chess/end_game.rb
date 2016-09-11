@@ -244,10 +244,13 @@ module Chess
 
 		def check_mate?
 			if check?
-				puts king_move_escape?
-				iputs "in check"
+				if king_move_escape? == false
+					true
+				else 
+					"shoe"
+				end
 			else
-				"not check?"
+				false
 			end
 		end
 	end
