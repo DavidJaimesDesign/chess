@@ -473,8 +473,8 @@ module Chess
 			it "returns TRUE in test 2" do
 				@board.board[0][3] = @king
 				king_coord = [0, 3]
-				@board.board[1][3] = Pawn.new("white")
-				@board.board[1][4] = Pawn.new("white")
+				@board.board[1][3] = Bishop.new("white")
+				@board.board[1][4] = Bishop.new("white")
 				@board.board[2][3] = King.new("white")
 				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
@@ -641,7 +641,7 @@ module Chess
 				expect(end_game.king_move_escape?).to be false
 			end
 
-			it "returns false: edge checkmate 2 rooks PENDING" do
+			it "returns false: edge checkmate 2 rooks" do
 				@@board.board[0][0] = @@king 
 				@@king_coord = [0,0]
 				@@board.board[0][3] = Rook.new("black")
