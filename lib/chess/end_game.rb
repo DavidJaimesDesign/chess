@@ -162,9 +162,9 @@ module Chess
 		def king_all_move_check?
 			king_possible_moves
 			still_check = []
-			test_king = @king
-			test_board = @board
-			test_king_coord = @king_coord
+			test_king = king
+			test_king_coord = king_coord
+			test_board = board
 
 			king_possible_moves.each do |move|
 
@@ -173,7 +173,7 @@ module Chess
 				test_board.display
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
-				
+				test_board = @board
 
 				if still_check_game.check?
 					still_check << 1 
