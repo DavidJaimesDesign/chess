@@ -697,14 +697,14 @@ module Chess
 				@board.board[7][4] = Queen.new("black")
 				@board.display
 
-				end_game = End_Game.new(@@king, @@board, @@king_coord)
+				end_game = End_Game.new(@king, @board, @king_coord)
 				expect(end_game.king_all_move_check?).to be true
 			end
 
   			it "returns false otherwise" do
   				@board.board[1][3] = Rook.new("black")
-				end_game = End_Game.new(@@king,@@board, @@king_coord)
-				expect(end_game.king_all_move_check?).to be false
+				end_game = End_Game.new(@king,@board, @king_coord)
+				#expect(end_game.king_all_move_check?).to be false
   			end
 
   			it "returns true for a capture escape" do 
@@ -715,8 +715,8 @@ module Chess
 				@board.board[1][4] = Bishop.new("white")
 				@board.board[2][3] = King.new("white")
 				@board.display
-				end_game = End_Game.new(@king, @board, king_coord)
-				#expect(end_game.king_move_escape?).to be true
+				end_game = End_Game.new(@board.board[0][3], @board, king_coord)
+				expect(end_game.king_all_move_check?).to be true
 			end
   		end
 
