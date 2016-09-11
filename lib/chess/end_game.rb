@@ -168,12 +168,13 @@ module Chess
 
 			king_possible_moves.each do |move|
 
+				test_board = board
 				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
-				test_board.display
+				#test_board.display
+				board.display
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
-				test_board = @board
 
 				if still_check_game.check?
 					still_check << 1 
