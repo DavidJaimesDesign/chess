@@ -164,15 +164,12 @@ module Chess
 			still_check = []
 			test_king = @king.dup
 			test_king_coord = @king_coord.dup
-			test_board = Board.new
-			test_board.board = board.board.dup
-			#.dup wont work because these are custom variables we might need a new way of doing this
 
 			king_possible_moves.each do |move|
 
+				test_board = board.copy_board
 				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
-				board.display
 
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
@@ -181,12 +178,8 @@ module Chess
 			end
 			
 			if still_check.length == king_possible_moves.length
-				puts still_check.inspect
-				puts king_possible_moves.length
 				true
 			else
-				puts still_check.inspect
-				puts king_possible_moves.length
 				false
 			end
 		end
