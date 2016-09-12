@@ -179,5 +179,27 @@ module Chess
 		def select_piece(coord)
 			@board[coord[0]][coord[1]]
 		end
+
+		def copy_board
+			copy = Board.new
+			@board.each_with_index do |row, r_index|
+				row.each_with_index do |cell, c_index|
+					if cell.instance_of? Pawn
+						copy.board[r_index][c_index] = Pawn.new(cell.color)
+					elsif cell.instance_of? King
+						copy.board[r_index][c_index] = King.new(cell.color)
+					elsif cell.instance_of? Queen
+						copy.board[r_index][c_index] = Queen.new(cell.color)
+					elsif cell.instance_of? Rook
+						copy.board[r_index][c_index] = Rook.new(cell.color)
+					elsif cell.instance_of? Knight
+						copy.board[r_index][c_index] = Knight.new(cell.color)
+					elsif cell.instance_of? Bishop
+						copy.board[r_index][c_index] = Bishop.new(cell.color)
+					end
+				end
+			end
+			return copy
+		end
 	end
 end
