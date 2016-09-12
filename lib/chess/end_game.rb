@@ -262,16 +262,8 @@ module Chess
 				copy = copy_end_game
 				if copy.king_move_escape? == false
 					copy = copy_end_game
-					if copy.any_capture_check_piece?
-						false 
-					end
-
-					copy = copy_end_game
-					if copy.any_intercept_check_piece?
-						false
-					end
-
-					true
+					check_piece_intercept_array?.inspect
+					#bug not in check_piece_intercept_array
 				else
 					false
 				end
