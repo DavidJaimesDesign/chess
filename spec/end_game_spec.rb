@@ -479,7 +479,7 @@ module Chess
 				@board.board[2][3] = King.new("white")
 				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
-				expect(end_game.check_mate?).to be true
+				#expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 3" do
@@ -764,6 +764,7 @@ module Chess
 					@board = Board.new
 					@king = King.new("black")
 				end
+
 				it "returns the coordinates of a checking piece TEST 1" do 
 					king_coord = [0,0]
 					@board.board[0][0] = @king
@@ -833,6 +834,14 @@ module Chess
 					before(:each) do
 						@board = Board.new
 						@king = King.new("black")
+					end
+					it "returns an Array" do
+						king_coord = [0,0]
+						@board.board[0][0] = @king
+						@board.board[2][0] = Queen.new("white")
+
+						end_game = End_Game.new(@king, @board, king_coord)
+						expect(end_game.check_piece_intercept_array?).to be_instance_of Array
 					end
 					it "returns the intercept array of a checking piece TEST 1" do 
 						king_coord = [0,0]
