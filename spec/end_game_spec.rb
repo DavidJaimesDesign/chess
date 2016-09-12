@@ -479,7 +479,7 @@ module Chess
 				@board.board[2][3] = King.new("white")
 				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
-				#expect(end_game.check_mate?).to be true
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 3" do
