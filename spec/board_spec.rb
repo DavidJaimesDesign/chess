@@ -101,5 +101,32 @@ module Chess
 				expect(@board.select_piece(coord)).to be nil 
 			end
 		end
+
+		context "#copy_board" do
+			before(:each) do
+				@board = Board.new
+				@board.new_game
+				@board_copy = @board.copy_board
+			end
+			it "takes the current board and returns a copy of that board" do
+				expect(@board_copy).to not eq(@board)
+				expect(@board_copy).to be_instance_of Board
+			end
+
+			it "returns a new board with pieces in the same location as the original" do
+				@board_copy.display
+				expect(@board_copy.board[1][1]).to be_instance_of Pawn
+				expect(@board_copy.board[7][7]).to be_instance_of Rook
+				expect(@board_copy.board[0][3]).to be_instance_of King 
+			end
+
+			it "returns a new board with new pieces in the same location as the original" do
+				expect(@board_copy.board[0][3]).to not eq(@board.board[0][3])
+				expect(@board_copy.board[7][7]).to not eq(@board.board[7][7])
+				expect(@board_copy.board[1][2]).to not eq(@board.board[1][2])
+				expect(@board_copy.board[7][3]).to not eq(@board.board[7][3])
+				expect(@board_copy.board[7][2]).to not eq(@board.board[7][2])
+			end
+		end
 	end
 end
