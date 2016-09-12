@@ -262,16 +262,16 @@ module Chess
 				copy = copy_end_game
 				if copy.king_move_escape? == false
 					copy = copy_end_game
-					if copy.any_capture_check_piece? == false
-						copy = copy_end_game
-						if copy.any_intercept_check_piece? == false
-							true					
-						else
-							false
-						end
-					else
+					if copy.any_capture_check_piece?
+						false 
+					end
+
+					copy = copy_end_game
+					if copy.any_intercept_check_piece?
 						false
 					end
+
+					true
 				else
 					false
 				end
