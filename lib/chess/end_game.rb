@@ -143,7 +143,7 @@ module Chess
 			#false if all possible moves are invalid
 			#false if all possible moves still check or all possible moves are invalid
 			king_possible_moves = self.king_possible_moves
-			if self.king_no_move_valid? || self.king_all_move_check?
+			if self.king_all_move_check? || self.king_no_move_valid? 
 				false
 			else
 				true
@@ -246,11 +246,10 @@ module Chess
 
 		def check_mate?
 			if check?
-				if king_move_escape? == false
+				if king_all_move_check? 
 					true
-				else 
-					puts king_all_move_check?.inspect #should be true
-					puts king_no_move_valid?.inspect #should be false
+				else
+					false
 				end
 			else
 				false

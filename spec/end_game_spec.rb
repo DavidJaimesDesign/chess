@@ -476,9 +476,9 @@ module Chess
 				@board.board[1][3] = Bishop.new("white")
 				@board.board[1][4] = Bishop.new("white")
 				@board.board[2][3] = King.new("white")
-				#@board.display
+				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
-				#expect(end_game.check_mate?).to be true
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 3" do
@@ -650,6 +650,18 @@ module Chess
 				end_game = End_Game.new(@king, @board, @king_coord)
 				expect(end_game.king_move_escape?).to be false
 			end
+
+			it "returns true for a capture escape that is still check" do 
+				@board.board[0][3] = King.new("black")
+				@board.board[3][3] = nil
+				king_coord = [0, 3]
+				@board.board[1][3] = Bishop.new("white")
+				@board.board[1][4] = Bishop.new("white")
+				@board.board[2][3] = King.new("white")
+				end_game = End_Game.new(@board.board[0][3], @board, king_coord)
+				expect(end_game.king_move_escape?).to be false
+			end
+
   		end
 
   		context "#king_no_move_valid" do
@@ -695,7 +707,6 @@ module Chess
 				@board.board[7][3] = Rook.new("black")
 				@board.board[7][2] = Rook.new("black")
 				@board.board[7][4] = Queen.new("black")
-				@board.display
 
 				end_game = End_Game.new(@king, @board, @king_coord)
 				expect(end_game.king_all_move_check?).to be true
@@ -704,17 +715,16 @@ module Chess
   			it "returns false otherwise" do
   				@board.board[1][3] = Rook.new("black")
 				end_game = End_Game.new(@king,@board, @king_coord)
-				#expect(end_game.king_all_move_check?).to be false
+				expect(end_game.king_all_move_check?).to be false
   			end
 
-  			it "returns true for a capture escape" do 
+  			it "returns true for a capture escape that is still check" do 
 				@board.board[0][3] = King.new("black")
 				@board.board[3][3] = nil
 				king_coord = [0, 3]
 				@board.board[1][3] = Bishop.new("white")
 				@board.board[1][4] = Bishop.new("white")
 				@board.board[2][3] = King.new("white")
-				@board.display
 				end_game = End_Game.new(@board.board[0][3], @board, king_coord)
 				expect(end_game.king_all_move_check?).to be true
 			end
