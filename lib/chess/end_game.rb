@@ -162,14 +162,14 @@ module Chess
 		def king_all_move_check?
 			king_possible_moves
 			still_check = []
-			test_king = @king.dup
-			test_king_coord = @king_coord.dup
 
 			king_possible_moves.each do |move|
 
 				test_board = board.copy_board
-				test_board.board[test_king_coord[0]][test_king_coord[1]] = nil
+				test_king  = king.dup
+				test_board.board[king_coord[0]][king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
+				test_board.display
 
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
@@ -178,8 +178,12 @@ module Chess
 			end
 			
 			if still_check.length == king_possible_moves.length
+				puts still_check.length
+				puts king_possible_moves.length
 				true
 			else
+				puts still_check.length
+				puts king_possible_moves.length
 				false
 			end
 		end
@@ -244,15 +248,13 @@ module Chess
 			return intercept
 		end
 
+
+
 		def check_mate?
 			if check?
-				if king_all_move_check? 
-					true
-				else
-					false
-				end
+				king_all_move_check?
 			else
-				false
+				"potato"
 			end
 		end
 	end
