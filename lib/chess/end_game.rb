@@ -169,7 +169,7 @@ module Chess
 				test_king  = king.dup
 				test_board.board[king_coord[0]][king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
-				test_board.display
+				#test_board.display
 
 				still_check_game = End_Game.new(test_king, test_board, move)
 				test_board.board[move[0]][move[1]] = nil
@@ -178,12 +178,12 @@ module Chess
 			end
 			
 			if still_check.length == king_possible_moves.length
-				puts still_check.length
-				puts king_possible_moves.length
+				#puts still_check.length
+				#puts king_possible_moves.length
 				true
 			else
-				puts still_check.length
-				puts king_possible_moves.length
+				#puts still_check.length
+				#puts king_possible_moves.length
 				false
 			end
 		end
@@ -248,11 +248,19 @@ module Chess
 			return intercept
 		end
 
-
+		def copy_end_game
+			king_copy       = King.new(king.color)
+			board_copy      = board.copy_board
+			king_coord_copy = [king_coord[0], king_coord[1]] 
+			copy = End_Game.new(king_copy, board_copy, king_coord_copy)
+			return copy
+		end
 
 		def check_mate?
-			if check?
-				king_all_move_check?
+			copy = copy_end_game
+			if copy.check?
+				copy = copy_end_game
+				copy.king_all_move_check?
 			else
 				"potato"
 			end

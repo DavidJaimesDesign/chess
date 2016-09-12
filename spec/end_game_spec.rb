@@ -466,6 +466,7 @@ module Chess
 				@board.board[0][0] = @king
 				@board.board[0][3] = Rook.new("white")
 				@board.board[1][3] = Rook.new("white")
+				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
 				expect(end_game.check_mate?).to be true
 			end
@@ -651,7 +652,7 @@ module Chess
 				expect(end_game.king_move_escape?).to be false
 			end
 
-			it "returns true for a capture escape that is still check" do 
+			it "returns false for a capture escape that is still check" do 
 				@board.board[0][3] = King.new("black")
 				@board.board[3][3] = nil
 				king_coord = [0, 3]
