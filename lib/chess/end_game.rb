@@ -260,9 +260,23 @@ module Chess
 			copy = copy_end_game
 			if copy.check?
 				copy = copy_end_game
-				copy.king_all_move_check?
+				if copy.king_move_escape? == false
+					copy = copy_end_game
+					if copy.any_capture_check_piece? == false
+						copy = copy_end_game
+						if copy.any_intercept_check_piece? == false
+							true					
+						else
+							false
+						end
+					else
+						false
+					end
+				else
+					false
+				end
 			else
-				"potato"
+				false
 			end
 		end
 	end
