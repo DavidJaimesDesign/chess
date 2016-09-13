@@ -178,12 +178,12 @@ module Chess
 			end
 			
 			if still_check.length == king_possible_moves.length
-				#puts still_check.length
-				#puts king_possible_moves.length
+				puts still_check.length
+				puts king_possible_moves.length
 				true
 			else
-				#puts still_check.length
-				#puts king_possible_moves.length
+				puts still_check.length
+				puts king_possible_moves.length
 				false
 			end
 		end
@@ -265,7 +265,10 @@ module Chess
 			copy2 = copy_end_game
 			copy3 = copy_end_game	
 
-			puts "halp pls"
+			#puts copy0.check?
+			#puts king_all_move_check?
+			#puts copy1.king_all_move_check?
+
 
 			if copy0.check?
 				if copy1.king_move_escape? == false
@@ -290,7 +293,6 @@ module Chess
 					end
 					#bug not in check_piece_intercept_array
 				else
-					copy1.board.display
 					puts "king can escape"
 					false
 				end
