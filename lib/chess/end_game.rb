@@ -265,6 +265,8 @@ module Chess
 			copy2 = copy_end_game
 			copy3 = copy_end_game	
 
+			puts "halp pls"
+
 			if copy0.check?
 				if copy1.king_move_escape? == false
 					if check_piece_intercept_array?.length == 1
