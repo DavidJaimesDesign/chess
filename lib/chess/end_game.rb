@@ -260,17 +260,21 @@ module Chess
 		end
 
 		def check_mate?
-			copy = copy_end_game
-			if copy.check?
-				copy = copy_end_game
-				if copy.king_move_escape? == false
-					copy = copy_end_game
+			copy0 = copy_end_game
+			copy1 = copy_end_game
+			copy2 = copy_end_game
+			copy3 = copy_end_game	
+
+			if copy0.check?
+				if copy1.king_move_escape? == false
 					if check_piece_intercept_array?.length == 1
 						if any_capture_check_piece? == false
 							true
 						else
 							puts "you can capture check piece"
-							puts check_piece_coordinates?.inspect
+							puts self.class
+							puts self.check?
+							puts self.check_piece_coordinates?.inspect
 							puts copy.check_piece_coordinates?.inspect
 							false
 						end
@@ -284,10 +288,11 @@ module Chess
 					end
 					#bug not in check_piece_intercept_array
 				else
-					puts "not in check"
+					puts "king can escape"
 					false
 				end
 			else
+				puts "not in check"
 				false
 			end
 		end
