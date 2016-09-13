@@ -288,6 +288,7 @@ module Chess
 					end
 					#bug not in check_piece_intercept_array
 				else
+					copy1.board.display
 					puts "king can escape"
 					false
 				end
