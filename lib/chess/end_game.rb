@@ -216,6 +216,8 @@ module Chess
 					#puts coord_i.inspect
 					if cell != nil && cell.color == @king.color && coord_i != king_coord && cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
 						puts cell
+						puts coord_i.inspect
+						puts check_piece_coord.inspect
 						return true
 					else 
 						false
