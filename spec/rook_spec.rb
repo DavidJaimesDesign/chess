@@ -95,6 +95,23 @@ module Chess
 			end
 		end
 
+		context "#valid_move test 2" do
+			it "returns false for capturing in the diagonal direction" do
+				board = Board.new
+				board.board[0][6] = King.new("black")
+				king_coord = [0, 6]
+				board.board[0][5] = Rook.new("black")
+				board.board[1][6] = Queen.new("white")
+				board.board[1][5] = Pawn.new("black")
+				board.board[1][7] = Pawn.new("black")
+				board.board[4][3] = Bishop.new("white")
+				board.display
+				coord_i = [0, 5]
+				coord_f = [1, 6]
+				expect(board.board[0][5].valid_move?(coord_i, coord_f, board)).to be false
+			end
+		end
+
 		context "#piece_jump_recur" do
 			it "returns true if there is opponent piece at coord_f" do
 				board = Board.new
