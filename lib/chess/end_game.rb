@@ -264,10 +264,18 @@ module Chess
 					copy = copy_end_game
 					if check_piece_intercept_array?.length == 1
 						"close"
-						puts copy.any_capture_check_piece?.inspect
+						if any_capture_check_piece? == false
+							true
+						else
+							false
+						end
+					else 
+						if any_capture_check_piece? == false && any_intercept_check_piece? == false
+							true
+						else
+							false
+						end
 					end
-
-
 					#bug not in check_piece_intercept_array
 				else
 					false
