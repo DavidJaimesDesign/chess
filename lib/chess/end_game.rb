@@ -209,15 +209,15 @@ module Chess
 
 		def any_capture_check_piece?
 			check_piece_coord = check_piece_coordinates?
-
+			#puts check_piece_coord.inspect
 			@board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
 					if cell != nil && cell.color == @king.color && coord_i != king_coord && cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
 						puts cell
-						puts coord_i.inspect
-						puts check_piece_coord.inspect
+						#puts coord_i.inspect
+						# puts check_piece_coord.inspect
 						return true
 					else 
 						false
@@ -270,6 +270,7 @@ module Chess
 							true
 						else
 							puts "you can capture check piece"
+							puts check_piece_coordinates?.inspect
 							false
 						end
 					else 
