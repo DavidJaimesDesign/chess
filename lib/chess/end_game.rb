@@ -215,6 +215,7 @@ module Chess
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
 					if cell != nil && cell.color == @king.color && coord_i != king_coord && cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
+						puts cell
 						return true
 					else 
 						false
@@ -263,21 +264,23 @@ module Chess
 				if copy.king_move_escape? == false
 					copy = copy_end_game
 					if check_piece_intercept_array?.length == 1
-						"close"
 						if any_capture_check_piece? == false
 							true
 						else
+							puts "you can capture check piece"
 							false
 						end
 					else 
 						if any_capture_check_piece? == false && any_intercept_check_piece? == false
 							true
 						else
+							puts "you can capture checking piece or intercept it"
 							false
 						end
 					end
 					#bug not in check_piece_intercept_array
 				else
+					puts "not in check"
 					false
 				end
 			else
