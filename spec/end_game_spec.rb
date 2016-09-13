@@ -490,7 +490,8 @@ module Chess
 				@board.board[1][5] = Pawn.new("black")
 				@board.board[1][7] = Pawn.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
-
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 4" do
@@ -502,6 +503,8 @@ module Chess
 				@board.board[1][7] = Pawn.new("black")
 				@board.board[4][3] = Bishop.new("white")
 				end_game = End_Game.new(@king, @board, king_coord)
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 5" do
@@ -512,6 +515,8 @@ module Chess
 				@board.board[1][6] = Pawn.new("black")
 				@board.board[1][5] = Knight.new("white")
 				end_game = End_Game.new(@king, @board, king_coord)
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 6" do
@@ -524,6 +529,8 @@ module Chess
 				@board.board[4][3] = Bishop.new("white")
 				@board.board[2][7] = Knight.new("white")
 				end_game = End_Game.new(@king, @board, king_coord)
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 7" do
@@ -535,6 +542,8 @@ module Chess
 				@board.board[4][7] = Rook.new("white")
 				@board.board[1][4] = Knight.new("white")
 				end_game = End_Game.new(@king, @board, king_coord)
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 8" do
@@ -544,6 +553,8 @@ module Chess
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black ")
 				end_game = End_Game.new(@king, @board, king_coord)
+				@board.display
+				expect(end_game.check_mate?).to be true
 			end
 
 
