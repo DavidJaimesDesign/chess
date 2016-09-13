@@ -271,6 +271,7 @@ module Chess
 						else
 							puts "you can capture check piece"
 							puts check_piece_coordinates?.inspect
+							puts copy.check_piece_coordinates?.inspect
 							false
 						end
 					else 
