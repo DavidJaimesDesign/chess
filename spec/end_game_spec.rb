@@ -468,7 +468,7 @@ module Chess
 				@board.board[1][3] = Rook.new("white")
 				#@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
-				expect(end_game.check_mate?).to be true
+				#expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 2" do
@@ -479,7 +479,7 @@ module Chess
 				@board.board[2][3] = King.new("white")
 				#@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
-				expect(end_game.check_mate?).to be true
+				#expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 3" do
@@ -491,7 +491,7 @@ module Chess
 				@board.board[1][7] = Pawn.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
 				@board.display
-				#expect(end_game.check_mate?).to be true
+				expect(end_game.check_mate?).to be true
 			end
 
 			it "returns TRUE in test 4" do
@@ -600,7 +600,24 @@ module Chess
 				end_game = End_Game.new(@king, @board, king_coord)
 			end
 		end
+		context "#king_valid_moves" do
+			before(:each) do
+				@board = Board.new
+				@king  = King.new("black")
+			end
 
+			it "edits possible moves and returns an array with only the valid moves" do
+				@board.board[0][6] = @king
+				king_coord = [0, 6]
+				@board.board[0][0] = Rook.new("white")
+				@board.board[1][6] = Pawn.new("black")
+				@board.board[1][5] = Pawn.new("black")
+				@board.board[1][7] = Pawn.new("black")
+				end_game = End_Game.new(@king, @board, king_coord)
+				#@board.display
+				expect(end_game.king_valid_moves).to eq([[0,5],[0,7]])
+			end
+		end
 		context "#king_move_escape? true" do
 			before(:each) do
 				@@board = Board.new
@@ -972,6 +989,8 @@ module Chess
 
 			end 
 		end
+
+
 		context "#stalemate" do
 			#returns true for any situation where the game ends in a stalemate
 		end

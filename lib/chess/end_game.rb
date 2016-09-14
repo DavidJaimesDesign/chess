@@ -159,8 +159,19 @@ module Chess
 			end
 		end
 
-		def king_all_move_check?
+		def king_valid_moves
 			king_possible_moves
+			valid_moves = []
+			king_possible_moves.each do |move| 
+				if @king.valid_move?(@king_coord, move, @board)
+					valid_moves << move
+				end
+			end
+			return valid_moves
+		end
+
+		def king_all_move_check?
+			king_possible_moves = king_valid_moves
 			still_check = []
 
 			king_possible_moves.each do |move|
@@ -179,12 +190,12 @@ module Chess
 			end
 			
 			if still_check.length == king_possible_moves.length
-				puts still_check.length
-				puts king_possible_moves.length
+				#puts still_check.length
+				#puts king_possible_moves.length
 				true
 			else
-				puts still_check.length
-				puts king_possible_moves.length
+				#puts still_check.length
+				#puts king_possible_moves.length
 				false
 			end
 		end
@@ -211,15 +222,23 @@ module Chess
 		def any_capture_check_piece?
 			check_piece_coord = check_piece_coordinates?
 			#puts check_piece_coord.inspect
-			@board.board.each_with_index do |row, r_index|
+			copy = copy_end_game
+			copy.board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color == @king.color && coord_i != king_coord && cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
-						puts cell
-						#puts coord_i.inspect
-						# puts check_piece_coord.inspect
-						return true
+					if cell != nil && cell.color == @king.color && coord_i != king_coord 
+						if (cell.instance_of? Pawn) 
+							puts check_piece_coord.inspect
+							puts coord_i.inspect
+							return false
+						end
+						if cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
+							puts cell
+							#puts coord_i.inspect
+							#puts check_piece_coord.inspect
+							return true
+						end
 					else 
 						false
 					end
@@ -267,11 +286,12 @@ module Chess
 			copy3 = copy_end_game	
 
 			#puts copy0.check?
-			puts king_all_move_check?
-			puts copy1.king_all_move_check?
+			#puts king_all_move_check?
+			#puts copy1.king_all_move_check?
 
 
 			if copy0.check?
+				#puts copy2.check_piece_coordinates?.inspect
 				if copy1.king_move_escape? == false
 					if check_piece_intercept_array?.length == 1
 						if any_capture_check_piece? == false
