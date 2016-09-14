@@ -231,7 +231,7 @@ module Chess
 							puts check_piece_coord.inspect
 							puts coord_i.inspect
 							return false
-						end
+						end #help me
 						if cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
 							puts cell
 							#puts coord_i.inspect
