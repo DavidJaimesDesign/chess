@@ -242,7 +242,10 @@ module Chess
 		end
 
 		def any_intercept_check_piece?
-			copy = copy_end_game
+			king_copy       = King.new(@king.color)
+			board_copy      = @board.copy_board
+			king_coord_copy = [@king_coord[0], @king_coord[1]] 
+			copy = End_Game.new(king_copy, board_copy, king_coord_copy)
 			cp = copy.check_piece?
 			intercept = false
 			return intercept if cp.instance_of? Knight
@@ -300,6 +303,8 @@ module Chess
 							false
 						end
 					else 
+						#puts any_intercept_check_piece?.inspect
+						#puts copy6.any_intercept_check_piece?.inspect
 						if copy2.any_capture_check_piece? == false && any_intercept_check_piece? == false
 							true
 						else
