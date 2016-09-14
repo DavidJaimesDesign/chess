@@ -227,8 +227,8 @@ module Chess
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
 					if cell != nil && cell.color == @king.color && coord_i != king_coord && (!cell.instance_of? King)
-							puts coord_i.inspect
-							puts check_piece_coord.inspect
+							#puts coord_i.inspect
+							#puts check_piece_coord.inspect
 						if cell.valid_move?(coord_i, check_piece_coord, @board) 
 							puts cell
 							return true
@@ -266,9 +266,9 @@ module Chess
 		end
 
 		def copy_end_game
-			king_copy       = King.new(king.color)
-			board_copy      = board.copy_board
-			king_coord_copy = [king_coord[0], king_coord[1]] 
+			king_copy       = King.new(@king.color)
+			board_copy      = @board.copy_board
+			king_coord_copy = [@king_coord[0], @king_coord[1]] 
 			copy = End_Game.new(king_copy, board_copy, king_coord_copy)
 			return copy
 		end
@@ -277,7 +277,8 @@ module Chess
 			copy0 = copy_end_game
 			copy1 = copy_end_game
 			copy2 = copy_end_game
-			copy3 = copy_end_game	
+			copy3 = copy_end_game
+			copy4 = copy_end_game	
 
 			#puts copy0.check?
 			#puts king_all_move_check?
@@ -288,18 +289,18 @@ module Chess
 				#puts copy2.check_piece_coordinates?.inspect
 				if copy1.king_move_escape? == false
 					if check_piece_intercept_array?.length == 1
-						if any_capture_check_piece? == false
+						if copy3.any_capture_check_piece? == false
 							true
 						else
 							puts "you can capture check piece"
 							puts self.class
 							puts self.check?
 							puts self.check_piece_coordinates?.inspect
-							puts copy.check_piece_coordinates?.inspect
+							puts copy3.check_piece_coordinates?.inspect
 							false
 						end
 					else 
-						if any_capture_check_piece? == false && any_intercept_check_piece? == false
+						if copy2.any_capture_check_piece? == false && any_intercept_check_piece? == false
 							true
 						else
 							puts "you can capture checking piece or intercept it"
