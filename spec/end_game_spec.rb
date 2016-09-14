@@ -562,6 +562,7 @@ module Chess
 				@board.new_game
 				king_coord = [0, 3]
 				end_game = End_Game.new(@king, @board.board[0][3], king_coord)
+				expect(end_game.check_mate?).to be false
 			end
 
 			it "returns FALSE in test 2 run" do
@@ -569,6 +570,7 @@ module Chess
 				king_coord = [0, 0]
 				@board.board[7][7] = Bishop.new("white")
 				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be false
 			end
 
 			it "returns FALSE in test 3 king capture other piece" do
@@ -578,6 +580,7 @@ module Chess
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be false
 			end
 
 			it "returns FALSE in test 4 other piece capture check" do
@@ -588,6 +591,7 @@ module Chess
 				@board.board[1][0] = Pawn.new("black")
 				@board.board[7][0] = Rook.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be false
 			end
 
 			it "returns FALSE in test 5 other piece intercept" do
@@ -598,6 +602,7 @@ module Chess
 				@board.board[1][0] = Pawn.new("black")
 				@board.board[0][4] = Rook.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
+				expect(end_game.check_mate?).to be false
 			end
 		end
 		context "#king_valid_moves" do
