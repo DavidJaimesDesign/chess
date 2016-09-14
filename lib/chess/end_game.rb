@@ -252,12 +252,10 @@ module Chess
 						check_piece_intercept_array?.each do |coord|
 							if cell.valid_move?(coord_i, coord, board) == true
 								intercept = true
-							elsif cell.valid_move?(coord_i, coord, board) == false
-								false
+							#elsif cell.valid_move?(coord_i, coord, board) == false
+								#false
 							end
 						end
-						false
-					else 
 						false
 					end
 				end

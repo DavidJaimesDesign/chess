@@ -551,7 +551,7 @@ module Chess
 				king_coord = [0, 0]
 				@board.board[7][7] = Bishop.new("white")
 				@board.board[6][7] = Bishop.new("white")
-				@board.board[1][0] = Pawn.new("black ")
+				@board.board[1][0] = Pawn.new("black")
 				end_game = End_Game.new(@king, @board, king_coord)
 				@board.display
 				expect(end_game.check_mate?).to be true
@@ -881,7 +881,7 @@ module Chess
 					@board.board[1][5] = Pawn.new("black")
 					@board.board[1][7] = Pawn.new("black")
 					end_game = End_Game.new(@king, @board, king_coord)
-					@board.display
+					#@board.display
 					expect(end_game.any_capture_check_piece?).to be false 
 				end
 			end
@@ -977,8 +977,11 @@ module Chess
 					it "returns true TEST 2" do
 						king_coord = [3,3]
 						@board.board[3][3] = @king
-						@board.board[5][3] = Bishop.new("black")
+						#@board.board[5][3] = Bishop.new("black")
 						@board.board[7][7] = Queen.new("white")
+						@board.board[3][6] = Pawn.new("black")
+						@board.board[0][5] = Rook.new("black")
+						@board.display
 
 						end_game = End_Game.new(@king, @board, king_coord)
 						expect(end_game.any_intercept_check_piece?).to be true
