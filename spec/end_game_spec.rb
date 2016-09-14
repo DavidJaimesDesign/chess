@@ -866,6 +866,18 @@ module Chess
 					end_game = End_Game.new(@king, @board, king_coord)
 					expect(end_game.any_capture_check_piece?).to be false
 				end
+
+				it "returns false for pawns going backwards" do
+					@board.board[0][6] = @king
+					king_coord = [0, 6]
+					@board.board[0][0] = Rook.new("white")
+					@board.board[1][6] = Pawn.new("black")
+					@board.board[1][5] = Pawn.new("black")
+					@board.board[1][7] = Pawn.new("black")
+					end_game = End_Game.new(@king, @board, king_coord)
+					@board.display
+					expect(end_game.any_capture_check_piece?).to be false 
+				end
 			end
 
 			context "can they intercept the checking pieces path?" do
