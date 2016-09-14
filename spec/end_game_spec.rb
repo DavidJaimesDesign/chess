@@ -561,7 +561,7 @@ module Chess
 			it "returns FALSE in test 1" do
 				@board.new_game
 				king_coord = [0, 3]
-				end_game = End_Game.new(@king, @board.board[0][3], king_coord)
+				end_game = End_Game.new(@king, @board, king_coord)
 				expect(end_game.check_mate?).to be false
 			end
 
@@ -601,6 +601,7 @@ module Chess
 				@board.board[6][7] = Bishop.new("white")
 				@board.board[1][0] = Pawn.new("black")
 				@board.board[0][4] = Rook.new("black")
+				@board.display
 				end_game = End_Game.new(@king, @board, king_coord)
 				expect(end_game.check_mate?).to be false
 			end
