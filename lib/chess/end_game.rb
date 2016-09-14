@@ -165,8 +165,9 @@ module Chess
 
 			king_possible_moves.each do |move|
 
-				test_board = board.copy_board
-				test_king  = king.dup
+				copy = copy_end_game
+				test_board = copy.board
+				test_king  = copy.king
 				test_board.board[king_coord[0]][king_coord[1]] = nil
 				test_board.board[move[0]][move[1]] = test_king
 				#test_board.display
@@ -266,8 +267,8 @@ module Chess
 			copy3 = copy_end_game	
 
 			#puts copy0.check?
-			#puts king_all_move_check?
-			#puts copy1.king_all_move_check?
+			puts king_all_move_check?
+			puts copy1.king_all_move_check?
 
 
 			if copy0.check?
