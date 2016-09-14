@@ -981,7 +981,7 @@ module Chess
 						@board.board[7][7] = Queen.new("white")
 						@board.board[3][6] = Pawn.new("black")
 						@board.board[0][5] = Rook.new("black")
-						@board.display
+						#@board.display
 
 						end_game = End_Game.new(@king, @board, king_coord)
 						expect(end_game.any_intercept_check_piece?).to be true

@@ -242,13 +242,14 @@ module Chess
 		end
 
 		def any_intercept_check_piece?
-			cp = check_piece?
+			copy = copy_end_game
+			cp = copy.check_piece?
 			intercept = false
 			return intercept if cp.instance_of? Knight
-			@board.board.each_with_index do |row, r_index|
+			copy.board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
-					if cell != nil && cell.color == @king.color && cell != @king 
+					if cell != nil && cell.color == copy.king.color && cell != copy.king
 						check_piece_intercept_array?.each do |coord|
 							if cell.valid_move?(coord_i, coord, board) == true
 								intercept = true
@@ -277,7 +278,8 @@ module Chess
 			copy2 = copy_end_game
 			copy3 = copy_end_game
 			copy4 = copy_end_game	
-
+			copy5 = copy_end_game
+			copy6 = copy_end_game
 			#puts copy0.check?
 			#puts king_all_move_check?
 			#puts copy1.king_all_move_check?
