@@ -226,13 +226,13 @@ module Chess
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
 					#puts coord_i.inspect
-					if cell != nil && cell.color == @king.color && coord_i != king_coord 
+					if cell != nil && cell.color == @king.color && coord_i != king_coord && (!cell.instance_of? King)
 						if (cell.instance_of? Pawn) 
 							puts check_piece_coord.inspect
 							puts coord_i.inspect
 							return false
 						end #help me
-						if cell.valid_move?(coord_i, check_piece_coord, @board) && cell != @king
+						if cell.valid_move?(coord_i, check_piece_coord, @board) 
 							puts cell
 							#puts coord_i.inspect
 							#puts check_piece_coord.inspect
