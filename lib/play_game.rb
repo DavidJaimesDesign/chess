@@ -12,6 +12,8 @@ puts ""
 puts ""
 puts "This is a two player game you will need a friend or at least someone to play with you."
 puts "Decide amongst the two of you who is going to be white and who is going to be black."
+puts "Once you type and make a move it's final if you cannot make the move your turn is skipped"
+puts "you have been warned"
 puts ""
 puts "Do you need the instructions? please enter y or n"
 instructions = gets.chomp
@@ -55,16 +57,40 @@ while  test_checkmate == false do
 
 	puts "#{white} input a move"
 	move_coord = gets.chomp
-	move_coord_std = game.coordinate_parser(move_coord)
-	if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
-		piece.move(piece_coord_std, move_coord_std, game.board)
-		game.board.display
-	else
-		puts "please add a valid move"
-		puts ""
-	    game.board.display
+	if move_coord.length < 3	
+		move_coord_std = game.coordinate_parser(move_coord)
+		if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
+			piece.move(piece_coord_std, move_coord_std, game.board)
+			game.board.display
+		else
+			puts "please add a valid move"
+			puts ""
+	    	game.board.display
+		end
 	end
-	
+	if move_coord == "king's side castle"
+		castle = Chess::Castle.new(game.board)
+		if castle.white_king_side_castle
+			game.board.board[7][6] = game.board.board[7][3]
+			game.board.board[7][5] = game.board.board[7][7]
+			game.board.board[7][7] = nil
+			game.board.board[7][3] = nil
+			game.board.display
+		else 
+			puts "can't castle skip your turn"
+		end
+	elsif move_coord == "queen's side castle"
+		castle = Chess::Castle.new(game.board)
+		if castle.white_king_side_castle
+			game.board.board[7][2] = game.board.board[7][3]
+			game.board.board[7][3] = game.board.board[7][0]
+			game.board.board[7][0] = nil
+			game.board.board[7][3] = nil
+			game.board.display
+		else 
+			puts "can't castle skip your turn"
+		end
+	end
 
 	puts "#{black} select a piece"
 	piece_coord = gets.chomp
@@ -75,14 +101,41 @@ while  test_checkmate == false do
 	puts "#{black} input a move"
 	move_coord = gets.chomp
 	move_coord_std = game.coordinate_parser(move_coord)
-	if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
-		piece.move(piece_coord_std, move_coord_std, game.board)
-		game.board.display
-	else
-		puts "please add a valid move"
-		puts ""
-	    game.board.display
+	if move_coord.length < 3	
+		move_coord_std = game.coordinate_parser(move_coord)
+		if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
+			piece.move(piece_coord_std, move_coord_std, game.board)
+			game.board.display
+		else
+			puts "please add a valid move"
+			puts ""
+	    	game.board.display
+		end
 	end	
+
+	if move_coord == "king's side castle"
+		castle = Chess::Castle.new(game.board)
+		if castle.white_king_side_castle
+			game.board.board[0][6] = game.board.board[0][3]
+			game.board.board[0][5] = game.board.board[0][7]
+			game.board.board[0][7] = nil
+			game.board.board[0][3] = nil
+			game.board.display
+		else 
+			puts "can't castle skip your turn"
+		end
+	elsif move_coord == "queen's side castle"
+		castle = Chess::Castle.new(game.board)
+		if castle.white_king_side_castle
+			game.board.board[0][2] = game.board.board[0][3]
+			game.board.board[0][3] = game.board.board[0][0]
+			game.board.board[0][0] = nil
+			game.board.board[0][3] = nil
+			game.board.display
+		else 
+			puts "can't castle skip your turn"
+		end
+	end
 end
 
 
