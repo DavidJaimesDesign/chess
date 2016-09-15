@@ -61,6 +61,9 @@ while  test_checkmate == false do
 		move_coord_std = game.coordinate_parser(move_coord)
 		if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
 			piece.move(piece_coord_std, move_coord_std, game.board)
+			if game.pawn_promote?
+				game.pawn_promotion(move_coord_std)
+			end
 			game.board.display
 		else
 			puts "please add a valid move"
@@ -106,6 +109,9 @@ while  test_checkmate == false do
 		if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
 			piece.move(piece_coord_std, move_coord_std, game.board)
 			game.board.display
+			if game.pawn_promote?
+				game.pawn_promotion(move_coord_std)
+			end
 		else
 			puts "please add a valid move"
 			puts ""
