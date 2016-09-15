@@ -49,6 +49,26 @@ game.board.display
 
 test_checkmate = false
 while  test_checkmate == false do
+
+	game.board.board.each_with_index do |row, r_index|
+		row.each_with_index do |cell, c_index|
+			coord_i = [r_index, c_index]
+			#puts coord_i.inspect
+			if cell != nil && cell.color = "white" && cell.instance_of? King
+				w_king = cell
+				w_king_coord = coord_i
+			end
+		end
+	end
+	
+
+	white_check_mate = Chess.End_Game.new(w_king, game.board.copy_board, w_king_coord)
+	white_check      = white_check_mate.copy_end_game
+	if white_check_mate.check_mate?
+		puts "GAME OVER WHITE LOOSES"
+		test_checkmate = true
+	end
+
 	puts "#{white} select a piece"
 	piece_coord = gets.chomp
 	piece_coord_std = game.coordinate_parser(piece_coord)
@@ -95,6 +115,24 @@ while  test_checkmate == false do
 		end
 	end
 
+	game.board.board.each_with_index do |row, r_index|
+		row.each_with_index do |cell, c_index|
+			coord_i = [r_index, c_index]
+			#puts coord_i.inspect
+			if cell != nil && cell.color = "black" && cell.instance_of? King
+				b_king = cell
+				b_king_coord = coord_i
+			end
+		end
+	end
+
+	black_check_mate = Chess.End_Game.new(b_king, game.board.copy_board, b_king_coord)
+	black_check      = black_check_mate.copy_end_game
+
+	if black_check_mate.check_mate?
+		puts "BLACK IN CHECKMATE BLACK LOOSES"
+		test_checkmate = true
+	end
 	puts "#{black} select a piece"
 	piece_coord = gets.chomp
 	piece_coord_std = game.coordinate_parser(piece_coord)
