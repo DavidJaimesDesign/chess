@@ -242,17 +242,13 @@ module Chess
 		end
 
 		def any_intercept_check_piece?
-			king_copy       = King.new(@king.color)
-			board_copy      = @board.copy_board
-			king_coord_copy = [@king_coord[0], @king_coord[1]] 
-			copy = End_Game.new(king_copy, board_copy, king_coord_copy)
-			cp = copy.check_piece?
+			cp = check_piece?
 			intercept = false
 			return intercept if cp.instance_of? Knight
-			copy.board.board.each_with_index do |row, r_index|
+			board.board.each_with_index do |row, r_index|
 				row.each_with_index do |cell, c_index|
 					coord_i = [r_index, c_index]
-					if cell != nil && cell.color == copy.king.color && cell != copy.king
+					if cell != nil && cell.color == king.color && cell != king
 						check_piece_intercept_array?.each do |coord|
 							if cell.valid_move?(coord_i, coord, board) == true
 								intercept = true
@@ -260,7 +256,6 @@ module Chess
 								#false
 							end
 						end
-						false
 					end
 				end
 			end
@@ -290,6 +285,7 @@ module Chess
 
 			if copy0.check?
 				#puts copy2.check_piece_coordinates?.inspect
+				#we can only use the end_game methods once for some clones and none times for others
 				if copy1.king_move_escape? == false
 					if check_piece_intercept_array?.length == 1
 						if copy3.any_capture_check_piece? == false
