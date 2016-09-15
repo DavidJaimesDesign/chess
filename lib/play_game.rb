@@ -49,24 +49,61 @@ game.board.display
 
 test_checkmate = false
 while  test_checkmate == false do
-
+	w_king       = nil
+	w_king_coord = nil
 	game.board.board.each_with_index do |row, r_index|
 		row.each_with_index do |cell, c_index|
 			coord_i = [r_index, c_index]
 			#puts coord_i.inspect
-			if cell != nil && cell.color = "white" && cell.instance_of? King
+			if cell != nil && cell.color == "white" && (cell.instance_of? Chess::King)
 				w_king = cell
 				w_king_coord = coord_i
 			end
 		end
 	end
-	
 
-	white_check_mate = Chess.End_Game.new(w_king, game.board.copy_board, w_king_coord)
+	white_check_mate = Chess::End_Game.new(w_king, game.board.copy_board, w_king_coord)
 	white_check      = white_check_mate.copy_end_game
+
 	if white_check_mate.check_mate?
-		puts "GAME OVER WHITE LOOSES"
+		puts "GAME OVER #{white} LOOSES"
 		test_checkmate = true
+	end
+
+	if white_check.check?
+		still_check = true
+
+		while still_check == true do
+			puts "#{white} IS IN CHECK!"
+			puts "YOU HAVE TO MOVE OUT OF CHECK!"
+			puts "YOU CAN'T CASTLE OUT OF CHECK"
+			puts "#{white} select a piece"
+			piece_coord = gets.chomp
+			piece_coord_std = game.coordinate_parser(piece_coord)
+			piece = game.board.select_piece(piece_coord_std)
+			puts piece.inspect
+
+			puts "#{white} input a move"
+			move_coord = gets.chomp
+			if move_coord.length < 3	
+				move_coord_std = game.coordinate_parser(move_coord)
+				if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
+					piece.move(piece_coord_std, move_coord_std, game.board)
+					if game.pawn_promote?
+						game.pawn_promotion(move_coord_std)
+					end
+					game.board.display
+				else
+					puts "please add a valid move"
+					puts ""
+	    			game.board.display
+				end
+			end
+
+			if white_check.check? == false
+				still_check = true
+			end
+		end
 	end
 
 	puts "#{white} select a piece"
@@ -115,23 +152,61 @@ while  test_checkmate == false do
 		end
 	end
 
+	b_king       = nil
+	b_king_coord = nil
 	game.board.board.each_with_index do |row, r_index|
 		row.each_with_index do |cell, c_index|
 			coord_i = [r_index, c_index]
-			#puts coord_i.inspect
-			if cell != nil && cell.color = "black" && cell.instance_of? King
+		 	#puts coord_i.inspect
+			if cell != nil && cell.color == "black" && (cell.instance_of? Chess::King)
 				b_king = cell
 				b_king_coord = coord_i
 			end
 		end
 	end
 
-	black_check_mate = Chess.End_Game.new(b_king, game.board.copy_board, b_king_coord)
+	black_check_mate = Chess::End_Game.new(b_king, game.board.copy_board, b_king_coord)
 	black_check      = black_check_mate.copy_end_game
 
 	if black_check_mate.check_mate?
 		puts "BLACK IN CHECKMATE BLACK LOOSES"
 		test_checkmate = true
+	end
+
+	if black_check.check?
+		still_check = true
+
+		while still_check == true do
+			puts "#{black} IS IN CHECK!"
+			puts "YOU HAVE TO MOVE OUT OF CHECK!"
+			puts "YOU CAN'T CASTLE OUT OF CHECK"
+			puts "#{black} select a piece"
+			piece_coord = gets.chomp
+			piece_coord_std = game.coordinate_parser(piece_coord)
+			piece = game.board.select_piece(piece_coord_std)
+			puts piece.inspect
+
+			puts "#{black} input a move"
+			move_coord = gets.chomp
+			if move_coord.length < 3	
+				move_coord_std = game.coordinate_parser(move_coord)
+				if piece.valid_move?(piece_coord_std, move_coord_std, game.board)
+					piece.move(piece_coord_std, move_coord_std, game.board)
+					if game.pawn_promote?
+						game.pawn_promotion(move_coord_std)
+					end
+					game.board.display
+				else
+					puts "please add a valid move"
+					puts ""
+	    			game.board.display
+				end
+			end
+
+			if black_check.check? == false
+				still_check = true
+			end
+		end
 	end
 	puts "#{black} select a piece"
 	piece_coord = gets.chomp
